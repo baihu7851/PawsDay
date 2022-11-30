@@ -1,0 +1,305 @@
+
+.order-feature,.order-illustrate{
+    background-color: #fff;
+}
+.order-feature{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    border-radius: var(--radius);
+}
+.order-feature-title,.order-feature-title-cancel{
+    border-bottom: 1px solid var(--clr-border);
+}
+.order-feature-title p{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    background-color: var(--clr-border);
+    margin: 15px 0;
+    border-radius: var(--radius);
+    font-size: var(--font);
+    color: var(--clr-bg-y);
+}
+.order-feature-title-cancel p{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    background-color: var(--clr-font-g);
+    margin: 15px 0;
+    border-radius: var(--radius);
+    font-size: var(--font);
+    color: var(--clr-bg-y);
+}
+.order-feature-text h1{
+    font-size: var(--vicefont);
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.feature-text,.feature-text-cancel{
+    margin-bottom: 10px;
+}
+.feature-text i{
+    margin-right: 5px;
+}
+.order-feature-link{
+    margin-top: 20px;
+}
+.feature-contact,.feature-evaluation{    
+    text-align: center;  
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    margin-bottom: 5px;
+}
+.feature-contact a{
+    color: #fff;
+}
+.feature-contact a,.feature-evaluation a,.feature-a button{    
+    display: block;
+    box-sizing: border-box;
+    padding: 10px 15px;
+}
+.feature-cancel{
+    border: 1px solid var(--clr-font-g);
+    border-radius: var(--radius);
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+.feature-cancel:hover{
+    background-color: var(--clr-bg-g);
+}
+.feature-cancel button{   
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    flex-grow: 1;
+}
+.fa-calendar-days, .fa-file-invoice-dollar {
+    width:16px;
+}
+.feature-contact {
+    background-color: var(--clr-border);
+    color: var(--clr-bg-y);
+}
+.feature-contact:hover{
+    background-color: var(--clr-specfont);
+}
+.feature-evaluation a{
+    color: var(--clr-border);
+}
+.feature-evaluation:hover{    
+    background-color: var(--clr-bg-g);
+}
+.feature-btn{
+    text-align: end;
+}
+.feature-btn button{
+    background-color: transparent;
+    color: var(--clr-font-g);
+}
+.feature-btn button:hover{
+    color: var(--clr-specfont);
+}
+
+.order-illustrate{
+    border-radius: var(--radius);
+}
+.order-illustrate-header{
+    border-bottom: 1px solid var(--clr-bg-g);
+    padding-left: 15px;
+}
+.order-illustrate-header ul{
+    display: flex;
+}
+.order-illustrate-header li{
+    box-sizing: border-box;
+    padding: 10px 20px 0;
+}
+.order-illustrate-header li{
+    padding-bottom: 10px;
+}
+.order-illustrate-header li:hover{
+    border-bottom: 3px solid var(--clr-primary);
+    color: var(--clr-primary);
+}
+.order-illustrate-header .this-page:hover{
+    border-bottom: 3px solid var(--clr-border);
+    color: var(--clr-border);
+}
+.container-illustrate-body{
+    background-color: #fff;
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+.illustrate-body-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.orderer-title,.address-title,.pet-title,.phone-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    position: relative;
+    color: var(--clr-border);
+}
+.orderer-title::before,.address-title::before,.pet-title::before,.phone-title::before{
+    content: "";
+    width: 4px;
+    height: 20px;
+    background-color: var(--clr-border);
+    position: absolute;
+    top: 6px;
+    left: -20px;
+}
+.illustrate-body-orderer,.illustrate-body-address,.illustrate-body-pet,.illustrate-body-phone{
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.service-btn{
+    cursor: pointer;
+}
+.product-sheet p,.service-sheet p{
+    padding: 15px;
+    font-size: 14px;
+}
+.service-sheet p{
+    padding-top: 0px;
+}
+.buyer-sheet p{
+    font-size: 14px;
+}
+
+
+
+
+
+/* Modal */
+.modal-content{
+    position: relative;
+}
+.modal-content::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 8px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background-color: var(--clr-primary);
+}
+.modal-content button{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
+.modal-section{
+    box-sizing: border-box;
+    padding: 25px 30px;
+}
+.modal-h5{
+    font-size: var(--vicefont);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.modal-p{
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.modal-text{
+    font-size: var(--font);
+    color: var(--clr-font-g);
+}
+
+
+/* Modal */
+.modal-table{
+    border-radius: var(--radius);
+    border: 1px solid var(--clr-bg-g);
+    font-size: 16px;
+    font-weight: 700; 
+    margin-bottom: 15px; 
+}
+.modal-table-head{
+    display: flex;
+    background-color: var(--clr-bg-g);   
+}
+.modal-table-head div,.table-body-text div{
+    box-sizing: border-box;
+    padding: 10px 15px;
+}
+.table-body-text{
+    display: flex;
+    border-bottom: 1px solid var(--clr-bg-g);
+}
+.table-body-text:last-child{
+    border-bottom: none;
+}
+.modal-money{
+    background-color: var(--clr-bg-g);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+}
+.modal-money-title h3{
+    font-weight: 700;
+    box-sizing: border-box;
+    padding: 10px 15px 5px;
+}
+.money-pay,.money-cancel{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 5px 15px 10px;
+    align-items: center;
+}
+.money-border{    
+    border-bottom: 1px dotted var(--clr-font-g);
+    position: relative;
+}
+.money-border::before{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: #fff;
+    top: -10px;
+    left: -10px;
+}
+.money-border::after{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: #fff;
+    top: -10px;
+    right: -10px;
+}
+.money-cancel-div{
+    color: var(--clr-border);
+    font-weight: 700;
+}
+.money-cancel-div span:last-child{
+    font-size: 22px;
+}
+.modal-btn button{
+    position: relative;
+}
+.modal-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+.modal-btn-no {
+    background-color: transparent;
+    margin-right: 20px;
+    padding-top: 20px;
+}
+.modal-btn-no:hover{
+    color: var(--clr-border);
+}
+.order-cancel-id {
+    display:none;
+}

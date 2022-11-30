@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "保姆分析";
+    Layout = "_Layout";
+}
+
+
+    @section topCSS{
+
+    }
+    <main class="sitter-chart">
+        <div class="container">
+            <h1 class="h3 mb-2 text-gray-800 font-weight-bold">保姆分析</h1>
+            <div class="product-chart row">
+                
+                <div class="col-12 sitterTop" id="sitterTop">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h2 class="m-0 font-weight-bold text-primary text-center">{{title}}</h2>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="card-item" v-for="(sitter,index) in tops">
+                                <h3>Top {{index+1}}</h3>
+                                <p>{{name[0]}}：{{sitter.memberID}}</p>
+                                <p>{{name[1]}}：{{sitter.sitterName}}</p>
+                                <p>{{name[2]}}：{{sitter.orderCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @section endJS{
+
+    <script src="~/js/sitter-chart.js"></script>
+}

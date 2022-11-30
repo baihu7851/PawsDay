@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "_LayoutSearchNone";
+}
+@{
+    ViewData["Title"] = "常見問題";
+}
+
+
+
+@section topCSS{
+
+    <link href="~/css/staticWeb/support.css" rel="stylesheet" />
+}
+
+
+    <div class="wrap">
+        <div class="problem-container search-container">
+            <div class="container">
+                <div class="row main-area search-area">
+                    <div class="col search-col">
+                        <h2 class="slogan">你今天需要什麼幫助呢？</h2>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="help-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="title">幫助主題</h3>
+                        <div class="row gy-3 list-group">
+                            <div class="col-12 col-md-4">
+                                <a asp-controller="StaticWeb" asp-action="MemberAnswer" class="list-group-item list-group-item-action item-btn">
+                                    <img class="icon" src="~/images/member.png" alt="">
+                                    <span class="text">消費者常見問題</span>
+                                </a>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <a asp-controller="StaticWeb" asp-action="SitterAnswer"
+                               class="list-group-item list-group-item-action item-btn">
+                                    <img class=" icon" src="~/images/sitter.png" alt="">
+                                    <span class="text">保姆常見問題</span>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <a asp-controller="StaticWeb" asp-action="PaymentAnswer" class="list-group-item list-group-item-action item-btn">
+                                    <img class="icon" src="~/images/invoice.png" alt="">
+                                    <span class="text">付款常見問題</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

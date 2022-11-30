@@ -1,0 +1,210 @@
+﻿@section topJS{
+}
+@section topCSS{
+<link rel="stylesheet" href="~/css/member/member-center.css">
+<link rel="stylesheet" href="~/css/member/member-collect.css">
+}
+@{
+
+    ViewData["Title"] = "我的收藏";
+}
+
+<article>
+    <section class="container section">
+        <partial name="_MemberCenterSidebarPartial"></partial>
+
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-input">
+                <div class="container-input-header">
+                    <h2 class="currenttitle">我的收藏</h2>
+                </div>
+                <div class="collect-body">
+                </div>
+            </div>
+        </section>
+    </section>
+
+</article>
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+    
+    <script>
+        let source = [];
+        let body = document.querySelector('.collect-body')
+
+        window.onload = function () {
+            getCollect()
+        }
+
+        function getCollect() {
+            let url = "/api/MemberCenterCollectWebApi/GetCollectDate"
+
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    //轉換資料
+                    
+                    if (response.data == null) {
+                        source = null
+                    }
+                    else {
+                        
+                        source = response.data.map(d => {
+                            return {
+                                collectId: d.collectId,
+                                productId: d.productId,
+                                image: d.productImage,
+                                sitterName: d.sitterName,
+                                serviceType: d.typeName,
+                                county: d.county,
+                                orderCount: d.orderCount,
+                                evaluationAverage: d.evaluationAverage,
+                                evaluationCount: d.evaluationCount,
+                                price: d.price,
+                                IsCollect: true
+                            }
+                        })
+                    }
+                    init()
+                })
+                .catch(ex => {
+                    console.log(ex)
+                })
+        }
+
+        function init() {
+            console.log(source)
+            if (source == null) {
+                NotFound()
+            }
+            else {
+
+                let groups = document.createElement('div')
+                groups.classList = 'collect-groups'
+
+                source.forEach(x => {
+                   
+                    let group = document.createElement('a')
+                    group.classList = 'collect-group'
+                    group.onclick = function () {
+                        location.href = "/Product/" + x.productId
+                    }
+
+                    let img = document.createElement('img')
+                    img.classList = 'collect-img '
+                    console.log(img)
+                    img.style.backgroundImage = `url("${x.image}")`
+                    group.appendChild(img)
+                    let text = document.createElement('div')
+                    text.classList = 'collect-text col-8'
+                    let h3 = document.createElement('h3')
+                    h3.innerText = x.sitterName
+                    text.appendChild(h3)
+                    let h4 = document.createElement('h4')
+                    h4.innerText = x.serviceType
+                    text.appendChild(h4)
+                    let county = document.createElement('p')
+                    county.innerText = x.county.replace(',', '、')
+                    text.appendChild(county)
+                    let count = document.createElement('p')
+                    count.innerText = x.orderCount + "+ 已預定"
+                    text.appendChild(count)
+
+                    let footer = document.createElement('div')
+                    footer.classList = 'collect-footer'
+                    let evaluation = document.createElement('div')
+                    evaluation.classList = 'collect-evaluation'
+                    let stars = document.createElement('div')
+                    stars.classList = 'collect-evaluation-star'
+                    for (var i = 0; i < 5; i++) {
+                        let i = document.createElement('i')
+                        i.classList = 'fa-solid fa-star'
+                        stars.appendChild(i)
+                    }
+                    let a = (67.5 * x.evaluationAverage / 5)
+                    console.log(a)
+                    stars.style.width = a + 'px'
+                    evaluation.appendChild(stars)
+                    let starbors = document.createElement('div')
+                    starbors.classList = 'star-border'
+                    for (var i = 0; i < 5; i++) {
+                        let i = document.createElement('i')
+                        i.classList = 'fa-solid fa-star'
+                        starbors.appendChild(i)
+                    }
+                    evaluation.appendChild(starbors)
+                    let counts = document.createElement('span')
+                    counts.innerText = `(${x.evaluationCount})`
+                    evaluation.appendChild(counts)
+
+                    footer.appendChild(evaluation)
+
+                    let money = document.createElement('div')
+                    money.classList = 'collect-money'
+                    let twd = document.createElement('span')
+                    twd.innerText = 'TWD' + x.price + '起'
+                    money.appendChild(twd)
+                    footer.appendChild(money)
+
+                    text.appendChild(footer)
+                    group.appendChild(text)
+
+                    let collecti = document.createElement('a')
+                    collecti.classList = 'collect-i'
+                    let is = document.createElement('i')
+                    is.classList = 'fa fa-heart'
+                    collecti.appendChild(is)
+                    group.appendChild(collecti)
+
+                    collecti.onclick = function (event) {
+                        groups.removeChild(group)
+                        deleteC(x.collectId)
+                        if (groups.innerText == '') {
+                            NotFound()
+                        }
+                        event.stopPropagation()
+                    }
+
+                    groups.appendChild(group)
+
+                    body.appendChild(groups)
+                })
+            }
+        }
+
+        function deleteC(CollectId) {
+            let url = "/api/MemberCenterCollectWebApi/DeleteCollect"
+
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(CollectId),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            })
+                .then(res => res.json())
+                .then(response => {
+                    console.log(response)
+                })
+
+        }
+
+        function NotFound() {
+            let div = document.createElement('div')
+            div.classList = 'collect-null'
+            let img = document.createElement('img')
+            img.src = "https://res.cloudinary.com/dnsu1sjml/image/upload/v1665162893/no_collect_pre5sc.png"
+            div.appendChild(img)
+            let p = document.createElement('p')
+            p.innerText = '您目前沒有收藏清單'
+            div.appendChild(p)
+            body.appendChild(div)
+        }
+
+    </script>
+
+}
+    @section endCSS{
+
+}

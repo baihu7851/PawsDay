@@ -1,0 +1,87 @@
+﻿@using PawsDay.Services.SitterCenter
+@using PawsDay.ViewModels.SitterCenter
+
+@*注入service，並呼叫傳給partial的方法*@
+@inject SitterCenterBasicServices service;
+@{
+    var part = service.Partial();
+}
+<script src="~/js/Sidabar.js" asp-append-version="true"></script>
+
+<section class="person-sidebar col-3">
+    <div class="userid" id="@part.MemberID"></div>
+    <div class="member-center-header">
+        <div class="person-img">
+
+            <img class="profileimg" src="@part.ImageUrl">
+        </div>
+        <div class="image-preview">
+            <label class="person-img-camera">
+                <i class="fa-solid fa-camera"></i>
+                <input type="file" id="profileimginput" class="upload" >
+            </label>
+            
+        </div>
+        <p class="person-nickname">@part.Name</p>
+        @if (part.IsEmail)
+        {
+            <p>@part.Email</p>
+        }
+        else
+        {
+            <div class="header-register">
+                <img class="register" src="@part.RegisterTypeDTO.Image" alt="" asp-append-version="true">
+                <div>@part.RegisterTypeDTO.Name</div>
+            </div>
+        }
+    </div>
+    <div class="person-change">
+        <a asp-controller="MemberCenter" asp-action="PersonInformation">前往會員中心</a>
+    </div>
+    <div class="member-center-body">
+        <ul class="function-list sitter-function-list">
+            <li class="account-setting">
+                <a asp-controller="SitterCenter" asp-action="Basic">
+                    <i class="fa-solid fa-gear person-i"></i>
+                    <p>保姆資料設定</p>
+                </a>
+            </li>
+            <li class="service-setting">
+                <a asp-route="ProductSetting/On">
+                    <i class="fa-solid fa-paw"></i>
+                    <p>保姆服務管理</p>
+                </a>
+            </li>
+            <li class="chat-room">
+                <a asp-route="Sitter/MessageList-Official">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <p>聊天室</p>
+                </a>
+            </li>
+            <li class="calendar">
+                <a asp-controller="SitterCenter" asp-action="Calendar">
+                    <i class="fa-solid fa-calendar-minus"></i>
+                    <p>行事曆</p>
+                </a>
+            </li>
+            <li class="order-list ">
+                <a asp-controller="SitterCenter" asp-action="OrderList">
+                    <i class="fa-solid fa-arrow-down-short-wide"></i>
+                    <p>保姆訂單列表</p>
+                </a>
+            </li>
+            <li class="order-chart">
+                <a asp-controller="SitterCenter" asp-action="ServiceChart">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <p>營運統計</p>
+                </a>
+            </li>
+            <li class="history-evaluation">
+                <a asp-controller="SitterCenter" asp-action="HistoryEvaluation">
+                    <i class="fa-solid fa-message"></i>
+                    <p>歷史評論</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>

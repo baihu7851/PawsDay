@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "商品已下架";
+}
+@section topJS{
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/notfoundcss.css">
+}
+
+    <section>
+        <div class="container errorbody">
+            <div class="errorimg">
+                <img src="~/images/notsold.png" alt="">
+            </div>
+            <p class="errortext">此商品已下架，按我返回前一頁</p>
+        </div>
+
+    </section>
+
+
+
+@section endJS
+{
+    <script>
+        let goback = document.querySelector('.errorbody')
+        goback.addEventListener('click', () => {
+            history.back()
+        })
+    </script>
+}
+

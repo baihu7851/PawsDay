@@ -1,0 +1,354 @@
+﻿@using PawsDay.Services.Home
+@using PawsDay.ViewModels.Home
+@using System.Text.Json
+@inject IndexServices service;
+@{
+	ViewData["Title"] = "寵物照顧平台";
+	Layout = "_LayoutSearchNone";
+	RecommendListViewModel recommendList = (RecommendListViewModel)Model;
+	var MemberIdjson = JsonSerializer.Serialize(ViewData["MemberId"]);
+}
+@section topCSS{
+	<link href="~/css/Index/recommend.css" rel="stylesheet" />
+	<link href="~/css/Index/index.css" rel="stylesheet" />
+}
+	<main>
+		<div class="container platform-intro">
+			<div class="row platform-intro-container">
+				<div class="col-md-6 col-6 service-type">
+					<ul class="row">
+						<li class="col-md-3 col-4">
+							<a asp-controller="ServiceType" asp-action="Homecare">到府照顧</a>
+						</li>
+						<li class="col-md-3 col-4">
+							<a asp-controller="ServiceType" asp-action="Homesalon">到府洗澡</a>
+						</li>
+						<li class="col-md-3 col-4">
+							<a asp-controller="ServiceType" asp-action="Walking">陪伴散步</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6 col-6 notice">
+					<ul class="row">
+						<li class="col-md-3 col-5">
+							<a asp-controller="BecomePetsitter" asp-action="PetsitterIntro">成為保姆</a>
+						</li>
+						<li class="col-md-3 col-5">
+							<a asp-controller="StaticWeb" asp-action="Support">常見問題</a>
+						</li>
+					</ul>
+				</div>
+				<i class="fa-solid fa-angle-right intro-arrow"></i>
+			</div>
+		</div>
+		<div class="search-area pawsday-banner">
+			<div class="container">
+				<h2 class="slogan slogan-main">全世界最棒的寵物保姆</h2>
+				<h3 class="slogan slogan-vice">專業實名認證寵物保姆到府照顧寵物</h3>
+				<partial name="_SearchForm"></partial>
+			</div>
+		</div>
+		<div class="container latest-news">
+			<h2>最新消息</h2>
+			<div class="latest-news-container">
+				<div class="row row-cols-6">
+					<a asp-controller="StaticWeb" asp-action="Newsthree" class="col">
+						<div class="item">
+							<img src="~/images/news/sitter.webp" alt="">
+						</div>
+						<h3 class="latest-news-title">7個成為寵物保姆的理由！</h3>
+					</a>
+					<a asp-controller="StaticWeb" asp-action="Newstwo" class="col">
+						<div asp-controller="StaticWeb" asp-action="Newstwo" class="item">
+							<img src="~/images/news/puppy.webp" alt="">
+						</div>
+						<h3 class="latest-news-title">幼犬照顧指南！</h3>
+					</a>
+					<a asp-controller="StaticWeb" asp-action="Newsone" class="col">
+						<div class="item">
+							<img src="~/images/news/new.webp" alt="">
+						</div>
+						<h3 class="latest-news-title">狗狗可以獨自在家多久？</h3>
+					</a>
+					<a asp-controller="StaticWeb" asp-action="Newsthree" class="col">
+						<div class="item">
+							<img src="~/images/news/sitter.webp" alt="">
+						</div>
+						<h3 class="latest-news-title">7個成為寵物保姆的理由！</h3>
+					</a>
+					<a asp-controller="StaticWeb" asp-action="Newstwo" class="col">
+						<div asp-controller="StaticWeb" asp-action="Newstwo" class="item">
+							<img src="~/images/news/puppy.webp" alt="">
+						</div>
+						<h3 class="latest-news-title">幼犬照顧指南！</h3>
+					</a>
+					<a asp-controller="StaticWeb" asp-action="Newsone" class="col">
+						<div class="item">
+							<img src="~/images/news/new.webp" alt="">
+						</div>
+						<h3 class="latest-news-title">狗狗可以獨自在家多久？</h3>
+					</a>
+				</div>
+				<div class="more news-more">
+					<i class="fa-solid fa-angle-right news-arrow"></i>
+				</div>
+			</div>
+		</div>
+<div class="commodity-recommend">
+	<div class="container recommend popular-recommend">
+		<h2 class="recommend-type">熱門推薦</h2>
+		<div class="recommend-container">
+			<div class="row">
+				@foreach (var item in recommendList.RecommendList)
+				{
+					<div class="col-1 recommend-card">
+						<a asp-route="Product" asp-route-id="@item.ProductId" class="item">
+							<div class="d-none">
+								<input value="@item.ProductId" class="product-id" />
+							</div>
+							<div class="recommend-image">
+								<img src="@item.Image" alt="">
+								<span class="recommend-place">
+									<em class="fa-solid fa-location-dot"></em>
+									<h3>@item.County</h3>
+								</span>
+								<span class="recommend-top">TOP @item.Rank</span>
+							</div>
+							<div class="recommend-title">
+								<h3>@item.SitterName | @item.ServiceType</h3>
+							</div>
+							<div class="recommend-evaluation">
+								<span>@item.EvaluationAverage<em class="fa-solid fa-star"></em> (@item.EvaluationQuantity) | @item.OrderQuantity+已預定</span>
+							</div>
+							<h4 class="recommend-price">TWD @item.Price 起</h4>
+						</a>
+						@if (Context.User.Identity.IsAuthenticated){
+							<span class="recommend-collect">
+								@if (item.Collect)
+								{
+									<em class="fa-solid fa-heart "></em>
+								}
+								else
+								{
+									<em class="fa-regular fa-heart"></em>
+								}
+							</span>
+						}
+					</div>
+				}
+					@for (var i = 0; i < (8 - recommendList.RecommendList.Count); i++)
+				{
+					<div class="col-1">
+						<img src="~/images/comingsoon.jpg" alt="">
+					</div>
+				}
+			</div>
+			<div class="more recommend-more">
+				<em class="fa-solid fa-angle-right recommend-arrow"></em>
+			</div>
+			<div class="more more-second recommend-more-second">
+				<em class="fa-solid fa-angle-right recommend-arrow-second"></em>
+			</div>
+		</div>
+	</div>
+</div>
+		<div class="container recommend care-recommend">
+			<h2 class="recommend-type">到府照顧</h2>
+			<div class="recommend-container" id="care-recommend">
+				<div class="row">
+				@foreach (var item in recommendList.CareList)
+				{
+					<div class="col-1 recommend-card">
+						<a asp-route="Product" asp-route-id="@item.ProductId" class="item">
+							<div class="d-none">
+								<input value="@item.ProductId" class="product-id" />
+							</div>
+							<div class="recommend-image">
+								<img src="@item.Image" alt="">
+								<span class="recommend-place">
+									<i class="fa-solid fa-location-dot"></i>
+									<h3>@item.County</h3>
+								</span>
+								<span class="recommend-top">TOP @item.Rank</span>
+							</div>
+							<div class="recommend-title">
+								<h3>@item.SitterName | @item.ServiceType</h3>
+							</div>
+							<div class="recommend-evaluation">
+								<span>@item.EvaluationAverage<i class="fa-solid fa-star"></i> (@item.EvaluationQuantity) | @item.OrderQuantity+已預定</span>
+							</div>
+							<h4 class="recommend-price">TWD @item.Price 起</h4>
+						</a>
+						@if (Context.User.Identity.IsAuthenticated)
+						{
+							<span class="recommend-collect">
+								@if (item.Collect)
+								{
+									<em class="fa-solid fa-heart "></em>
+								}
+								else
+								{
+									<em class="fa-regular fa-heart"></em>
+								}
+							</span>
+						}
+					</div>
+				}
+				@for (var i = 0; i < (8 - recommendList.CareList.Count); i++)
+				{
+					<div class="col-1">
+						<img src="~/images/comingsoon.jpg" alt="">
+					</div>
+				}
+			</div>
+			<div class="more recommend-more" id="care-more">
+				<i class="fa-solid fa-angle-right recommend-arrow" id="care-arrow"></i>
+			</div>
+			<div class="more more-second recommend-more-second" id="care-more-second">
+				<i class="fa-solid fa-angle-right recommend-arrow-second" id="care-arrow-second"></i>
+			</div>
+		</div>
+	</div>
+	<div class="container recommend salon-recommend">
+		<h2 class="recommend-type">到府洗澡</h2>
+		<div class="recommend-container" id="salon-recommend">
+			<div class="row">
+				@foreach (var item in recommendList.SalonList)
+				{
+					<div class="col-1 recommend-card">
+						<a asp-route="Product" asp-route-id="@item.ProductId" class="item">
+							<div class="d-none">
+								<input value="@item.ProductId" class="product-id" />
+							</div>
+							<div class="recommend-image">
+								<img src="@item.Image" alt="">
+								<span class="recommend-place">
+									<i class="fa-solid fa-location-dot"></i>
+									<h3>@item.County</h3>
+								</span>
+								<span class="recommend-top">TOP @item.Rank</span>
+							</div>
+							<div class="recommend-title">
+								<h3>@item.SitterName | @item.ServiceType</h3>
+							</div>
+							<div class="recommend-evaluation">
+								<span>@item.EvaluationAverage<i class="fa-solid fa-star"></i> (@item.EvaluationQuantity) | @item.OrderQuantity+已預定</span>
+							</div>
+							<h4 class="recommend-price">TWD @item.Price 起</h4>
+						</a>
+						@if (Context.User.Identity.IsAuthenticated)
+						{
+							<span class="recommend-collect">
+								@if (item.Collect)
+								{
+									<em class="fa-solid fa-heart "></em>
+								}
+								else
+								{
+									<em class="fa-regular fa-heart"></em>
+								}
+							</span>
+
+						}
+					</div>
+				}
+				@for (var i = 0; i < (8 - recommendList.SalonList.Count); i++)
+				{
+					<div class="col-1">
+						<img src="~/images/comingsoon.jpg" alt="">
+					</div>
+				}
+			</div>
+			<div class="more recommend-more" id="salon-more">
+				<i class="fa-solid fa-angle-right recommend-arrow" id="salon-arrow"></i>
+			</div>
+			<div class="more more-second recommend-more-second" id="salon-more-second">
+				<i class="fa-solid fa-angle-right recommend-arrow-second" id="salon-arrow-second"></i>
+			</div>
+		</div>
+	</div>
+	<div class="container recommend walking-recommend">
+		<h2 class="recommend-type">陪伴散步</h2>
+		<div class="recommend-container" id="walking-recommend">
+			<div class="row">
+				@foreach (var item in recommendList.WalkingList)
+				{
+					<div class="col-1 recommend-card">
+						<a asp-route="Product" asp-route-id="@item.ProductId" class="item">
+							<div class="d-none">
+								<input value="@item.ProductId" class="product-id" />
+							</div>
+							<div class="recommend-image">
+								<img src="@item.Image" alt="">
+								<span class="recommend-place">
+									<i class="fa-solid fa-location-dot"></i>
+									<h3>@item.County</h3>
+								</span>
+								<span class="recommend-top">TOP @item.Rank</span>
+							</div>
+							<div class="recommend-title">
+								<h3>@item.SitterName | @item.ServiceType</h3>
+							</div>
+							<div class="recommend-evaluation">
+								<span>@item.EvaluationAverage<i class="fa-solid fa-star"></i> (@item.EvaluationQuantity) | @item.OrderQuantity+已預定</span>
+							</div>
+							<h4 class="recommend-price">TWD @item.Price 起</h4>
+						</a>
+						@if (Context.User.Identity.IsAuthenticated)
+						{
+							<span class="recommend-collect">
+								@if (item.Collect)
+								{
+									<em class="fa-solid fa-heart "></em>
+								}
+								else
+								{
+									<em class="fa-regular fa-heart"></em>
+								}
+							</span>
+
+						}
+					</div>
+				}
+				@for (var i = 0; i < (8 - recommendList.WalkingList.Count); i++)
+				{
+					<div class="col-1">
+						<img src="~/images/comingsoon.jpg" alt="">
+					</div>
+				}
+			</div>
+			<div class="more recommend-more" id="walking-more">
+				<i class="fa-solid fa-angle-right recommend-arrow" id="walking-arrow"></i>
+			</div>
+			<div class="more more-second recommend-more-second" id="walking-more-second">
+				<i class="fa-solid fa-angle-right recommend-arrow-second" id="walking-arrow-second"></i>
+			</div>
+		</div>
+	</div>
+	<div class="choose-us">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-12">
+					<h3>為什麼選擇PawsDay?</h3>
+					<p>PawsDay 是一個創新的共享寵物照顧平台，我們的使命是讓每一個毛小孩被愛、替寵物家長解決各種無法親自照顧寵物的困擾!</p>
+					<a asp-controller="StaticWeb" asp-action="AboutUs">
+						<button class="pawsday-btn">點我看更多</button>
+					</a>
+				</div>
+				<div class="col-md-6">
+					<img src="~/images/choose-us.png" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+@section endJS{
+	<script>
+		let MemberIdjs = @Html.Raw(MemberIdjson);
+	</script>
+	<script src="~/js/Index/recommend.js"></script>
+	<script src="~/js/Index/indexMore.js"></script>
+	<script src="~/js/Product/productSearch.js"></script>
+}
+

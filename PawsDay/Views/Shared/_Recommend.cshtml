@@ -1,0 +1,64 @@
+﻿@using PawsDay.Interfaces.Index
+
+@inject IIndexServices service;
+@{
+	var recommendList = service.Recommend();
+}
+<div class="commodity-recommend">
+	<div class="container recommend popular-recommend">
+		<h2 class="recommend-type">熱門推薦</h2>
+		<div class="recommend-container">
+			<div class="row">
+				@foreach (var item in recommendList)
+				{
+					<div class="col-1 recommend-card">
+						<a asp-route="Product" asp-route-id="@item.ProductId" class="item">
+							<div class="d-none">
+								<input value="@item.ProductId" class="product-id" />
+							</div>
+							<div class="recommend-image">
+								<img src="@item.Image" alt="">
+								<span class="recommend-place">
+									<i class="fa-solid fa-location-dot"></i>
+									<h3>@item.County</h3>
+								</span>
+								<span class="recommend-top">TOP @item.Rank</span>
+							</div>
+							<div class="recommend-title">
+								<h3>@item.SitterName | @item.ServiceType</h3>
+							</div>
+							<div class="recommend-evaluation">
+								<span>@item.EvaluationAverage<i class="fa-solid fa-star"></i> (@item.EvaluationQuantity) | @item.OrderQuantity+已預定</span>
+							</div>
+							<h4 class="recommend-price">TWD @item.Price 起</h4>
+						</a>
+						@if (Context.User.Identity.IsAuthenticated){
+							<span class="recommend-collect">
+								@if (item.Collect)
+								{
+									<em class="fa-solid fa-heart "></em>
+								}
+								else
+								{
+									<em class="fa-regular fa-heart"></em>
+								}
+							</span>
+						}
+					</div>
+				}
+				@for (var i = 0; i < (8 - recommendList.Count); i++)
+				{
+					<div class="col-1">
+						<img src="~/images/comingsoon.jpg" alt="">
+					</div>
+				}
+			</div>
+			<div class="more recommend-more">
+				<i class="fa-solid fa-angle-right recommend-arrow"></i>
+			</div>
+			<div class="more more-second recommend-more-second">
+				<i class="fa-solid fa-angle-right recommend-arrow-second"></i>
+			</div>
+		</div>
+	</div>
+</div>

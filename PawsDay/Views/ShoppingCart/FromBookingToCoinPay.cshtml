@@ -1,0 +1,166 @@
+﻿@using PawsDay.ViewModels.ShoppingCart.OrderPlaced.DTO
+@using System.Text.Json
+@{
+    ViewData["Title"] = "FromBookingToCoinPay";
+    Layout = "_LayoutCartNone";
+}
+@model ReturnBlocToDTO; 
+
+@{
+    var savedOrderIds= (List<int>)ViewData["savedOrderIds"];
+    var jsOrderIds = JsonSerializer.Serialize(savedOrderIds);
+    var savedCartIds = (List<int>)ViewData["savedCartIds"];
+    var jsCartIds = JsonSerializer.Serialize(savedCartIds);
+    var price = (int)ViewData["FinalPrice"];
+}
+
+<h1>請稍後，正在進行BlocTo金流...</h1>
+
+<form method="post">
+<input asp-for="OrderIds" class="d-none orderIdInput" value="@jsOrderIds">
+<input asp-for="CartIds" class="d-none cartIdInput" value="@jsCartIds">
+<input class="d-none finalPrice" value="@price">
+
+<input asp-for="TxId" class="d-none txIdInput" value="">
+    <button type="submit" id="submitBtn" asp-controller="ShoppingCart" asp-action="CoinOrderPlaced"></button>
+</form>
+
+
+@*渲染畫面*@
+<div id="accountiframe-box" class="  d-none" style="height: 800px;">
+    <iframe id="accountiframe" src="" frameborder="0" class="border w-100 h-100"></iframe>
+</div>
+
+<div id="transiframe-box" class="  d-none" style="height: 800px;">
+    <iframe id="transiframe" src="" frameborder="0" class="border w-100 h-100"></iframe>
+</div>
+
+
+@section endJS{
+    <script>
+        let accountframe = document.querySelector('#accountframe')
+        let transframe = document.querySelector('#transiframe')
+        let accountbox = document.querySelector('#accountiframe-box')
+        let transbox = document.querySelector('#transiframe-box')
+        let authenticationId = ""
+        let loginurl = ""
+        let address = ""
+        let pawsdayadress = "0xe2c2f0fd9fdec656"
+        let finalPrice = parseInt(document.querySelector('.finalPrice').value);
+        let value = parseFloat(finalPrice / 800)
+        //let value = 0.2 //測試
+        let accountstatus = false
+        let transurl = ""
+        let transAuthorizationId = ""
+        let transSessionId = ""
+        let txId = ""
+        let txIdInput = document.querySelector('.txIdInput')
+
+        const submitBtn = document.getElementById('submitBtn')
+
+        window.onload = function () {
+            beginlogin()
+
+        }
+        //No1
+        function beginlogin() {
+            accountbox.classList.remove('d-none')
+            let url = '/api/BloctoApi/Login/login'
+
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    authenticationId = response.body.AuthenticationId
+                    loginurl = response.body.Url
+                    console.log(authenticationId)
+                    console.log(loginurl)
+                    accountiframe.setAttribute("src", loginurl)
+                    checkaccount()
+                })
+        }
+        //No2
+        function checkaccount() {
+            let accounturl = `/api/BloctoApi/Login/login/Result?authenticationId=${authenticationId}`
+            let checkaccoutstatus = setInterval(() => {
+                fetch(accounturl)
+                    .then(res => res.json())
+                    .then(response => {
+                        if (response.response == "0") {
+                            address = response.body.Address
+                            console.log(address)
+                            accountstatus = true
+                            accountbox.classList.add('d-none')
+                            begintran()
+                            clearInterval(checkaccoutstatus)
+                        }
+                    })
+            }, 500);
+        }
+        //No3
+        function begintran() {
+            console.log("begin")
+            let beforetranurl = `/api/BloctoApi/Mutate/transaction/${address}/to/${pawsdayadress}/${value}`
+
+            fetch(beforetranurl, { method: "POST" })
+                .then(res => res.json())
+                .then(response => {
+                    console.log(response.body)
+                    transurl = response.body.Url
+                    transAuthorizationId = response.body.AuthorizationId
+                    transSessionId = response.body.SessionId
+                    console.log(transAuthorizationId)
+                    console.log(transSessionId)
+                    transframe.setAttribute("src", transurl)
+                    transbox.classList.remove('d-none')
+                    sendtran()
+
+                })
+        }
+        //No4
+        function sendtran() {
+            let sendmutateurl = `/api/BloctoApi/Mutate/transaction/${transAuthorizationId}/${transSessionId}`
+            console.log(sendmutateurl)
+
+            let checktranstatus = setInterval(() => {
+                fetch(sendmutateurl, { method: "POST" })
+                    .then(res => res.json())
+                    .then(response => {
+                        if (response.response == "0") {
+                            console.log(response)
+                            txId = response.body.txId
+                            //將id放入
+                            txIdInput.value = txId
+                            console.log(txIdInput.value)
+
+                            checkpaymentstatus()
+                            clearInterval(checktranstatus)
+                        }
+                    })
+            }, 1000);
+        }
+
+        //No5
+        function checkpaymentstatus() {
+            let checkurl = `/api/BloctoApi/GetTxResult/transaction/result/${txId}`
+
+            let checkorder = setInterval(() => {
+                fetch(checkurl)
+                    .then(res => res.json())
+                    .then(response => {
+                        console.log(response.body)
+                        if (response.body.status == 3 && response.body.execution == 1) {
+                            console.log("訂單完成")
+                            
+                            submitBtn.click()
+                            clearInterval(checkorder)
+                        }
+                    })
+            }, 2000);
+        }
+
+
+
+
+
+    </script>
+}

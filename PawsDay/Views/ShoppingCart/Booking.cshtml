@@ -1,0 +1,690 @@
+﻿
+@using PawsDay.Services.ShoppingCart
+@using PawsDay.ViewModels.ShoppingCart
+@using PawsDay.ViewModels.ShoppingCart.Carts
+@using System.Text.Json
+@using PawsDay.ViewModels.ShoppingCart.OrderPlaced
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+
+@model OrderPlacedViewModel
+@inject BookingServices bookService;
+@{
+    Layout = "_LayoutCartNone";
+    ViewData["Title"] = "付款資訊";
+
+
+    //var listOfCorrectPrice = (List<decimal>)ViewData["Prices"];
+    //var listOfCorrectDiscount = (List<decimal>)ViewData["Discounts"];
+    var finalTotalPrice = (int)ViewData["TotalPrice"];
+    var bookVM =  (BookingInformationViewModel)ViewData["BookVM"];
+    var memberInfosJson = JsonSerializer.Serialize($"{bookVM.MemberName},{bookVM.MemberTel},{bookVM.MemberEmail},{bookVM.MemberAddress}");
+
+    var memberPetListJson = JsonSerializer.Serialize(bookVM.MemberPetsList);
+
+
+    var cartCount = 0;
+
+    var MemberIdjson = JsonSerializer.Serialize(ViewData["MemberId"]);
+
+    
+
+}
+
+
+@section topJS{
+
+    
+}
+
+@section topCSS{
+
+    <link href="~/css/ShoppingCart/02-booking.css" rel="stylesheet" type="text/css">
+}
+
+<form method="post" onkeydown="if(event.keyCode==13){return false;}">
+
+<div class="booking-page" id="app">
+    <div class="container booking-area">
+
+        <!-- 流程 -->
+        <div class="process py-4">
+            <p>
+                <span><a asp-action="Cart" class="to-cart text-decoration-none">購物車</a></span>
+                <i class="fa-solid fa-angle-right mx-2"></i>
+                <span>填寫資料與付款</span>
+                <i class="fa-solid fa-angle-right mx-2"></i>
+                <span>訂購完成</span>
+            </p>
+        </div>
+
+        <!-- 手風琴開始 -->
+        <div class="accordion" id="accordionExample">
+
+            <!-- item1 訂購人資料-->
+            <div class="accordion-item bookerBlock marksItem">
+                <h2 class="accordion-header d-flex align-items-center" >
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrderPerson" aria-expanded="false" aria-controls="collapseOrderPerson">
+
+                        <span>訂購人資料</span>
+                        <div class="data-checked">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </button>
+                </h2>
+
+                <div id="collapseOrderPerson" class="accordion-collapse collapse show" aria-labelledby="headingOrderPerson" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <!-- Part1 -->
+                        <!-- Begin家長資料輸入 -->
+                        <div class="inputareas-group parent-info">
+                            <!-- 同會員資料的按鈕 -->
+                            <p class="same-user d-flex align-items-center px-4" id="sameuser-booker">
+                                <input type="checkbox" id="bookerUser">
+                                <label class="mx-2 fw-bold" for="bookerUser">同會員資料</label>
+                            </p>
+
+                            <!-- 隱藏資料begin -->
+                            <input class="hiddenInfo-booker" style="display: none;" value="@bookVM.MemberName">
+                            <input class="hiddenInfo-booker" style="display: none;" value="@bookVM.MemberTel">
+                            <input class="hiddenInfo-booker" style="display: none;" value="@bookVM.MemberEmail">
+
+                            <!-- 隱藏資料end -->
+                            
+                           
+                            <div class="inputarea firstname-input col-12 col-lg-6">
+                                <label>訂購人全名
+                                    <span class="text-danger">*</span>
+                                    @*<span asp-validation-for="BookingPersonName" class="text-danger"></span>*@
+                                </label>
+                                        <input asp-for="BookerName" class="pawsday-input form-control" type="text" placeholder="例如: 寧寧" />
+                                <span class="text-danger bookerNameErrorMsg"></span>
+                                
+                            </div>
+                            <div class="inputarea phone-input col-12 col-lg-6">
+                                <label>聯絡電話
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="BookerTel" type="tel" class="pawsday-input form-control" placeholder="例如: 0937456123">
+                                <span class="text-danger bookerTelErrorMsg"></span>
+
+                                 
+                            </div>
+
+
+                            <div class="inputarea email-input col-12 col-lg-12">
+                                <label>電子郵件信箱
+                                        <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="BookerEmail"  class="pawsday-input form-control" type="email" placeholder="例如: 123@gmail.com">
+                                <span class="text-danger bookerEmailErrorMsg"></span>
+
+                            </div>
+                        </div>
+                        <!-- 家長資料輸入End -->
+
+                        <button type="button" class="pawsday-btn continue-btn" data-bs-toggle="collapse" data-bs-target="#collapseOrderPerson" aria-expanded="false" aria-controls="collapseOrderPerson" value="0">
+                            下一步
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- item2 寵物資料-->
+            
+            <label class="petinfo-area">寵物資料</label>
+            <br/>
+
+            @*這裡用foreach做所有的訂單*@
+            @foreach (var cartItem in bookVM.CartItemList)
+           {
+            <div class="accordion-item marksItem eachItem">
+                        <h2 class="accordion-header" id="heading@(cartCount)">
+                            <button href="collapse@(cartCount)" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@(cartCount)" aria-expanded="false" aria-controls="collapse@(cartCount)">
+                        <ul class="pet-info cart-content w-100">
+
+                            <li class="cart-item d-flex align-items-center">
+                                <input asp-for="ListOfPayItems[cartCount].CartId" class="d-none hidden-cartId" value="@cartItem.CartId">
+                                
+
+
+                                <div class="photo-area">
+                                    <div class="blocker" id="blocker"></div>
+                                    <input asp-for="ListOfPayItems[cartCount].Photo" class="d-none hidden-headerPhoto" value="@cartItem.Photo">
+                                    <img class="d-block item-photo" src="@cartItem.Photo">
+                                </div>
+                                <div class="item-details">
+
+                                    <div class="details-name">
+                                        <input asp-for="ListOfPayItems[cartCount].SitterName" class="d-none hidden-headerSitter" value="@cartItem.SitterName">
+                                        <p class="sitterName">@cartItem.SitterName</p>
+                                        <input asp-for="ListOfPayItems[cartCount].Service" class="d-none hidden-headerService" value="@cartItem.Service">
+                                        <p>@cartItem.Service</p>
+                                    </div>
+                                    <div class="time-select">
+                                        <input asp-for="ListOfPayItems[cartCount].ServiceDate" class="d-none hidden-headerDate" value="@cartItem.ServiceDate">
+                                        <span class="">@cartItem.ServiceDate</span>
+                                        <input asp-for="ListOfPayItems[cartCount].ServiceTime" class="d-none hidden-headerTime" value="@cartItem.ServiceTime">
+                                        <span class="">@cartItem.ServiceTime</span>
+                                    </div>
+                                    <div class="pet-selection">
+                                        <ul class="">
+                                            @{
+                                                var index = 0;
+                                            }
+                                            @foreach (var pet in @cartItem.PetListHeader)
+                                            {
+                                                
+                                                <li class="w-100 petInfoList">
+                                                    <label>毛孩 @(index+1)</label>
+                                                    <input asp-for="ListOfPayItems[cartCount].PetListHeader[index].PetType" class="d-none hidden-eachPetType" value="@pet.PetType">
+                                                    <input asp-for="ListOfPayItems[cartCount].PetListHeader[index].ShapeType" class="d-none hidden-eachShapeType" value="@pet.ShapeType">
+                                                    <span>@pet.PetType</span>
+                                                    <span>@pet.ShapeType</span>
+                                                    <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[index].PetTypeId" class="d-none hidden-eachPetTypeId" value="">
+                                                    <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[index].ShapeTypeId" class="d-none hidden-eachShapeTypeId" value="">
+                                                </li>
+                                                index++;
+                                            }
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div class="data-checked">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </button>
+                </h2>
+
+                <div id="collapse@(cartCount)" class="accordion-collapse collapse" aria-labelledby="heading@(cartCount)" data-bs-parent="#accordionExample">
+                    <div class="accordion-body petinfo-body">
+
+                        <div class="inputareas-group service-address">
+                            <!-- 同會員資料的按鈕 -->
+                            <p class="same-user sameuser-service-address d-flex align-items-center" id="sameuser-address">
+                                        <input type="checkbox" id="sameuser-serviceAddress@(cartCount)">
+                                        <label class="mx-2 fw-bold" for="sameuser-serviceAddress@(cartCount)">同會員資料</label>
+                            </p>
+
+                            <h2 class="w-100 d-block mb-3">服務地址</h2>
+
+                            <div class="inputarea city-input col-6 col-lg-6">
+                                        <input asp-for="ListOfPayItems[cartCount].CartCity" type="text" class="d-none hidden-for-City" value="@cartItem.CartCity">
+                                        <input asp-for="ListOfPayItems[cartCount].CartCityName" class="pawsday-input" type="text" placeholder="@cartItem.CartCityName" value="@cartItem.CartCityName" readonly>
+                            </div>
+                            <div class="inputarea district-input col-6 col-lg-6">
+                                <input asp-for="ListOfPayItems[cartCount].CartDistrict" type="text" class="d-none hidden-for-Dist" value="@cartItem.CartDistrict">
+                                <input asp-for="ListOfPayItems[cartCount].CartDistrictName" class="pawsday-input" type="text" placeholder="@cartItem.CartDistrictName" value="@cartItem.CartDistrictName" readonly>
+                            </div>
+
+                            <div class="inputarea address-input col-12 col-lg-12">
+                                <input id="hiddenForServiceAddress" style="display:none" value="@bookVM.MemberAddress">
+                                <input asp-for="ListOfPayItems[cartCount].CartAddress" class="pawsday-input form-control addressInput" type="text" placeholder="例如: 忠孝東路三段96號11樓" value="" id="bookingAddressInput">
+                                <span class="text-danger addressErrorMsg"></span>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Part2 -->
+                        <!-- Begin 毛孩資料輸入 -->
+                        @*這裡用i當第幾隻寫迴圈寫*@
+                        @for(var i = 0; i< cartItem.NumberOfPets; i++){
+                        <div class="inputareas-group petinfo-inputs">
+
+                            <h3 class="pet-number">
+                                毛孩
+                                <span>@(i+1)</span>
+                            </h3>
+
+
+                            <!-- 下拉式選擇 begins -->
+                            <div class="input-group selectpet-group mb-3">
+                                <button class="dropdown-toggle selectpet@(i)-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">選擇毛孩</button>
+                                <ul class="dropdown-menu">
+                                    @*會員預設寵物*@
+                                     @foreach (var pet in bookVM.MemberPetsList){
+                                          <li>
+                                                <label class="dropdown-item pet-item" value="@(i)">@pet.PetName</label>
+                                          </li>
+                                     }
+                                     <li>
+                                                <label class="dropdown-item default-item" value="99">無預設寵物</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 下拉式選擇 ends -->
+
+                            <div class="inputarea petname-input col-12 col-md-6 col-lg-6">
+                                <label>名字<span class="text-danger">*</span></label>
+
+
+                                <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].PetName" class="pawsday-input form-control petNameInput" type="text" placeholder="例如: 糖糖" value="">
+                                            <span class="text-danger petNameErrorMsg"></span>
+                            </div>
+
+
+                            <div class="inputarea sex-type-input col-12 col-md-6 col-lg-6">
+                                <label>性別<span class="text-danger">*</span></label>
+                                            <select asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].PetSex" class="pawsday-input form-control petSexSelect">
+                                    <option disabled="false">===請選擇===</option>
+                                    <option value="true">男生</option>
+                                    <option value="false">女生</option>
+                                </select>
+                            </div>
+
+                            <div class="inputarea petyear-input col-12 col-md-6 col-lg-6"> 
+                                <label>出生年份<span class="text-danger">*</span></label>
+
+                                <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].BirthYear" class="pawsday-input form-control petYearInput" type="text" placeholder="只需填入數字，例: 2019" maxlength="4" value="">
+                                           
+                                <span class="text-danger petYearErrorMsg"></span>
+                            </div>
+
+                            <div class="inputarea petmonth-input col-12 col-md-6 col-lg-6">
+                                <label>出生月份</label>
+                                <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].BirthMonth" class="pawsday-input form-control petMonthInput" type="text" placeholder="只需填入數字(非必填)，例: 6" value="" maxlength="2">
+                                
+                            </div>
+
+
+                            <div class="inputarea pettype-input col-12 col-md-6 col-lg-6">
+                                <label>寵物分類</label>
+                                <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].PetType" class="pawsday-input" type="text" value="@cartItem.PetListHeader[i].PetType" readonly>
+                            </div>
+
+                            <div class="inputarea petbody-input col-12 col-md-6 col-lg-6">
+                                <label>體型分類</label>
+                                <input class="d-none shape" value="@cartItem.PetListHeader[i].ShapeTypeId">
+                                <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].ShapeType" class="pawsday-input" type="text" value="@cartItem.PetListHeader[i].ShapeType" readonly>
+                            </div>
+
+                            <div class="inputarea petcharacter-input col-12">
+                                <label for="" class="pawsday-input-label">
+                                    個性(可複選)
+                                </label>
+                                <input asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].Description" class="d-none pet-characters">
+                                <div class="checkbox-option">
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="友善">
+                                        友善
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="黏人">
+                                        黏人
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="敏感">
+                                        敏感
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="固執">
+                                        固執
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="頑皮">
+                                        頑皮
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="貪吃">
+                                        貪吃
+                                    </label>
+                                    <label class="label-checkbox">
+                                                    <input type="checkbox" name="trait" value="怕生">
+                                        怕生
+                                    </label>
+                                    <label class="label-checkbox">
+                                                    <input type="checkbox" name="trait" value="膽小">
+                                        膽小
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="暴力">
+                                        暴力
+                                    </label>
+                                    <label class="label-checkbox">
+                                        <input type="checkbox" name="trait" value="好奇">
+                                        好奇
+                                    </label>
+
+                                </div>
+                            </div>
+                            
+                            <div class="inputarea ligation-input col-12 col-md-6 col-lg-6">
+                                <label for="" class="pawsday-input-label">
+                                    是否已結紮
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="radio-option ligation-radio-select">
+                                    
+                                    <label>
+                                        <input  type="radio"  name="ListOfPayItems[@cartCount].PetFullInfoList[@i].Ligation"  value="true">
+                                        是
+                                    </label>
+
+                                    <label>
+                                        <input type="radio"  name="ListOfPayItems[@cartCount].PetFullInfoList[@i].Ligation" value="false">
+                                        否
+                                    </label>
+                                    
+                                </div>
+                                 <p class="text-danger petLigationErrorMsg col-12 col-md-6 col-lg-6"></p>
+                            </div>
+
+                            <div class="inputarea vaccine-input col-12 col-md-6 col-lg-6">
+                                <label for="" class="pawsday-input-label">
+                                    是否有定期打疫苗
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="radio-option vaccine-radio-select">
+                                    
+                                    <label>
+                                        <input type="radio" name="ListOfPayItems[@cartCount].PetFullInfoList[@i].Vaccine" value="true">
+                                        是
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="ListOfPayItems[@cartCount].PetFullInfoList[@i].Vaccine" value="false">
+                                        否
+                                    </label>
+                                    
+
+                                </div>
+                                <p class="text-danger petVaccineErrorMsg col-12 col-md-6 col-lg-6"></p>
+                            </div>
+
+
+                            <div class="inputarea petname-input col-12 col-lg-12">
+                                <label>特殊備註</label>
+                                <br>
+
+                                <textarea asp-for="ListOfPayItems[cartCount].PetFullInfoList[i].Remark" class="textarea-memo" cols="40" rows="5"
+                                          placeholder="寫下特別要跟褓母溝通的事項，例: 毛孩喜歡&不喜歡的事情"></textarea>
+                            </div>
+
+                        </div>
+
+                        }
+                        @*寵物for迴圈這裡結束*@
+                        
+
+
+
+
+
+                        <!-- Part3 -->
+                        @*暫時隱藏托保聯絡方式*@
+                        <label class="title contact-method">托保期間聯絡方式</label> 
+                        <!-- Begin聯絡方式 -->
+                                <div class="inputareas-group d-flex flex-wrap">
+
+
+                            <div class="input-group mb-3 sameuser-contact-btn">
+
+                                <!-- 同會員資料的按鈕 -->
+                                <p class="same-user d-flex align-items-center px-4 " id="contactUser">
+                                    <input type="checkbox" id="sameContactUser@(cartCount)">
+                                    <label class="mx-2 fw-bold" for="sameContactUser@(cartCount)">同會員資料</label>
+                                </p>
+                            </div>
+                            
+
+                                
+
+                            <div class="inputarea contact-input col-12 col-md-6 col-lg-6">
+                                <label>聯絡人全名<span class="text-danger">*</span></label>
+                                <br>
+                                
+
+                                <input asp-for="ListOfPayItems[cartCount].ContactPersonName" class="pawsday-input form-control contactNameInput" type="text" placeholder="例: Muni" value="">
+                                <span class="text-danger contactNameErrorMsg"></span>
+                            </div>
+
+                            <div class="inputarea contact-input col-12 col-md-6 col-lg-6">
+                                <label>服務期間聯絡電話<span class="text-danger">*</span></label>
+                                <br>
+                               
+
+                                        <input asp-for="ListOfPayItems[cartCount].ContactPersonTel" class="pawsday-input form-control contactTelInput" maxlength="10" type="text" placeholder="例: 0912345678" value="">
+                                        <span class="text-danger contactTelErrorMsg"></span>
+                            </div>
+
+
+                        </div>
+                        <!-- 聯絡方式End -->
+
+
+                        <!-- Part3 -->
+                        <!-- <div class="coupon-area">
+                            <label class="title coupon">使用折扣券</label>
+                            <br>
+                            <button class="coupon-btn mb-3 mx-4">
+                                <i class="fa-solid fa-ticket mx-2"></i>
+
+                                使用折扣券
+                            </button>
+                        </div> -->
+
+                                <button type="button" class="pawsday-btn continue-btn" data-bs-toggle="collapse" data-bs-target="#collapse@(cartCount)" aria-expanded="false" aria-controls="collapse@(cartCount)" value="0">下一步</button>
+
+                                @*<button :disabled="!isCartVerify" type="button" class="pawsday-btn continue-btn" data-bs-toggle="collapse" data-bs-target="#collapse@(cartCount)" aria-expanded="false" aria-controls="collapse@(cartCount)">下一步</button>*@
+                    </div>
+                </div>
+            </div>
+
+            cartCount++;
+           }
+
+            @*商品迴圈結束在這*@
+
+
+            <!-- item3 付款 -->
+            <label class="petinfo-area">付款</label>
+            <!-- 付款方式 -->
+            <div class="accordion-item paymentBlock">
+@*                <h2 class="accordion-header" id="headingPayment">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePayment" aria-expanded="false" aria-controls="collapsePayment">
+
+                        <span>付款方式</span>
+                    </button>
+
+
+
+                </h2>*@
+                <div class="payTitle">
+                    <h2>付款方式</h2>
+                </div>
+                
+
+                <div id="collapsePayment" class="show">
+                    <div class="accordion-body">
+                        <ul>
+                            <li class="payment-list d-flex align-items-center" id="ecpayBtn">
+                                <input type="radio" name="payment-group" id="ecpay" checked="checked">
+                                    <label for="ecpay">綠界科技(信用卡)</label>
+                                <img class="payment-photo" src="~/images/ecpay.png" alt="">
+
+                            </li>
+                            <li class="payment-list d-flex align-items-center" id="newebpayBtn">
+                                <input type="radio" name="payment-group" id="newebpay">
+                                    <label for="newebpay">藍新科技(信用卡)</label>
+                                <img class="payment-photo" src="~/images/newebpay.png" alt="">
+
+                            </li>
+
+
+                            <li class="payment-list d-flex" id="blockToBtn">
+                                <input type="radio" name="payment-group" id="blocTo">
+                                <label for="blocTo">Blocto錢包</label>
+                                <img class="payment-photo" src="~/images/BloctoBig.jpg" alt="">
+                            </li>
+@*                            <li class="payment-list d-flex">
+                                <input type="radio" name="payment-group" id="jkospay" disabled="disabled">
+                                    <label for="jkospay">街口支付(尚未啟用)</label>
+                                <img class="payment-photo" src="~/images/ic_jko.png" alt="">
+                            </li>*@
+                        </ul>
+
+                        <div class="payment-warning d-flex">
+                            <i class="fa-solid fa-circle-info "></i>
+                            <p>請注意本平台不會向您收取任何平台交易手續費，但你下單時使用的信用卡或第三方支付平台可能會向您收取相關手續費，請參考其相關服務政策和規定，並向你所選的交易服務商取得更多資訊。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 開立發票方式 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingInvoice">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInvoice" aria-expanded="false" aria-controls="collapseInvoice">
+
+                        <span>電子發票、收據</span>
+
+                    </button>
+                </h2>
+                <div id="collapseInvoice" class="accordion-collapse collapse" aria-labelledby="headingInvoice" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="inputarea invoice-input">
+                            <div class="invoice-checker-area">
+                                <input type="checkbox" id="checkInvoice">
+                                <label class="invoice-title mx-2" for="checkInvoice">需開立統編</label>
+                            </div>
+                            
+@*                            <select class="pawsday-input" id="select-invoicetype">
+                                <option class="py-4" value="">無須開立統編</option>
+                                <option class="my-4" value="">需要統編/抬頭</option>
+                            </select>*@
+
+                            
+
+                            <!-- 隱藏的開立抬頭區域 -->
+                            <div class="title-inputarea">
+                                <label>同訂購人信箱</label>
+                                <br>
+                                    <input class="pawsday-input" type="text" disabled="disabled" id="invoice-email">
+                                <div class="hidden-invoice">
+                                        <label>統一編號</label><span class="text-danger">*</span>
+                                        <br>
+                                        <input asp-for="CompanyTaxID" class="pawsday-input" type="text" placeholder="請輸入統一編號" maxlength="8">
+                                        <label>抬頭 (買受人)</label><span class="text-danger">*</span>
+                                        <br>
+                                        <input asp-for="CompanyTitleName" class="pawsday-input" type="text" placeholder="請輸入抬頭 (買受人)">
+                                </div>
+                            </div>
+                            <!-- 隱藏的開立抬頭區域Ends -->
+                            <!-- <div class="product-detail">
+                                <p>【即買即用】台北兒童新樂園｜一日票（無限暢玩13項指定設施）</p>
+                                <p>【KKday獨家聯合套票：93折】兒童新樂園一日樂Fun券ｘXpark水生公園成人門票</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 付款明細 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPayDetail">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePayDetail" aria-expanded="false" aria-controls="collapsePayDetail">
+                        <span>付款明細</span>
+                    </button>
+                </h2>
+                <div id="collapsePayDetail" class="accordion-collapse collapse" aria-labelledby="headingPayDetail" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <ul class="overview-CartItemList">
+                                @{
+                                    var priceCount = 0;
+                                }
+                             @foreach (var cartItem in bookVM.CartItemList){
+                            <li class="payment-productdetail cart-item d-flex flex-wrap align-items-center">
+                                        <input asp-for="ListOfPayItems[priceCount].Discount" class="d-none hidden-for-productDiscount" value="@cartItem.Discount">
+                                        
+                                        <input asp-for="ListOfPayItems[priceCount].ProductId" class="d-none hidden-for-productId" value="@cartItem.ProductId">
+                                <div class="photo-area ">
+                                    <div class="blocker" id="blocker"></div>
+                                    <img class="d-block item-photo" src="@cartItem.Photo">
+                                </div>
+
+                                <div class="item-details">
+                                    <div class="details-name">
+                                        <a href="#">@cartItem.SitterName</a>
+                                                <p>@cartItem.Service</p>
+                                    </div>
+                                    <div class="time-select">
+                                        <span class="">@cartItem.ServiceDate</span>
+                                        <span class="">@cartItem.ServiceTime</span>
+                                    </div>
+                                    <div class="pet-selection">
+                                        <ul class="">
+                                            
+                                            @{
+                                                var count = 1;
+                                            }
+                                            @foreach (var pet in @cartItem.PetListHeader)
+                                            {
+
+                                                <li class="w-100 selected-petType">
+                                                    <label>毛孩 @count</label>
+                                                    <span class="petTypeSel">@pet.PetType</span>
+                                                    <input  class="d-none hidden-for-PetTypeId" value="@pet.PetType">
+
+                                                    <span class="shapeTypeSel">@pet.ShapeType</span>
+                                                    
+                                                    <input  class="d-none hidden-for-ShapeTypeId" value="@pet.ShapeType">
+                                                </li>
+                                                count++;
+                                            }
+
+                                        </ul>
+                                    </div>
+                                            <input asp-for="ListOfPayItems[priceCount].FinalCartPrice" class="d-none hidden-for-cartPrice" value="@cartItem.FinalCartPrice">
+                                            
+                                    <p class="totalamount">TWD @(cartItem.FinalCartPrice.ToString("#,###"))</p>
+                                    </div>
+                                </li>
+                                    priceCount++;
+                                }
+
+                        </ul>
+
+@*                        <div class="cal-total d-flex justify-content-between px-3">
+                            <span class="d-block">支付金額</span>
+                            <span class="d-block">TWD 12,100</span>
+
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 手風琴結束 -->
+
+        <div class="checkout-area d-flex justify-content-end align-items-center">
+
+            <p class="final-price mx-4 d-block">
+                <span>@(bookVM.CartItemList.Count) 件商品合計</span>
+                <br>
+                <span>TWD @(finalTotalPrice.ToString("#,###"))</span>
+            </p>
+
+                <button type="submit" asp-controller="ShoppingCart" asp-action="FromBookingToECPay" class="pawsday-btn text-decoration-none" id="payBtn">確認付款</button>
+
+        </div>
+
+    </div>
+</div>
+
+</form>
+
+@section endJS{
+    <script>
+        let MemberIdjs = @Html.Raw(MemberIdjson);
+        let MemberInfos = @Html.Raw(memberInfosJson);
+        let MemberPets = @Html.Raw(memberPetListJson);
+    </script>
+    <script src="~/js/ShoppingCart/Booking.js"></script>
+    @*Vue.Js*@
+    @*<script src="~/js/ShoppingCart/BookVue.js"></script>*@
+}

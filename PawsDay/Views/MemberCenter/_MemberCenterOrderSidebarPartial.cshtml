@@ -1,0 +1,71 @@
+﻿@using ApplicationCore.Common
+@using PawsDay.Models.MemberCenter
+@using PawsDay.Services.MemberCenter
+@using PawsDay.ViewModels.MemberCenter
+
+@{
+    List<OrderPetLListDTO> part = Model.memberCenterOrderSidebarViewModel.OrderPetLListDTO;
+    var petList = part.GroupBy(x => x.PetType);
+    
+}
+    <section class="container-sidebar col-12 col-lg-4">
+        <div class="order-sidebar">
+        <div class="order-sidebar-img" style='background-image: url("@Model.memberCenterOrderSidebarViewModel.ProductImage");'></div>
+        <h2 class="order-sidebar-h2"> @Model.memberCenterOrderSidebarViewModel.SitterName 保姆</h2>
+            <div>
+                <label>使用日期</label>
+            <p>@Model.memberCenterOrderSidebarViewModel.ServiceDate.ToString("yyyy-MM-dd")</p>
+            </div>
+            <div>
+                <label>使用時段</label>
+            <p>@Model.memberCenterOrderSidebarViewModel.ServiceTime</p>
+            </div>
+            <div>
+                <label>方案</label>
+            <p>@Model.memberCenterOrderSidebarViewModel.ServiceName</p>
+            </div>
+        @foreach (var pettype in petList)
+        {
+            <div>
+                <label>寵物種類</label>
+                <p>@MemberCenterOrderServices.GetPetType(pettype.Key)</p>
+            </div>
+            <div>
+                <label>數量</label>
+                @foreach (var pet in part.Where(x => x.PetType == pettype.Key))
+                {
+                    <p>@MemberCenterOrderServices.GetPetShape(pet.ShapeType) X @pet.Count</p>
+                }
+            </div>
+        }
+            
+            
+            <div class="order-sidebar-separate"></div>
+            <div class="order-sidebar-spend">
+                <div class="order-sidebar-pay">實際付款金額</div>
+                <div>
+                <span class="order-sidebar-currency">TWD</span><span class="order-sidebar-money">@Model.memberCenterOrderSidebarViewModel.TotolPrice</span>
+                </div>
+            </div>
+        @if (Model.memberCenterOrderSidebarViewModel.OrderStatus == (int)OrderStatus.Cancel)
+        {
+            <hr class="total-hr">
+            <div class="order-sidebar-cancel">
+                <h4>取消產生費用</h4>
+                <div class="sidebar-cancel-text">
+                    <div class="">退款手續費</div>
+                    <div class="text-danger">-TWD @Model.memberCenterOrderSidebarViewModel.CancelPrice</div>
+                </div>
+            </div>
+            <hr class="total-hr">
+            <div class="order-sidebar-cancel">
+                <h4>退款明細</h4>
+                <div class="sidebar-cancel-text">
+                    <div class="">退款金額</div>
+                    <div><span class="order-sidebar-currency">TWD</span><span class="order-sidebar-money">@Model.memberCenterOrderSidebarViewModel.ReturnPrice</span></div>
+                </div>
+            </div>
+        }
+       
+        </div>
+    </section>

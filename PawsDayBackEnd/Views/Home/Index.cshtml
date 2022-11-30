@@ -1,0 +1,205 @@
+﻿@{
+    ViewData["Title"] = "營運看板";
+}
+@section topCSS
+    {
+            
+    <link href="~/css/productChart.css" rel="stylesheet" />
+    <link href="~/css/MemberCount.css" rel="stylesheet" />
+}
+<div class="container">
+    <div class="product-chart row">
+        <div class="total-item col-md-4 col-6">
+            <div class="card shadow mb-4" id="total-member-amount" v-cloak>
+                <div class="card-header">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">會員總數量 <br />（已授權）</h2>
+                </div>
+                <div class="card-body">
+                    <p class="text-center">{{totalMemberAmountData}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="total-item col-md-4 col-6">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h2 class="m-0 font-weight-bold text-primary text-center" id="approved-title">保姆總數量<br/>（服務中）</h2>
+                </div>
+                <div class="card-body">
+                    <p class="text-center"id="approved-quantity"></p>
+                </div>
+            </div>
+        </div>
+        <div class="total-item col-md-4 col-6">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">商品總數量 <br/>（上架中）</h2>
+                </div>
+                <div class="card-body">
+                    <p class="text-center" id="TotalQuantity"></p>
+                </div>
+            </div>
+        </div>
+        <div class="total-item col-md-6 col-6">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">訂單總數量 <br />（本年度）</h2>
+                </div>
+                <div class="card-body">
+                        <p class="text-center" id="annualTotalCount"></p>
+                </div>
+            </div>
+        </div>
+        <div class="total-item col-md-6 col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">年度總收益 <br />（NTD）</h2>
+                </div>
+                <div class="card-body">
+                    <p class="text-center" id="grossRevenue"></p>
+                </div>
+            </div>
+        </div>
+        <div class="member-quantity col-md-12 col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">銷售報表</h2>
+                </div>
+                <div class="salesChart card-body">
+                    <canvas width="200" id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 evaluationTop" id="evaluationTop">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">{{title}}</h2>
+                </div>
+                <div class="card-body text-center">
+                    <div class="card-item" v-for="(product,index) in tops">
+                        <h3>Top {{index+1}}</h3>
+                        <p>{{name[0]}} : {{product.productId}}</p>
+                        <p>{{name[1]}} : {{product.memberID}} ({{product.sitterName}})</p>
+                        <p>{{name[2]}} : {{product.evaluationAvg}} <i class="fa-solid fa-star"></i></p>
+                        <p>{{name[3]}} : {{product.evaluationCount}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 orderTop" id="orderTop">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">{{title}}</h2>
+                </div>
+                <div class="card-body text-center">
+                    <div class="card-item" v-for="(product,index) in tops">
+                        <h3>Top {{index+1}}</h3>
+                        <p>{{name[0]}} : {{product.productId}}</p>
+                        <p>{{name[1]}} : {{product.memberID}} ({{product.sitterName}})</p>
+                        <p>{{name[2]}} : {{product.orderCount}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 orderTop" id="orderTop">
+            <div class="col-12 sitterTop" id="sitterTop">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h2 class="m-0 font-weight-bold text-primary text-center">{{title}}</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="card-item" v-for="(sitter,index) in tops">
+                            <h3>Top {{index+1}}</h3>
+                            <p>{{name[0]}}：{{sitter.memberID}}</p>
+                            <p>{{name[1]}}：{{sitter.sitterName}}</p>
+                            <p>{{name[2]}}：{{sitter.orderCount}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="member-quantity col-md-12 col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">會員數量分析</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="member-count-analyze"></canvas>
+                    <div id="pre-month-vue" v-cloak>
+                        <div class="btn-group mt-3" role="group" aria-label="Basic example">
+                            <button type="button" v-for="month in preMonthList" :value="month" class="btn btn-link select-month-btn" v-on:click="getMemberCountDate(month)">
+                                    {{month}}月
+                                </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center" id="create-title">{{title}}</h2>
+                </div>
+                <div class="card-body">
+                    <canvas width="200" id="create-quantity"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center" id="createTitle">商品增加數 / 月</h2>
+                </div>
+                <div class="card-body">
+                    <canvas width="200" id="createQuantity"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center" id="status-title">{{title}}</h2>
+                </div>
+                <div class="card-body">
+                    <canvas width="200" id="status-quantity"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">商品狀態分析</h2>
+                </div>
+                <div class="card-body">
+                    <canvas width="200" id="saleQuantity"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">商品服務類別 <br />（上架中）</h2>
+                </div>
+                <div class="card-body">
+                    <canvas width="200" id="serviceTypeQuantity"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary text-center">訂單服務類別 <br />（已成立）</h2>
+                </div>
+                <div class="card-body">
+                    <canvas width="200" id="myPie"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section endJS
+{
+    <script src="~/js/Index/productChart.js"></script>
+    <script src="~/js/Index/memberChart.js"></script>
+    <script src="~/js/Index/orderChart.js"></script>
+    <script src="~/js/Index/sitterChart.js"></script>
+}

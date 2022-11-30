@@ -1,0 +1,59 @@
+﻿
+
+<div>
+    <!-- Modal forgot -->
+    <div class="modal fade login-register-modal" id="forgot" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog ">
+            <div id="forgotPartial">
+                <form method="post" class="modal-content">
+
+                    <div class="modal-body  modal-container forgot">
+                        <div class="col-12 back-area">
+                            <button type="button" class="btn btn-link back-btn" data-bs-dismiss="modal"
+                                    aria-label="back" data-bs-toggle="modal" data-bs-target="#login">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <div class="title">忘記密碼</div>                 
+
+                        </div>
+                        <div method="post" class="col-12 content">
+                            <div class="d-grid gap-2">
+
+                                <div class="input-group login-input-group">
+                                    <span class="input-group-text">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </span>
+                                    <input name="Email" type="email" class="form-control external-input input-email"
+                                           id="forgot-email-input" placeholder="電子郵件" aria-label="email"
+                                           aria-describedby="basic-addon1">
+                                </div>
+                                @if ((Nullable<bool>)TempData["isForgotError"] ?? false){
+                                    <div class="text-danger text-start small"> @TempData["ForgotPassWordErrorMsg"] </div>
+                                    }
+
+                                <div class="list-group">
+                                    <button asp-controller="Account" asp-action="ForgotPassword" type="submit" class="list-group-item main-btn reset-password">
+                                        重新設定密碼
+                                    </button>
+
+                                </div>
+                                <div class="register link-area">
+                                    <a href="" class="other-btn register-btn " data-bs-toggle="modal"
+                                       data-bs-target="#sign-up">還未加入 PawsDay 嗎 ? 立即註冊 !</a>
+                                </div>
+
+            
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,156 @@
+/* banner */
+.banner h2 {
+  font-size: var(--mainfont);
+  font-weight: 700;
+  color: var(--clr-specfont);
+  padding: 60px 0;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px var(--clr-bg-y);
+}
+.banner {
+  justify-content: center;
+}
+/* 中央欄位 */
+.container-style .row {
+  justify-content: space-evenly;
+}
+
+/* 跳轉各項服務 */
+.service-box,
+.btn-box {
+  display: flex;
+  justify-content: center;
+}
+.service-type {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: var(--radius);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+  margin-top: -10px;
+  width: 100%;
+  max-width: 400px;
+}
+.service-type li {
+  margin: 0 5px;
+  padding: 20px 0 15px;
+  text-align: center;
+}
+.service-type a {
+  text-decoration: none;
+  font-size: var(--font);
+  color: var(--clr-font);
+}
+.service-type i {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--clr-border);
+}
+.service-type li:hover i,
+.service-type li:focus i {
+  animation: service-type-focus 0.4s infinite alternate;
+}
+@keyframes service-type-focus {
+  0% {
+    position: relative;
+    top: 0;
+  }
+  100% {
+    position: relative;
+    top: -8px;
+  }
+}
+
+/* 單項服務說明 */
+.service-content {
+  padding: 20px;
+}
+.service-content h3 {
+  font-size: 24px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+.service-content p {
+  padding-bottom: 10px;
+}
+.service-content h3,
+.service-content p {
+  text-align: center;
+}
+.service-content li {
+  line-height: 2;
+  text-indent: -1em;
+  padding-left: 40px;
+}
+.service-content li i {
+  font-size: 12px;
+  vertical-align: center;
+  color: var(--clr-primary);
+  margin-right: 10px;
+}
+
+/* 插圖 */
+.service-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.service-img img {
+  max-height: 200px;
+  width: auto;
+}
+
+/* 搜尋 */
+.btn-box {
+  padding-top: 20px;
+}
+.service-search-btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+/* 平台服務介紹 */
+.service-introduction {
+  background-color: var(--clr-bg-y);
+  display: none;
+}
+.intro-list {
+  padding-bottom: 20px;
+}
+.intro-list li {
+  color: var(--clr-bg-g);
+  font-size: var(--font);
+  letter-spacing: 1px;
+  padding-top: 20px;
+}
+.intro-list h4 {
+  color: var(--clr-font);
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+.intro-list h4 i {
+  margin-right: 10px;
+}
+.intro-list span {
+  color: var(--clr-border);
+}
+
+/* RWD */
+@media screen and (min-width: 768px) {
+  .banner h2 {
+    padding: 100px 0;
+    letter-spacing: 5px;
+    font-size: 44px;
+  }
+
+  .service-type {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .service-img img {
+    max-width: 100%;
+    max-height: unset;
+  }
+}

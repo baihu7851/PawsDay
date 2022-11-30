@@ -1,0 +1,53 @@
+.order-feature-header {
+    font-size: var(--vicefont);
+    font-weight: 700;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.order-feature-star, .order-feature-stared {
+    font-size: 32px;
+    color: var(--clr-bg-g);
+    background-color: #fff;
+    padding: 20px 15px 5px;
+}
+
+    .order-feature-star i:hover {
+        color: var(--clr-border);
+    }
+
+.container-input {
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.feature-star-input {
+    display: none;
+}
+
+.pawsday-textarea {
+    resize: none;
+    height: 140px;
+    font-size: var(--font);
+}
+
+.container-input-save {
+    padding-right: 0;
+}
+
+    .container-input-save button {
+        font-size: var(--font);
+        margin-bottom: 0px;
+    }
+
+    .container-input-save span {
+        margin-right: 20px;
+    }
+
+.order-feature-stared {
+    color: var(--clr-border);
+}
+

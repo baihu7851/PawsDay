@@ -1,0 +1,36 @@
+﻿@model DateTime
+@{
+    ViewData["Title"] = "送出審核";
+    Layout = "_LayoutSearchNone";
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/BecomePetsitter/petsitter_form.css">
+}
+    <main class="petsitter-done">
+
+        <div class="container container-style" id="petsitter-step4">
+            <section class="progress-content" id="progress4">
+                <div class="progress-bar"></div>
+                <div class="progress-text">
+                    <span>成為保姆</span>
+                    <span>資料填寫</span>
+                    <span>合適度測驗</span>
+                    <span>簽署合約</span>
+                    <span>送出審核</span>
+                </div>
+            </section>
+            <h2>送出審核</h2>
+            <p>
+                感謝您的申請。<br />
+                您的資料已於
+                @Model.ToString("yyyy年MM月dd日，HH時mm分")
+                送出，人工審核需等待１至３個工作天，請靜候我們的通知，謝謝！
+            </p>
+            <div class="step-control">
+                <a asp-controller="Home" asp-action="Index" class="done-btn pawsday-btn">返回首頁</a>
+            </div>
+        </div>
+    </main>
+
+
+

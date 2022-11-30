@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "會員數量分析";
+}
+
+@section topCSS{
+    <link href="~/css/MemberCount.css" rel="stylesheet" />
+}
+
+<h1>會員數量分析</h1>
+
+
+<div class="container mt-5">
+    <canvas id="member-count-analyze"></canvas>
+    <div id="pre-month-vue">
+        <div class="btn-group mt-3" role="group" aria-label="Basic example">
+            <button type="button" v-for="month in preMonthList" :value="month" class="btn btn-link select-month-btn"
+                    onclick="getMemberCountDate(value)">
+                {{month}}月
+            </button>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section endJS{
+    <script src="~/js/MemberCountStatistics.js"></script>
+
+}

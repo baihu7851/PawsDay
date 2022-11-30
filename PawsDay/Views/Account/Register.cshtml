@@ -1,0 +1,136 @@
+﻿@using PawsDay.ViewModels.Account
+@using System.Text.Json
+@model RegisterViewModel
+
+
+@{
+    Layout = "_LayoutCartNone";
+    ViewData["Title"] = "會員註冊";
+    var registerVM = Model;
+    var areaJson = JsonSerializer.Serialize(registerVM.CountyList);
+}
+
+@section topCSS{
+    <link href="~/css/member/member-center.css" rel="stylesheet" />
+    <link href="~/css/Register/memberregisterinformation.css" rel="stylesheet" />
+}
+
+
+
+    <article class="member-register-page">
+        <div class="title-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="slogan">會員註冊</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="container section">
+
+
+            <section class="personal-information col-12">
+                <div class="container-input">
+                    <div id="register-vue">
+
+                        <!-- 基本資料頁籤 -->
+                        <form method="post" class="container-input-body basic-info-sheet">
+                            <div class="row space-area">
+                                <div class="personal-member">個人會員</div>
+                                <div class="inputs col-12 col-lg-6">
+                                    <label for="name" class="pawsday-input-label">
+                                        姓名
+                                        <span class="text-danger">*</span>
+                                    </label>                            
+                                    <input asp-for="Name" v-model="inputData.name"  type="text" placeholder="姓名" class="pawsday-input" id="name" required>
+                                    <div class="text-danger small mb-3 text-start">{{inputDataCheck.nameErrorMsg}}</div>
+                                </div>
+                                <div class="inputs col-12 col-lg-6 ">
+                                    <label for="nickname" class="pawsday-input-label">
+                                        暱稱
+                                    </label>
+                                    <input asp-for="NickName" v-model="inputData.nickName" type="text" placeholder="暱稱" class="pawsday-input" id="nickname">
+                                </div>
+                                <div class="inputs col-12 col-lg-6">
+                                    <label for="sex" class="pawsday-input-label">
+                                        性別
+                                        <span class="text-danger">*</span>  <span class="text-danger" asp-validation-for="Gender"></span>
+                                    </label>
+                                    <select class="pawsday-input" v-model="inputData.sex" id="sex" asp-for="Gender" asp-items="Model.GenderList">
+                                        <option selected value="" disabled>-請選擇-</option>
+                                    </select>
+                                    <div class="text-danger small mb-3 text-start">{{inputDataCheck.sexErrorMsg}}</div>
+                                </div>
+                                <div class="inputs col-12 col-lg-6">
+                                    <label for="birth" class="pawsday-input-label">
+                                        出生日期
+                                    </label>
+                                    <input type="date" value="1990-01-01" class="pawsday-input" id="birth" asp-for="Birth">
+                                </div>
+                                <label for="address-city" class="pawsday-input-label col-12 col-lg-12">
+                                    地址
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="inputs col-12 col-lg-6 ">
+                                    <label for="address-city" class="pawsday-input-label">
+                                        縣市
+                                    </label>
+                                    <select class="pawsday-input" name="County" v-model="inputData.countySelectVal"  id="address-city">
+                                        <option selected value="" disabled>-縣市-</option>
+                                        <option :value="county.CountyId" v-for="county in inputData.county" :key="county.CountyId">{{county.County}}</option>
+                                      
+
+                                    </select>
+                                    <div class="text-danger small mb-3 text-start">{{inputDataCheck.countyErrorMsg}}</div>
+                                </div>
+                                <div class="inputs col-12 col-lg-6 ">
+                                    <label for="address-area" class="pawsday-input-label">
+                                        行政區
+                                    </label>
+                                    <select class="pawsday-input" v-model="inputData.districtSelectVal"  name="District" id="address-area">
+                                        <option selected value="" disabled>-行政區-</option>
+                                        <option :value="district.DistrictId" v-for="district in inputData.district" :key="district.DistrictId">{{district.District}}</option>
+                                    </select>
+                                    <div class="text-danger small mb-3 text-start">{{inputDataCheck.districtErrorMsg}}</div>
+                                </div>
+                                <div class="inputs col-12 col-lg-12">
+                                    <input type="text" class="pawsday-input" v-model="inputData.address"  id="address-text" placeholder="X路X段X號X樓" asp-for="Address">
+                                    <div class="text-danger small mb-3 text-start">{{inputDataCheck.addressErrorMsg}}</div>
+
+                                </div>
+                                <div class="inputs col-12">
+                                    <label for="phone" class="pawsday-input-label">
+                                        電話號碼
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="phone" v-model="inputData.phone"  placeholder="電話號碼" class="pawsday-input" id="phone" required asp-for="Phone">
+                                    <div class="text-danger small mb-3 text-start">{{inputDataCheck.phoneErrorMsg}}</div>
+                                </div>
+                                <div class="d-none">
+                                    <input type="number" asp-for="AccountInfoId" />
+                                </div>
+                                <div class="col-12 container-input-save ">
+                                    <button class="pawsday-btn" :disabled="!isVerify" asp-controller="Account" asp-action="Register">註冊</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </article>
+
+    @section endJS{
+    <script>
+        let areaJson = @Html.Raw(areaJson);
+    </script>
+
+
+
+    <script src="~/js/Account/Register.js"></script>
+}
+
+
+

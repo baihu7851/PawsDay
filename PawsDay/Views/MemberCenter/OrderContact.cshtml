@@ -1,0 +1,110 @@
+﻿@model OrderContactViewModel
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-order-sidebar.css">
+    <link rel="stylesheet" href="~/css/member/member-order-contact.css">
+}
+@{
+    ViewData["Title"] = "聯繫客服";
+}
+
+<article>
+    <section class="container container-link">
+        <ol class="container-link-ol">
+            <li>
+                <a asp-controller="MemberCenter" asp-action="Order" class="container-link-a">訂單管理</a>
+            </li>
+            <li>
+                <span>></span>
+                <a asp-controller="MemberCenter" asp-action="OrderDetail" asp-route-id="@Model.OrderNum" class="container-link-a">
+                    <span>訂單編號 @Model.OrderNum</span>
+                </a>
+            </li>
+            <li class="container-link-span">
+                <span>></span>
+                <span>訊息內容</span>
+            </li>
+        </ol>
+    </section>
+    <section class="container section">
+        <partial name="_MemberCenterOrderSidebarPartial"></partial>
+        <section class="container-feature col-12 col-lg-8">
+            <section class="order-feature">
+                <div class="order-feature-h4">
+                    <h4>PawDay客服-訂單詢問</h4>
+                </div>
+                <div class="container-input col-12 col-lg-12">
+                    
+                    <div class="inputs">
+                        <p>服務時間 : 09:00 ~ 18:00</p>
+                            <textarea placeholder="訊息內容必須少於200字" class="pawsday-input pawsday-textarea" id="contact-us"
+                                  required asp-for="@Model.Message"></textarea>
+                    </div>
+                    <div class="container-input-footer">
+                            <div id="error-message" class="text-danger"></div>
+                        <input class="d-none" asp-for="@Model.OrderID" id="orderid">
+                        <div class="container-input-save">
+                                <button class="pawsday-btn" id="submit-btn">送出</button>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="order-message">
+                    @if (Model.Contact.Count()==0)
+                    {
+                        <div class="order-message-null">
+                            <img src="~/images/no collect.png" alt="還沒有訊息">
+                        </div>
+                        <p>還沒有訊息</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.Contact)
+                        {
+                            @if (item.IsUserType == true)
+                            {
+                                <div class="order-message-ask">
+                                    @if (item.UserImage == null)
+                                    {
+                                        <img src="~/images/paw.png">
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.UserImage" alt="主人頭像">
+                                    }
+                                    
+                                    <div class="message-ask-p">
+                                        <div class="message-ask-before"></div>
+                                        <p>@item.Message</p>
+                                        <p class="message-ask-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="order-message-reply">
+                                    <img src="~/images/P.png" alt="官網頭像">
+                                    <div class="message-reply-p">
+                                        <div class="message-reply-before"></div>
+                                        <p>@item.Message</p>
+                                        <p class="message-reply-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </section>
+        </section>
+
+    </section>
+</article>
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+    <script src="~/js/MemberCenter/MemberOrderContact.js"></script>
+
+}
+    @section endCSS{
+}

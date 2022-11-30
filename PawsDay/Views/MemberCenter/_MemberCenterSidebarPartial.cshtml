@@ -1,0 +1,112 @@
+﻿@using ApplicationCore.Common
+@using PawsDay.Services.MemberCenter
+@using PawsDay.ViewModels.MemberCenter
+
+@*注入service，並呼叫傳給partial的方法*@
+@inject MemberCenterSidebarServices service;
+@{
+    var userId = ViewBag.Data;
+    var part = service.Partial(userId);
+}
+
+
+<section class="person-sidebar col-3">
+    <div class="userid" id="@userId"></div>
+    <div class="member-center-header">
+        <div class="person-img">
+            @if (@part.MemberImage == null)
+            {
+                <img src="~/images/paw.png" class="profileimg" asp-append-version="true">
+            }
+            else
+            {
+                <img src=@part.MemberImage class="profileimg">
+            }           
+        </div>
+        <div class="image-preview">
+            <label class="person-img-camera">
+                <i class="fa-solid fa-camera"></i>
+                <input type="file" id="profileimginput" class="upload">
+            </label>
+        </div>
+        <p class="person-nickname">@part.MemberName</p>
+        @if (part.IsEmail)
+        { 
+            <p>@part.MemberEmail</p>
+        }
+        else
+        {
+            <div class="header-register">
+                <img class="register" src="@part.RegisterTypeDTO.Image" alt=""asp-append-version="true" >
+                <div>@part.RegisterTypeDTO.Name</div>
+            </div>
+        }
+    </div>
+    <div class="person-change">
+        @if (part.IsSitter)
+        {
+            @if (part.SitterStatu == (int)SitterStatus.Approved)
+            {
+                <a asp-controller="SitterCenter" asp-action="Basic">前往保姆中心</a>
+            }
+            else if (part.SitterStatu == (int)SitterStatus.AwaitToCheck)
+            {
+                <a disabled>保姆審核中</a>
+            }
+            else if (part.SitterStatu == (int)SitterStatus.Suspend)
+            {
+                <a disabled>保姆已停權</a>
+            }
+            else
+            {
+                <a asp-controller="BecomePetsitter" asp-action="PetsitterIntro">重新申請保姆</a>
+            }
+        }        
+        else 
+        {
+            <a asp-controller="BecomePetsitter" asp-action="PetsitterIntro">成為保姆</a>
+        }
+    </div>
+    <div class="member-center-body">
+        <ul class="member-function-list">
+            <li class="account-setting">
+                <a asp-controller="MemberCenter" asp-action="PersonInformation">
+                    <i class="fa-solid fa-gear person-i"></i>
+                    <p>帳號設定</p>
+                </a>
+            </li>
+            <li class="chat-room">
+                <a asp-controller="MemberCenter" asp-action="ChatroomPawsday">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <p>聊天室</p>
+                </a>
+            </li>
+            <li class="calendar">
+                <a asp-controller="MemberCenter" asp-action="Calendar">
+                    <i class="fa-solid fa-calendar-minus"></i>
+                    <p>行事曆</p>
+                </a>
+            </li>
+            <li class="collect ">
+                <a asp-controller="MemberCenter" asp-action="Collect">
+                    <i class="fa-solid fa-heart"></i>
+                    <p>我的收藏</p>
+                </a>
+            </li>
+            <li class="order-list">
+                <a asp-controller="MemberCenter" asp-action="Order">
+                    <i class="fa-solid fa-arrow-down-short-wide"></i>
+                    <p>訂單列表</p>
+                </a>
+            </li>
+            <li class="history-evaluation">
+                <a asp-controller="MemberCenter" asp-action="HistoryEvaluation">
+                    <i class="fa-solid fa-message"></i>
+                    <p>歷史評論</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+

@@ -1,0 +1,435 @@
+﻿@model DateTime
+@{
+    ViewData["Title"] = "申請成為保姆";
+    Layout = "_LayoutSearchNone";
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/BecomePetsitter/petsitter_form.css">
+}
+    <main class="petsitter-form">
+        <form method="post">
+        <div class="container container-style" id="petsitter-step1">
+            <!-- 各項input的name（資料抓取用）
+               身份證字號：IdNumber
+               寵物經驗：PetExperience
+               身份證正面：IdCardFront
+               身份證反面：IdCardBack
+               相關證照上傳（多個）：License
+               -->
+            <div class="modal" tabindex="-1" id="leave-remind">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">注意</h5>
+                            <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>一旦離開本頁面將清空已填入資料！</p>
+                            <p>
+                                請先確認您已備齊所需資料，以及足夠的測驗時間，再進行申請。
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="pawsday-btn" data-bs-dismiss="modal">確定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" tabindex="-1" id="img-exceed">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">錯誤</h5>
+                            <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>您上傳的檔案數量超過上限，請重新確認！</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="pawsday-btn" data-bs-dismiss="modal">確定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="progress-content" id="progress1">
+                <div class="progress-bar"></div>
+                <div class="progress-text">
+                    <span>成為保姆</span>
+                    <span>資料填寫</span>
+                    <span>合適度測驗</span>
+                    <span>簽署合約</span>
+                    <span>送出審核</span>
+                </div>
+            </section>
+            <h2>資料填寫</h2>
+            <article>
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <label for="id-number" class="pawsday-input-label">
+                            身份證字號
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text"
+                           class="pawsday-input"
+                           id="id-number"
+                           placeholder="身份證字號"
+                           name="IdNumber"
+                           required />
+                    </div>
+                </div>
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <label for="pet-experience" class="pawsday-input-label">
+                            寵物經驗
+                            <span class="text-danger">*</span>
+                        </label>
+                        <textarea class="pawsday-input"
+                              id="pet-experience"
+                              name="PetExperience"
+                              required></textarea>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <div class="col">
+                        <label for="idcard-front" class="pawsday-input-label">
+                            身份證正面
+                            <span class="text-danger">*</span>
+                        </label><input type="file"
+                                   class="pawsday-input"
+                                   id="idcard-front"
+                                   accept="image/*"
+                                   required />
+                    </div>
+                    <div class="col">
+                        <label for="idcard-back" class="pawsday-input-label">
+                            身份證反面
+                            <span class="text-danger">*</span>
+                        </label><input type="file"
+                                   class="pawsday-input"
+                                   id="idcard-back"
+                                   accept="image/*"
+                                   required />
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <div class="preview col">
+                        <div id="preview-idcard-front">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                    </div>
+                    <div class="preview col">
+                        <div id="preview-idcard-back">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <label for="license" class="pawsday-input-label">
+                            相關證照
+                            <span class="text-black-50">最多限上傳五個檔案</span>
+                        </label><input type="file"
+                                   class="pawsday-input"
+                                   id="license"
+                                   accept="image/*"
+                                   multiple />
+                    </div>
+                </div>
+            </article>
+            <div class="row row-cols-1">
+                <div class="preview col">
+                    <div id="preview-license"><i class="fa-solid fa-image"></i></div>
+                </div>
+                <div class="step-control">
+                        <button class="next-btn pawsday-btn" type="button">下一步</button>
+                </div>
+            </div>
+        </div>
+        <!-- ==================== -->
+            <div class="container container-style d-none" id="petsitter-step2">
+            <!-- 保姆測驗id：petsitter-quiz
+                  性向測驗id：aptitude-test
+                  簡答題id：short-answer-->
+
+            <section class="progress-content" id="progress2">
+                <div class="progress-bar"></div>
+                <div class="progress-text">
+                    <span>成為保姆</span>
+                    <span>資料填寫</span>
+                    <span>合適度測驗</span>
+                    <span>簽署合約</span>
+                    <span>送出審核</span>
+                </div>
+            </section>
+            <h2>合適度測驗</h2>
+            <article class="test-content">
+                
+                    <section class="choice" id="quiz">
+                        <h3>單選：請選出一個最正確的答案</h3>
+                        <template id="petsitter-quiz">
+                        <div class="question" id="">
+                            <p>
+                                {{ 題目 }}
+                                <span class="text-danger">*</span>
+                            </p>
+                            <div class="option">
+                                <input type="radio" name="" value="" id="" /><label for="">{{ 選項一 }}</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="" value="" id="" /><label for="">{{ 選項二 }}</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="" value="" id="" /><label for="">{{ 選項三 }}</label>
+                            </div>
+                        </div>
+                        </template>
+                    </section>
+                    <section class="choice" id="aptitude">
+                        <h3>
+                            性向測驗：沒有正確答案，請以直覺選出一個覺得最符合自己的敘述
+                        </h3>
+                        <template id="aptitude-test">
+                        <div class="question" id="">
+                            <p>
+                                {{ 題目 }}
+                                <span class="text-danger">*</span>
+                            </p>
+                                <div class="option">
+                                <input type="radio" name="" value="" id="" /><label for="">{{ 選項一 }}</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="" value="" id="" /><label for="">{{ 選項二 }}</label>
+                            </div>
+                        </div>
+                     </template>
+                    </section>
+                    <section class="short-answer">
+                        <h3>簡答：請填寫你認為最適當的回答</h3>
+                        <template id="short-answer">
+                        <div class="question">
+                            <label for="">
+                                {{ 題目 }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="pawsday-input" id="" placeholder="" />
+                        </div>
+                        </template>
+                    </section>
+                
+            </article>
+            <div class="step-control">
+                    <button class="previous-btn pawsday-btn" type="button">上一步</button>
+                    <button class="next-btn pawsday-btn" type="button">下一步</button>
+            </div>
+        </div>
+        <!-- ==================== -->
+            <div class="container container-style d-none" id="petsitter-step3">
+            <section class="progress-content" id="progress3">
+                <div class="progress-bar"></div>
+                <div class="progress-text">
+                    <span>成為保姆</span>
+                    <span>資料填寫</span>
+                    <span>合適度測驗</span>
+                    <span>簽署合約</span>
+                    <span>送出審核</span>
+                </div>
+            </section>
+            <h2>簽屬合約</h2>
+
+            <article>
+                <section class="contract-content">
+                    <h3>契約書</h3>
+
+                    <span>立契約書人</span>
+                    <p>
+                        甲方（受託人亦及居間人） : 日日毛掌股份有限公司<br />
+
+                        乙方（委託人） :<br />
+
+                        緣甲方為經營網路平台寵物照顧相關服務媒介之業者，乙方擬透過甲方所經營之網路社群或平台
+                        -
+                        Pawsday（以下合稱「甲方平台」）為訂約之媒介，促成乙方得向甲方所營網站之客戶、會員（以下合稱「客戶」）承攬或提供寵物照顧相關等服務。為此，雙方基於意思表示合致，訂定本契約書條款如下，俾資共同遵守。
+                    </p>
+                    <span>第一條：本契約目的</span>
+                    <p>
+                        乙方委託甲方自簽署（或線上確認）本契約書之日起擔任訂約之媒介，期促成乙方得向客戶承攬或提供寵物照顧等免費或付費服務，服務內容包括且不限於寵物服務確認驗收單、寵物照顧相關服務，涵蓋到府照顧、到府洗澡、陪伴散步等（下合稱「寵物照護等相關服務」。
+                    </p>
+
+                    <span>第二條：乙方可提供服務之地點</span><br />
+                    <p>
+                        甲乙雙方同意，甲方應優先就乙方選擇可提供服務之行政地區，促成乙方對客戶承攬或提供寵物照護等相關服務，惟其實際工作地點仍以客戶指定之照顧場所為準。
+                    </p>
+                    <span>第三條：甲方提供服務之方式</span><br />
+                    <p>
+                        乙方於本契約期間，得陸續透過甲方聯絡人或網頁設定可提供服務之金額（詳情見附件一）與行政地區，經由甲方系統謀合出與客戶所設定條件相符者之人選，供客戶選擇；經客戶選定後，甲方系統即透過網頁訊息方式通知乙方。乙方於收到訊息後，如確認同意客戶之服務項目，視為該筆訂單已成立生效，甲方已履行其居間義務；若訂單成立後客戶臨時取消，甲方依照取消政策（詳情見附件二）提供乙方部份金額補貼。
+                        乙方履行寵物照護等相關服務過程前，應與客戶溝通相關用品提供方式，經商量許可以後即可前往執行服務。
+                    </p>
+                    <span>第四條：約定事項</span><br />
+                    <p>
+                        訂單成立後，乙方應按訂單約定時間到達服務處所，並提供寵物照護等相關服務。
+                        乙方如有惡意損壞、偷竊或私藏客戶物品行為，應由乙方自負民事與刑事責任，若因而造成甲方之損失亦應由乙方負賠償責任。
+                        客戶於選擇服務人選時，係斟酌乙方於甲方平台所填載之證照數、基本技能、刑案紀錄及其他客戶評價等資訊，故於訂單成立後，除事前經甲方協助取得客戶同意外，乙方不得私下轉讓訂單或由交第三人履行寵物照護等相關服務，否則，乙方轉託之第三人行為，視為乙方行為與甲方無涉，且需賠償甲方因此所受之損失。
+                        乙方於甲方平台提供之資料，如聯絡資訊、證照……等，應據實提供。
+                        乙方應遵守甲方平台之使用條約。
+                    </p>
+                    <span>第五條：乙方承攬報酬</span><br />
+                    <p>
+                        乙方對客戶承攬或提供寵物照顧相關等服務所應收取之承攬報酬或服務費用，乙方同意按照其提供與客戶之服務價位（詳情見附件一），委託甲方代向客戶收取費用（實際收取金額，可於不同種類服務另為調整），再由甲方扣除甲方平台營運所需之服務費用（乙方承攬報酬之20%，但遇特殊活動或特價優惠調整）及銀行轉帳手續費後轉給乙方。乙方如有應付甲方或客戶應負擔之賠償，甲方得先扣除該金額後，再將承攬報酬或服務費用之餘額給付予乙方。乙方如自發取消訂單、未提供或不完整提供所承攬之服務（詳情見附件一）給客戶，甲方可將代收取之承攬報酬或服務費用不給付予乙方，並將該款項返還給客戶；如客戶訂單成立後臨時取消，甲方依照取消政策（詳情見附件二）提供乙方部份金額補貼。
+                    </p>
+                    <span>第六條：發票開立</span><br />
+                    <p>
+                        甲方需依甲方平台營運所需之服務費用開立電子發票或實體發票，並協助兌獎，若中獎需將發票寄予乙方。乙方可依甲方代向客戶收取之價格開立發票或收據給客戶。
+                    </p>
+                    <span>第七條：保密約定</span><br />
+                    <p>
+                        乙方因本契約或承攬工作過程中所獲得之資訊（包括且不限於客戶資料或相關資訊例如地址、姓名、電話等），僅限乙方使用於承攬或提供寵物照顧相關等服務之用，不得轉做其他用途或洩露予其他第三人知悉，且本項約定不因本契約之終止而免除。乙方若有違反，除應自負其法律責任外，如致甲方受有損害時，甲方得向乙方請求損害賠償。
+                    </p>
+                    <span>第八條：智慧財產權</span><br />
+                    <p>
+                        甲方協助乙方所攝影或撰寫之所有內容，及所有因執行本合約所生之內容，包括但不限於：文字、照片、影像、插圖、錄音片、影音片、檔案、網站畫面的安排、
+                        網頁設計等，其所有權及智慧財產權，均歸屬甲方所有。乙方不得以任何形式對
+                        於上述內容之全部或一部加以進行重製、改作、修改、編輯、散佈、傳輸、公開
+                        發表、進行還原工程及其它任何侵害甲方智慧財產權之行為。若乙方有使用需求，
+                        須另經甲方事前書面同意並議定授權範圍。
+                        雙方均應保證其所提供之照片、文案均符合相關法令，若有第三人主張該提供物
+                        侵權者，提供方應自行負擔相關法律負責。
+                    </p>
+                    <span>第九條：平台內容規範</span><br />
+                    <p>
+                        乙方不得未經甲方同意，於甲方平台內的任何公開內容（自我介紹、服務標題、服務內容……等）標示或寫出乙方個人（或本身經營之寵物相關店家/或品牌）聯絡方式及資訊（如：電話號碼、Line
+                        ID、個人社群名稱、社群粉專、店名、地址……等）
+                        服務內容需揭示一次最多接收幾隻寵物、客戶寵物如亂尿尿會做的處置方式……等。
+                        若乙方有違反平台內容規範之疑慮，甲方得終止本契約或不予提供工作媒介服務。
+                    </p>
+                    <span>第十條：特別約定</span><br />
+                    <p>
+                        乙方於承攬服務過程中，不得向客戶推銷任何非由甲方居間之商品或服務（如：直銷商品）。
+                        乙方不得以明示或暗示等不當方式勸誘甲方會員直接與乙方購買以取代原有得於甲方平台進行之交易；否則，乙方因損害甲方之客戶資源等權利將賠償新台幣五萬元整給予甲方。
+                        經甲方成功媒介並促成乙方承攬或提供寵物照護等相關服務之甲方客戶、以及甲方現有之平台客戶，乙方不得於本契約期間、本契約終止日或乙方承攬之最後一筆訂單工作完成日起一年內，與其等私下承攬或提供寵物照顧或寵物美容等相關服務工作；否則，乙方因損害甲方之客戶資源等權利將賠償新台幣五萬元整給予甲方。
+                        乙方於承攬服務過程中，不得以任何名義（家訪費、車馬費、額外服務……等）向客戶收取承攬報酬以外之費用。
+                        乙方不得惡意拒絕承攬服務或無視承攬服務需求，如因故無法承攬服務，應協助客戶尋找可承攬服務之服務提供者；乙方若知情自己有連續一個月以上無法承攬服務的可能，應主動告知甲方。
+                    </p>
+                    <span>第十一條：契約之終止及損害賠償責任</span><br />
+                    <p>
+                        乙方如有違反本契約約定，甲方有權終止本契約或不予提供工作媒介服務。乙方之違約行為，如致甲方受有損害或增加額外費用支出時，甲方有權向乙方請求損害賠償及負擔相關費用。
+                        乙方得隨時終止本契約或關閉平台服務功能，惟對於終止日前甲方平台已成功媒介之訂單，仍有完成其承攬或提供寵物照顧相關等服務之義務。
+                        乙方於本契約期間，如有違反誠信、遭受刑事有罪判決或有破產、債信不良等情形時，甲方得終止本契約或不予提供工作媒介服務。
+                    </p>
+                    <span>第十二條：居間服務關係</span><br />
+                    <p>
+                        乙方於本契約簽訂時，明確知悉甲方係透過其經營之網路平台為訂約之媒介，促成乙方向甲方客戶承攬或提供寵物照顧相關等服務，甲、乙雙方非屬僱傭或承攬關係，乙方不得向甲方要求辦理勞、健保等保險或其他醫療給付性質之保險。
+                    </p>
+                    <span>第十三條：契約期間</span><br />
+                    <p>
+                        本契約自乙方完成簽署日或線上點選確認日起生效，期間三年。期限屆滿時，如未有一方表示不續約，則本約自動續約二年；再到期時，亦同。
+                        乙方於本契約期間，得隨時關閉工作媒介功能，如乙方關閉期間連續一年，本契約視為終止，之後，如欲再為開啟，須重新簽約。
+                    </p>
+                    <span>第十四條：通知之送達處所</span><br />
+                    <p>
+                        雙方意思表示之通知，甲方以甲方對外公佈的電子郵件信箱及通訊軟體帳號為送達處所；乙方以本契約書所載之地址、乙方於甲方經營之網路平台填寫的電子郵件信箱帳號為送達處所，如有變更應立即通知他方。依前項送達處所所為之送達，如未能送達，以存證信函付郵日或寄出電子郵件日起第五天，推定對他方為合法之送達。
+                    </p>
+                    <span>第十五條：契約之增修</span><br />
+                    <p>
+                        甲方得視實際運作需要，對本契約之內容為增刪、修改，但應於增刪、修改後立即通知乙方，如乙方未於接到通知後三日內表示異議或仍繼續接受甲方居間服務，視為乙方已同意相關增刪及修改條款。
+                    </p>
+                    <span>第十六條：未盡事宜及管轄法</span><br />
+                    <p>
+                        本契約未約定之事項，雙方應依法令、習慣及誠信與平等互惠原則協商解決；若因本契約涉訟時，雙方同意以台灣台北地方法院為第一審合意管轄法院。
+                    </p>
+                    <span>第十七條：契約份數</span><br />
+                    <p>
+                        本契約正本壹式貳份，並由甲、乙雙方各執正本乙份為憑。（如以線上點選確認方式，請乙方自行列印本契約留存）
+                    </p>
+                    <p>
+                        （註：本契約條款已於甲方所經營之網路平台公告供消費者審閱三日以上，當乙方於甲方所經營之網路平台點選確認或繼續接受本契約之服務，均視為乙方已充分審閱期間並詳細閱讀本契約條款，應受本契約內容之拘束。）
+                    </p>
+
+                    <span>立契約書人</span>
+                    <p>
+                        甲方（受託人亦及居間人）：日日毛掌股份有限公司<br />
+                        統一編號：53741405<br />
+                        授權代表人：吳典璋 Dann Wu
+                        <br /><br />
+                        乙方（委託人）：<br />
+                        身分證字號：<br />
+                        電話：<br />
+                        通訊地址： <br />
+                        日期：
+                    </p>
+                </section>
+                <section class="contract-content">
+                    <h3>服務價格（附件一）</h3>
+                    <p>
+                        Pawsday平台提供三種服務媒合，並制定最低定價金額提供保姆作為收費參考，保姆亦可依據寵物體型、服務時段區別設定不同價格。<br />
+                        體型定義：5公斤以下為迷你犬；5至10公斤為小型犬；10至20公斤為中型犬；20至40公斤為大型犬；40公斤以上為超大型犬；非犬隻寵物同樣參照體重。
+                        <br />時段定義：06:00至23:59為一般時段；00:00至05:59為夜間時段
+                    </p>
+
+                    <span>到府照顧</span><br />
+                    <p>
+                        服務內容：保姆到客人家依需求照顧寵物和陪伴玩耍與活動，抵達、離開、餵食、清潔等動作皆會回報飼主。保姆正式提供收費服務前，保姆會先行於訊息箱認識客人寵物及確認服務細節。
+                        <br />
+                        最低定價：每30分鐘／$200
+                    </p>
+                    <span>到府洗澡</span><br />
+                    <p>
+                        服務內容：保姆到客人家依需求提供寵物洗澡服務，保姆會與家長協調洗毛精供應。
+                        <br />
+                        最低定價：每次／迷你型 $300、小型 $300、中型 $400、大型
+                        $500、超大型 $700
+                    </p>
+                    <span>陪伴散步</span><br />
+                    <p>
+                        服務內容：保姆到客人家或約定地點接寵物，並帶往合適地點讓寵物活動，抵達、離開、寵物尿尿大便、清潔等狀況皆會回報飼主。保姆正式提供收費服務前，保姆會先行於訊息箱認識客人寵物及確認服務細節。<br />
+                        最低定價：每30分鐘／$100
+                    </p>
+                </section>
+                <section class="contract-content">
+                    <h3>取消政策（附件二）</h3>
+                    <p>
+                        Pawsday平台為提供保姆承攬服務相關保障，如在保姆與客戶雙方確認同意成立訂單後，客戶臨時取消，將依照取消政策向客戶收取部份費用，扣取約定之平台營運所需費用後，提供保姆金額補貼。
+                    </p>
+                    <p>
+                        客戶於預定日前 5 天（含）之前取消，退還100%費用<br />
+                        客戶於預定日 前1 ~ 5 天之間取消，退還50%費用<br />
+                        客戶於預定日當日取消，退還0%費用<br />
+                    </p>
+                </section>
+            </article>
+            <div class="contract-check row row-cols-1">
+                <div class="col">
+                    <input type="checkbox" id="read" />
+                    <label for="read">
+                        我確認已閱畢以上合約內容
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="checkbox" id="agree" />
+                    <label for="agree">
+                        我同意以上合約內容
+                        <span class="text-danger">*</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="step-control">
+                    <button class="previous-btn pawsday-btn" type="button">上一步</button>
+                <button class="next-btn pawsday-btn" type="submit">送出申請</button>
+                
+            </div>
+        </div>
+        </form>
+    </main>
+
+    @section endJS{
+    <script src="~/js/BecomePetsitter/petsitter_form.js"></script>
+}
+
+

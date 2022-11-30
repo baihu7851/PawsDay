@@ -1,0 +1,70 @@
+﻿.product-chart h2 {
+    font-size: 18px;
+}
+
+.product-chart p {
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.product-chart .total-item .card-body {
+    padding: 10px;
+}
+
+.product-chart .total-item .card-header {
+    padding: 10px;
+}
+
+@media screen and (min-width:1090px) {
+    .product-chart .total-item {
+        max-width: 20%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .product-chart h2 {
+        font-size: 14px;
+    }
+
+    .product-chart .total-item p {
+        font-size: 26px;
+    }
+}
+
+.product-chart .evaluationTop .card-body,
+.product-chart .orderTop .card-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-chart .evaluationTop .card-item,
+.product-chart .orderTop .card-item {
+    border: 2px solid #aaa;
+    margin: 5px;
+    border-radius: 6px;
+    width: 30%;
+}
+
+.product-chart .evaluationTop h3,
+.product-chart .orderTop h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.product-chart .evaluationTop p,
+.product-chart .orderTop p {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width:768px) {
+    .product-chart .evaluationTop .card-item,
+    .product-chart .orderTop .card-item {
+        width: 100%;
+    }
+}

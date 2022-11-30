@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "_LayoutMemberNone";
+}
+@{
+    ViewData["Title"] = "付款失敗";
+    var orderIds = (List<string>)ViewData["FailOrders"];
+}
+@section topCSS{
+
+    <link href="~/css/ShoppingCart/04-failure.css" rel="stylesheet" type="text/css">
+    
+}
+<!-- 訂單錯誤begin -->
+<div class="pay-failure">
+
+    <div class="warning-text col-12">
+        <img src="./images/failure.png" alt="" class="pay-failure-img">
+        <span class="d-block">OOPS! 發生錯誤</span>
+
+        @*@foreach (var id in orderIds)
+       {
+            <p class="exception-text col-12">訂單編號(@(id))</p>
+        }*@
+        
+
+
+        <p class="exception-text col-12">訂單建立失敗</p>
+    </div>
+
+
+    <a asp-action="Cart" class="pawsday-btn">返回購物車</a>
+    <a asp-controller="Home" asp-action="Index" class="pawsday-btn">返回首頁</a>
+
+    <div class="solutions">
+        <p><i class="fa-regular fa-hand-point-right"></i> 商店尚未開啟收款服務。</p>
+        <p><i class="fa-regular fa-hand-point-right"></i> 交易金額低於下限或超過上限。</p>
+        <p><i class="fa-regular fa-hand-point-right"></i> 此商店尚未提供任何付款方式。</p>
+        <p><i class="fa-regular fa-hand-point-right"></i> 建議您先與購買商品的商家聯繫。</p>
+
+        <p>若非以上原因，請來電或以電子郵件方式聯繫客服中心，我們將盡速協助處理您的問題，謝謝!</p>
+
+    </div>
+</div>
+
+<!-- 訂單錯誤end-->

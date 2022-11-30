@@ -1,0 +1,38 @@
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus,
+button:focus,
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.select-month-btn{
+    border-radius: 0;  
+    text-decoration: none;
+    font-size: 12px;
+    
+  }
+  .select-month-btn:focus{
+    border-bottom: 2px solid var(--blue);
+    text-decoration: none;
+  }
+  .select-month-btn:hover{
+    text-decoration: none;
+  }
+
+.member-quantity{
+    position:relative;
+}
+    .member-quantity .btn-group{
+        position:absolute;
+        top:0;
+        right:0;
+    }
+    .member-quantity canvas{
+        max-height:300px;
+    }

@@ -1,0 +1,80 @@
+﻿
+
+<div>
+
+    <!-- Modal login-->
+    <div class="modal fade login-register-modal" id="login" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body modal-container login">
+
+                    <div class="col-12 back-area">
+                        <button type="button" class="btn btn-link back-btn" data-bs-dismiss="modal"
+                                aria-label="back" data-bs-toggle="modal" data-bs-target="#login-register">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </button>
+                    </div>
+
+
+                    <div class="col-12">
+                        <div class="title">登入 PawsDay</div>
+
+                        <div class="subtitle">PawsDay 會員帳號登入</div>
+                    </div>
+                    <div id="loginPartial">
+                        <form method="post" class="col-12 form-group content">
+
+                            <div class="d-grid gap-2">
+                                <div class="input-group login-input-group">
+                                    <span class="input-group-text">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </span>
+
+                                    <input name="Email" type="email" class="form-control external-input input-email"
+                                           id="login-email-input" placeholder="電子郵件" aria-label="email"
+                                           aria-describedby="basic-addon1">
+                                </div>
+
+                                <div class="input-group form-group login-input-group">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </span>
+
+                                    <input name="Password" type="password" class="form-control external-input input-password"
+                                           id="login-password-input" placeholder="密碼" aria-label="password"
+                                           aria-describedby="basic-addon1">
+                                </div>
+                                @if ((Nullable<bool>)TempData["isLoginError"] ?? false)
+                                {
+                                    <div class="small text-danger text-start"> @TempData["LoginErrorMsg"]</div>
+                                }
+                            </div>
+                            <div class="forgot-password-area">
+
+                                <a href="" class="forgot-password-url" data-bs-toggle="modal"
+                                   data-bs-target="#forgot">忘記密碼</a>
+                            </div>            
+
+                            <div class="list-group main-area">
+
+                                <button type="submit" asp-controller="Account" asp-action="Login" class="list-group-item main-btn login-btn">
+                                    登入
+                                </button>
+
+                            </div>
+
+                            <div class="register link-area">
+                                <a href="" class="other-btn register-btn " data-bs-toggle="modal"
+                                   data-bs-target="#sign-up">還未加入 PawsDay 嗎 ? 立即註冊 !</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,98 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model List<SitterOrderListViewModel>
+@{
+    var orders = Model;
+    ViewData["Title"] = "訂單列表";
+    Layout = "_LayoutSitterCenter";
+}
+
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-order.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service">
+                    <div class="container-service-header">
+                            <h2 class="currenttitle">保姆訂單列表</h2>
+
+                    </div>
+                    
+
+                    <div class="container-service-body">
+                        @if (orders.Count==0) 
+                        {
+                            <div class="order-null">
+                                <img src="~/images/no order.png" alt="" class="order-null-img">
+                                <p>尚未有任何訂單 Q_Q</p>
+                                <a class="pawsday-btn" asp-controller="SitterCenter" asp-action="ServiceAdvertise">爭取首頁優先曝光</a>
+                            </div>
+                        }
+                        else
+                        {
+                        
+                        @foreach (var order in orders) 
+                        {
+                            <div class="order">
+                                <a asp-controller="SitterCenter" asp-action="OrderDetail" asp-route-id="@order.OrderNumber" class="order-a">
+                                    <div class="order-program">
+                                        <div class="order-img col-4">
+                                            <img src="@order.ProductImageUrl">
+                                        </div>
+                                        <div class="col-6">
+
+                                            <div class="order-state">@order.OrderStatus</div>
+
+                                            <h3 class="order-h3">@order.SitterName</h3>
+                                            <div class="order-content">
+                                                <div>
+                                                    <i class="fa-solid fa-bag-shopping"></i>
+                                                    <p class="order-service">@order.ProductName</p>
+                                                </div>
+                                                <div>
+                                                    <i class="fa-solid fa-tag"></i>
+                                                    <p class="order-id">訂單編號：@order.OrderNumber</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order-money col-12">
+                                            <span class="money-currency">TWD</span><span class="money-dollor">@order.TotalPrice</span>
+                                        </div>
+                                        <div class="order-date col-2">
+                                            <span class="order-date-mon">@order.ServiceMonth</span><br />
+                                            <span class="order-date-day">@order.ServiceDate</span>
+                                        </div>
+                                    </div>
+                                    <div class="order-link">
+                                        @if (order.ServiceDay < DateTime.Now && order.OrderStatus == "服務結束" || order.OrderStatus == "訂單完成")
+                                        {
+                                                <a asp-controller="SitterCenter" asp-action="OrderEvaluation" asp-route-id="@order.OrderNumber" class="order-evaluation">給予評論</a>
+                                        }
+
+                                            <a asp-route="Sitter/MessageBox-Official/{id?}" asp-route-id="@order.OrderNumber" class="order-connect pawsday-btn">聯絡客服</a>
+                                            <a asp-route="Sitter/MessageBox-Customer/{id?}" asp-route-id="@order.CustomerID" class="order-connect pawsday-btn">聯絡顧客</a>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                        }
+
+                    </div>
+                </div>
+
+            </section>
+        </section>
+    </article>
+
+@section endJS
+{
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+}
+
+
+
+

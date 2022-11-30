@@ -1,0 +1,99 @@
+﻿@using PawsDay.ViewModels.SearchProduct
+@using PawsDay.Services.Product
+@using System.Text.Json
+@model SearchProductViewModel
+@inject ProductServices service;
+@{
+	ViewData["Title"] = "服務搜尋";
+	SearchProductViewModel search = (SearchProductViewModel)Model;
+	string searchinput = search.SearchInput;
+	var filterArea = service.FilterArea();
+	var filterAreajson = JsonSerializer.Serialize(filterArea.Areas);
+	var MemberIdjson = JsonSerializer.Serialize(ViewData["MemberId"]);
+	var filtersjson = JsonSerializer.Serialize(ViewData["Filters"]);
+	var sortjson = JsonSerializer.Serialize(ViewData["SearchSort"]);
+}
+@section topCSS{
+	<link href="~/css/Product/commodity-search.css" rel="stylesheet" />
+}
+	<div class="commodity-search container">
+		<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">首頁</a></li>
+				<li class="breadcrumb-item active" aria-current="page">@searchinput</li>
+			</ol>
+		</nav>
+		<div class="row">
+			<partial name="_SearchFilter"></partial>
+			<div class="col-lg-9 col-12 commodity-group">
+				<div class="commodity-notice">
+					<h2 class="petsitter">
+						共有<span>@search.ProductCard.Count</span>位保姆提供服務
+					</h2>
+					<div class="sort">
+						<h3 class="sort-title">排序 : </h3>
+						<form method="post" class="sort-group">
+							<span>
+								<button class="sort-btn" type="submit" asp-route="Search"
+									asp-route-sort="Pawsday" asp-route-searchinput="@searchinput"
+									asp-route-county="@search.County" asp-route-district="@search.District"
+									asp-route-day="@search.Day" asp-route-time="@search.Time"
+									asp-route-service="@search.Service" asp-route-pet="@search.Pet">
+									PawsDay
+								</button>
+							</span>|
+							<span>
+								<button class="sort-btn" type="submit" asp-route="Search"
+									asp-route-sort="Popular" asp-route-searchinput="@searchinput"
+									asp-route-county="@search.County" asp-route-district="@search.District"
+									asp-route-day="@search.Day" asp-route-time="@search.Time"
+									asp-route-service="@search.Service" asp-route-pet="@search.Pet">
+									熱門程度
+								</button>
+							</span>|
+							<span>
+								<button class="sort-btn" type="submit" asp-route="Search"
+									asp-route-sort="Evaluation" asp-route-searchinput="@searchinput"
+									asp-route-county="@search.County" asp-route-district="@search.District"
+									asp-route-day="@search.Day" asp-route-time="@search.Time"
+									asp-route-service="@search.Service" asp-route-pet="@search.Pet">
+									用戶評價
+								</button>
+							</span>|
+							<span>
+								<button class="sort-btn" type="submit" asp-route="Search"
+									asp-route-sort="PriceHigh" asp-route-searchinput="@searchinput"
+									asp-route-county="@search.County" asp-route-district="@search.District"
+									asp-route-day="@search.Day" asp-route-time="@search.Time"
+									asp-route-service="@search.Service" asp-route-pet="@search.Pet">
+									價格：高到低
+								</button>
+							</span>|
+							<span>
+								<button class="sort-btn" type="submit" asp-route="Search"
+									asp-route-sort="PriceLow" asp-route-searchinput="@searchinput"
+									asp-route-county="@search.County" asp-route-district="@search.District"
+									asp-route-day="@search.Day" asp-route-time="@search.Time"
+									asp-route-service="@search.Service" asp-route-pet="@search.Pet">
+									價格：低到高
+								</button>
+							</span>
+						</form>
+					</div>
+				</div>
+				<partial name="_SearchCard"></partial>
+			</div>
+		</div>
+	</div>
+
+	@section endJS{
+	<script>
+		let filterAreajs = @Html.Raw(filterAreajson);
+		let MemberIdjs = @Html.Raw(MemberIdjson);
+		let filtersjs = @Html.Raw(filtersjson);
+		let sortjs = @Html.Raw(sortjson);
+	</script>
+	<script src="~/js/Product/filterArea.js"></script>
+}
+
+

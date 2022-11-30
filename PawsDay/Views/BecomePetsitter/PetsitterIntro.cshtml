@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "成為保姆";
+}
+
+@section topCSS{
+    <link rel="stylesheet" href="~/css/BecomePetsitter/petsitter_intro.css">
+}
+    <main class="become-petsitter">
+        <section class="banner">
+            <div class="container">
+                <h2>成為Pawsday保姆</h2>
+                <p>療癒心靈並賺取額外收入</p>
+                <a asp-controller="BecomePetsitter" asp-action="PetsitterForm" class="application-btn pawsday-btn">立即申請成為保姆</a>
+                <ul class="benefit-list row row-cols-1 row-cols-md-3">
+                    <li class="col"><i class="fa-solid fa-medal"></i><br />品牌形象</li>
+                    <li class="col">
+                        <i class="fa-solid fa-hand-holding-dollar"></i><br />安全交易
+                    </li>
+                    <li class="col">
+                        <i class="fa-solid fa-shield-heart"></i><br />保險保障
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="petsitter-introduction container">
+            <p>
+                你愛毛小孩嗎？有寵物照顧經驗嗎？有多餘的時間、空間嗎？<br />
+                成為寵物保姆，療癒心靈又能賺取額外收入！幫助附近的毛爸媽照顧寵物，時間方便有彈性！<br />
+                我們鼓勵保姆接案前與家長對話，評估毛孩的個性及需求是否合適。<br />
+                若家長取消預約，保姆的取消政策規定了全額或部份退費的時間點，保障雙方時間成本。<br />
+                服務完成後家長與保姆可以相互評價，我們鼓勵雙方詳細寫下服務前溝通、服務過程中報備、與結束後毛孩的狀況，幫助其他人更加了解這位保姆或家長。
+            </p>
+            <span>
+                往下繼續閱讀申請流程<br /><i class="fa-solid fa-angle-down"></i>
+            </span>
+        </section>
+        <article>
+            <ol class="petsitter-process">
+                <li class="step">
+                    <div class="container">
+                        <div class="row">
+                            <div class="step-icon col-md-4">
+                                <div class="icon-box"><i class="fa-solid fa-pen-to-square"></i></div>
+                            </div>
+                            <div class="step-text col-md-8">
+                                <h3>資料驗證</h3>
+                                <p>
+                                    一定要完整填寫資料才能繼續其他步驟！<br />
+                                    需注意寵物經驗也是審核標準之一，務必仔細填寫。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="container">
+                        <div class="row">
+                            <div class="step-icon col-md-4"><div class="icon-box"><i class="fa-regular fa-id-card"></i></div></div>
+                            <div class="step-text col-md-8">
+                                <h3>證件驗證</h3>
+                                <p>
+                                    所有上傳照片需清楚，不可有遮蔽陰影。
+                                    <br />
+                                    請上傳身份證正反面，若持有良民證、寵物照護相關等證照亦可上傳。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="container">
+                        <div class="row">
+                            <div class="step-icon col-md-4"><div class="icon-box"><i class="fa-solid fa-list-ul"></i></div></div>
+                            <div class="step-text col-md-8">
+                                <h3>合適度測驗</h3>
+                                <p>
+                                    我們透過測驗了解您的專業度、服務精神、是否熱愛動物……等。<br />
+                                    這會判斷您可否成為Pawsday保姆，請一定要認真據實回答。<br />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="container">
+                        <div class="row">
+                            <div class="step-icon col-md-4"><div class="icon-box"><i class="fa-solid fa-handshake-simple"></i></div></div>
+                            <div class="step-text col-md-8">
+                                <h3>簽署合約</h3>
+                                <p>
+                                    內含成為保姆的相關說明及收費注意事項，請詳閱以保障自身權益。
+                                    <br />閱畢後勾選下方同意欄位，視同接受Pawsday合約規範。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="container">
+                        <div class="row">
+                            <div class="step-icon col-md-4"><div class="icon-box"><i class="fa-solid fa-user-check"></i></div></div>
+                            <div class="step-text col-md-8">
+                                <h3>送出審核</h3>
+                                <p>
+                                    請確認資料填寫完整再送出！
+                                    <br />人工審核需等待１至３個工作天，請耐心等候通知，期待您的加入！
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <section class="step">
+                    <div class="container">
+                        <a asp-controller="BecomePetsitter" asp-action="PetsitterForm" class="application-btn pawsday-btn">立即申請成為保姆</a>
+                    </div>
+                </section>
+            </ol>
+        </article>
+    </main>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<HistoryEvaluationViewModel>
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-chatroom.css">
+    <link rel="stylesheet" href="~/css/member/member-history-evaluation.css">
+}
+    @{
+    ViewData["Title"] = "歷史評論";
+}
+
+<article>
+    <section class="container section">
+        <partial name="_MemberCenterSidebarPartial"></partial>
+
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-input">
+                <div class="container-input-header">
+                    <h2 class="currenttitle">歷史評論</h2>
+                </div>
+                <div class="containert-body">
+                    <div class="table-head">
+                        <div class="col-3 p-0">訂單編號</div>
+                        <div class="col-3 p-0">星數</div>
+                        <div class="col-6 p-0">評論內容</div>
+                    </div>
+                    @if (Model.Count()==0)
+                    {
+                        <div class="table-body-null">
+                            <img src="~/images/no collect.png" alt="沒有任何人評論你">
+                            <p>還沒有任何人評論你</p>
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <div class="table-body-group">
+                                <div class="col-md-3 p-0 col-12">#@item.OrderNumber</div>
+                                <div class="body-group-star col-md-3 p-0 col-12">
+                                    @for(int i=0;i<item.Evaluation;i++)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                    }
+                                </div>
+                                <div class="col-md-6 p-0 table-body-text col-12">
+                                    <div class="col-md-1 p-0 col-1">
+                                        <img src="@item.UserImage" alt="評論者頭像">
+                                    </div>
+                                    <div class="col-md-11 col-11">
+                                        <p class="body-text-p">@item.Message</p>
+                                        <p class="body-text-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
+                    
+                </div>
+            </div>
+        </section>
+    </section>
+</article>
+
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+}
+    @section endCSS{
+}

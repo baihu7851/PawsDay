@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "無訪問權限";
+}
+@section topJS{
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/notfoundcss.css">
+}
+
+<section>
+        <div class="container errorbody">
+            <div class="errorimg">
+                <img src="~/images/accessdenied.png" alt="">
+            </div>
+            <p class="errortext">沒有訪問權限，請按我返回前一頁</p>
+        </div>
+
+</section>
+
+
+
+@section endJS
+{
+    <script>
+        let goback = document.querySelector('.errorbody')
+        goback.addEventListener('click', () => {
+            history.back()
+        })
+    </script>
+}

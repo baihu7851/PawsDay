@@ -1,0 +1,30 @@
+﻿@using PawsDay.Services.Layout
+@using System.Text.Json
+@inject MenuServices service;
+@{
+	var cartList = service.ShoppingCart();
+	var memberId = JsonSerializer.Serialize(service.GetMemberId());
+}
+
+<div class="menu-button-shoppingcart">
+	<a asp-controller="ShoppingCart" asp-action="Cart" class="layout-cart">
+		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="60" fill="currentColor"
+			 class="bi bi-cart2" viewBox="0 0 16 16">
+			<path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+		</svg>
+		<div class="cart-icon"></div>
+	</a>
+	<nav class="menu menu-shoppingcart" id="menu-shoppingcart">
+		<div class="shopping-btn">
+			<em class="fa-solid fa-rotate-right shopping-reset" id="shopping-reset"></em>
+		</div>
+		<div class="shopping-null">
+			<img src="~/images/no order.png" alt="" class="null-img">
+			<p>您的購物車尚未有商品</p>
+		</div>
+		<a class="shopping-card d-none" asp-controller="ShoppingCart" asp-action="Cart"></a>
+	</nav>
+</div>
+<script>
+	let member = @Html.Raw(memberId);
+</script>

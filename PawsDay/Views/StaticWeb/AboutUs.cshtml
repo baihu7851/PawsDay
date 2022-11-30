@@ -1,0 +1,157 @@
+﻿@{
+    Layout = "_LayoutSearchNone";
+}
+
+@section topCSS{
+        <link rel="stylesheet" href="~/css/staticWeb/staticAbout.css">
+}
+
+@{
+    ViewData["Title"] = "關於我們";
+}
+
+<section class="about-title-container">
+    <!-- <div class="row about-title"> -->
+    <div class="about-title-image">
+        <img src="~/images/aboutUs-image.png" alt="about-us圖片">
+    </div>
+    <div class="about-title-h2 ">
+        <h2 class="title-h2">關於PawsDay</h2>
+    </div>
+    <!-- </div> -->
+</section>
+
+
+<div class="about-us">
+    <div class="container">
+        <!-- <div class="about-intro"> -->
+        <div class="intro-content ">
+            <p>
+                PawsDay 是一個創新的共享寵物照顧平台，我們的使命是讓每一個毛小孩被愛、替寵物家長解決各種無法親自照顧寵物的困擾；
+                也更提供喜愛寵物且有經驗與資源的人，一個成為保姆並自由接案的機會。
+                毛孩爸媽出國、出差、忙碌的時候，可以輕鬆找到附近值得信任、專業、價位合理、貼心有愛心的保姆提供的100%一對一客製化服務，給予毛孩滿滿的愛。
+                希望藉此推廣完善的寵物飼育理念、動保議題，讓台灣的寵物生態走向更美好的一面。
+                我們鼓勵家長在預約前查看保姆過去的評價、並進行事前對話，評估保姆的個性與技能是否適合自己的毛孩。PawsDay 提供的定型化契約也規定了雙方在服務期間的權利義務。
+                若家長取消預約，保姆的取消政策規定了可全額或部份退費的時間點，保障雙方的時間成本。
+                服務完成後家長與保姆可以相互評價，我們鼓勵雙方詳實寫下服務前溝通、服務過程中報備、與結束後毛孩的狀況，幫助其他人更加了解這位保姆或家長。
+            </p>
+        </div>
+        <!-- </div> -->
+    </div>
+    <section class="about-founder-container">
+        <div class="container">
+            <div class="row about-founder">
+                <div class="col-12 col-md-6 founder">
+                    <div class="founder-image">
+                        <img class="founder-pic" src="~/images/Dann.png" alt="Dann哥大頭照">
+                    </div>
+                    <div class="founder-card">
+                        <span class="card-title">PawsDay執行長</span>
+                        <h2 class="card-h2">Dann 哥</h2>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6 founder-content">
+                    <div class="content-item">
+                        <h2 class="content-h2">PawsDay執行長</h2>
+                        <p>
+                            Dann
+                            哥的夢想是讓每一個毛小孩被愛，你也愛動物並願意成為我們的聲音和力量，一起達成這個夢想嗎？你或身邊的人也常常忙碌或出門，沒時間每天陪伴毛孩、到處找人幫忙餵貓/狗狗、定期幫他洗澡剪指甲、帶他出去散步嗎？一起加入我們，成為毛小孩的力量吧!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="box-container">
+        <div class="container">
+            <div class="row box-group">
+                <div class="col-12 col-md-4 box-item">
+                    <div class="box-card">
+                        <img src="~/images/Booking.png" class="card-img-top" alt="輕鬆預訂">
+                        <div class="card-body">
+                            <h3 class="box-title">輕鬆預訂</h3>
+                            <p class="card-text">無論您的毛小孩是需要長時間照顧、短期陪伴散步，或是不方便出門洗澡美容，到PawsDay彈性選擇毛小孩的行程、輕鬆預訂，專人服務！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 box-item">
+                    <div class="box-card">
+                        <img src="~/images/Integrate.png" class="card-img-top" alt="平台整合">
+                        <div class="card-body">
+                            <h3 class="box-title">平台整合</h3>
+                            <p class="card-text">毛爸媽可以直接透過PawsDay安全的交易平台完成付款及訂購程序，在保障服務未完成前不會進行款項發放，您不必再煩惱交易，這部分交給我們來處理。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 box-item">
+                    <div class="box-card">
+                        <img src="~/images/privacy.png" class="card-img-top" alt="隱私保護">
+                        <div class="card-body">
+                            <h3 class="box-title">隱私保護</h3>
+                            <p class="card-text">身為您的好夥伴，您的隱私及安全是PawsDay的第一考量。我們用可靠的保密系統保護您的資料，不用擔心您的資料會被洩漏給第三方。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="feedback-container">
+        <div class="container">
+            <div class="feedback-group">
+                <div class="feedback-title">
+                    <h3>大家的心聲</h3>
+                </div>
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                    </div>
+
+                    <div class="carousel-inner feedback-inner">
+                        <div class="feedback-img carousel-item active">
+                            <div class="feedback-pic">
+                                <img src="~/images/feedback-1.jpg" class="" alt="回饋圖1">
+                            </div>
+                        </div>
+                        <div class="feedback-img carousel-item">
+                            <div class="feedback-pic">
+                                <img src="~/images/feedback-2.jpg" class="" alt="回饋圖2">
+                            </div>
+                        </div>
+                        <div class="feedback-img carousel-item">
+                            <div class="feedback-pic">
+                                <img src="~/images/feedback-3.jpg" class="" alt="回饋圖3">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
+

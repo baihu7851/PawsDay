@@ -1,0 +1,119 @@
+﻿@using ApplicationCore.Common
+@using PawsDay.Services.Layout
+@inject MenuServices service;
+@{
+	var memberMenu = service.MemberMenu();
+}
+<div class="member-header">
+	@if (Context.User.Identity.IsAuthenticated)
+	{
+		<div class="header-person-img">
+			<img src="@memberMenu.Image" alt="會員頭貼">
+		</div>
+		<p class="header-person-name">@memberMenu.Name</p>
+		<a asp-controller="MemberCenter" asp-action="PersonInformation" class="member-set">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+				<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+				<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+			</svg>
+		</a>
+	}
+	else
+	{
+		<div class="header-person-img">
+			<img src="~/images/paw.png" alt="會員頭貼">
+		</div>
+		<p class="header-person-name">訪客</p>
+		<a asp-controller="MemberCenter" asp-action="PersonInformation" class="member-set">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+				<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+				<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+			</svg>
+		</a>
+	}
+</div>
+<div class="member-body">
+	@if (Context.User.Identity.IsAuthenticated)
+	{
+		<ul class="function-list">
+			<li class="account-setting">
+				<a asp-controller="MemberCenter" asp-action="PersonInformation">
+					<i class="fa-solid fa-gear person-i"></i>
+					<p>帳號設定</p>
+				</a>
+			</li>
+			<li class="chat-room">
+				<a asp-route="Member/MessageList-Official">
+					<i class="fa-solid fa-comment-dots"></i>
+					<p>聊天室</p>
+				</a>
+			</li>
+			<li class="calendar">
+				<a asp-controller="MemberCenter" asp-action="Calendar">
+					<i class="fa-solid fa-calendar-minus"></i>
+					<p>行事曆</p>
+				</a>
+			</li>
+			<li class="collect">
+				<a asp-controller="MemberCenter" asp-action="Collect">
+					<i class="fa-solid fa-heart"></i>
+					<p>我的收藏</p>
+				</a>
+			</li>
+			<li class="order-list">
+				<a asp-controller="MemberCenter" asp-action="Order">
+					<i class="fa-solid fa-arrow-down-short-wide"></i>
+					<p>訂單列表</p>
+				</a>
+			</li>
+			<li class="history-evaluation">
+				<a asp-controller="MemberCenter" asp-action="HistoryEvaluation">
+					<i class="fa-solid fa-message"></i>
+					<p>歷史評論</p>
+				</a>
+			</li>
+		</ul>
+		<div class="member-toggle">
+			@if (memberMenu.IsSitter)
+			{
+				@if (memberMenu.SitterStatus == (int)SitterStatus.Approved)
+				{
+					<a asp-controller="SitterCenter" asp-action="Basic">
+						<p>前往保姆中心</p>
+					</a>
+				}
+				else if (memberMenu.SitterStatus  == (int)SitterStatus.AwaitToCheck)
+				{
+					<a disabled><p>保姆審核中</p></a>
+				}
+				else if (memberMenu.SitterStatus == (int)SitterStatus.Suspend)
+				{
+					<a disabled><p>保姆已停權</p></a>
+				}
+				else
+				{
+					<a asp-controller="BecomePetsitter" asp-action="PetsitterIntro">
+						<p>重新申請保姆</p>
+					</a>
+				}
+			}
+			else
+			{
+				<a asp-controller="BecomePetsitter" asp-action="PetsitterIntro"><p>成為保姆</p></a>
+			}
+		</div>
+		<div class="member-signout">
+			<a asp-controller="Account" asp-action="Logout">
+				<p>登出</p>
+			</a>
+		</div>
+	}
+	else
+	{
+		<div class="member-login">
+			<a href="" type="button" class="login-btn" data-bs-toggle="modal" data-bs-target="#login-register">
+				<p>登入／註冊</p>
+			</a>
+		</div>
+	}
+</div>

@@ -1,0 +1,86 @@
+
+.banner{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.slogan{
+    color:var(--clr-specfont);
+    font-size: var(--mainfont);
+    font-weight: var(--fw-specfont);
+    color: var(--clr-specfont);
+    letter-spacing: 3px;
+}
+.slogan-vice {
+    font-size: var(--vicefont);
+}
+.left-btn,.right-btn{
+    position: absolute;
+}
+.left-btn{left: 0px;}
+.right-btn{right: 0px;}
+.selectmonth:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
+.calender{
+    padding: 50px;
+    flex-wrap: wrap;
+}
+.calendar-head{
+    justify-content:space-between;
+}
+.head-col{
+    width: 12%;
+    height: 25px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius);
+    background-color:var(--clr-bg-y);
+    font-weight: var(--fw-specfont);
+}
+.calendar-body{
+    margin-top: 10px;
+}
+.calendar-body-row{
+    justify-content:space-between;
+    margin-bottom: 6px;
+}
+.calendar-body-col{
+    box-sizing: border-box;
+    width: 12%;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius);
+}
+.body-col{
+    border: 2px solid var(--clr-border) ;
+    background-color:var(--clr-bg-y);
+}
+.body-col-choose{
+    border: 2px solid var(--clr-border) ;
+    background-color: var(--clr-border);
+    color: #fff;
+}
+.othercol{
+    border: 2px solid var(--clr-bg-y) ;
+    background-color: #fff;
+    cursor: auto !important;
+}
+.thiscol{
+    border: 2px solid var(--clr-border) ;
+    background-color: var(--clr-primary);
+}
+.body-col-disabled{
+    border: 2px solid var(--clr-bg-g) ;
+    background-color: var(--clr-bg-g);
+    color: var(--font);
+}

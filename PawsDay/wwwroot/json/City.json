@@ -1,0 +1,496 @@
+[
+    {
+        "City": "臺北市",
+        "Districts": [
+            {"District": "中正區"},
+            {"District": "大同區"},
+            {"District": "中山區"},
+            {"District": "松山區"},
+            {"District": "大安區"},
+            {"District": "萬華區"},
+            {"District": "信義區"},
+            {"District": "士林區"},
+            {"District": "北投區"},
+            {"District": "內湖區"},
+            {"District": "南港區"},
+            {"District": "文山區"}
+        ]
+    },
+    {
+        "City": "基隆市",
+        "Districts": [
+            {"District": "仁愛區"},
+            {"District": "信義區"},
+            {"District": "中正區"},
+            {"District": "中山區"},
+            {"District": "安樂區"},
+            {"District": "暖暖區"},
+            {"District": "七堵區"}
+        ]
+    },
+    {
+        "City": "新北市",
+        "Districts": [
+            {"District": "萬里區"},
+            {"District": "金山區"},
+            {"District": "板橋區"},
+            {"District": "汐止區"},
+            {"District": "深坑區"},
+            {"District": "石碇區"},
+            {"District": "瑞芳區"},
+            {"District": "平溪區"},
+            {"District": "雙溪區"},
+            {"District": "貢寮區"},
+            {"District": "新店區"},
+            {"District": "坪林區"},
+            {"District": "烏來區"},
+            {"District": "永和區"},
+            {"District": "中和區"},
+            {"District": "土城區"},
+            {"District": "三峽區"},
+            {"District": "樹林區"},
+            {"District": "鶯歌區"},
+            {"District": "三重區"},
+            {"District": "新莊區"},
+            {"District": "泰山區"},
+            {"District": "林口區"},
+            {"District": "蘆洲區"},
+            {"District": "五股區"},
+            {"District": "八里區"},
+            {"District": "淡水區"},
+            {"District": "三芝區"},
+            {"District": "石門區"}
+        ]
+    },
+    {
+        "City": "連江縣",
+        "Districts": [
+            {"District": "南竿鄉"},
+            {"District": "北竿鄉"},
+            {"District": "莒光鄉"},
+            {"District": "東引鄉"}
+        ]
+    },
+    {
+        "City": "宜蘭縣",
+        "Districts": [
+            {"District": "宜蘭市"},
+            {"District": "壯圍鄉"},
+            {"District": "頭城鎮"},
+            {"District": "礁溪鄉"},
+            {"District": "員山鄉"},
+            {"District": "羅東鎮"},
+            {"District": "三星鄉"},
+            {"District": "大同鄉"},
+            {"District": "五結鄉"},
+            {"District": "冬山鄉"},
+            {"District": "蘇澳鎮"},
+            {"District": "南澳鄉"},
+            {"District": "釣魚臺"}
+        ]
+    },
+    {
+        "City": "釣魚臺",
+        "Districts": [
+            {"District": "釣魚臺"}
+        ]
+    },
+    {
+        "City": "新竹市",
+        "Districts": [
+            { "District": "東區"},
+            { "District": "北區"},
+            {"District": "香山區"}
+        ]
+    },
+    {
+        "City": "新竹縣",
+        "Districts": [
+            {"District": "寶山鄉"},
+            {"District": "竹北市"},
+            {"District": "湖口鄉"},
+            {"District": "新豐鄉"},
+            {"District": "新埔鎮"},
+            {"District": "關西鎮"},
+            {"District": "芎林鄉"},
+            {"District": "竹東鎮"},
+            {"District": "五峰鄉"},
+            {"District": "橫山鄉"},
+            {"District": "尖石鄉"},
+            {"District": "北埔鄉"},
+            {"District": "峨眉鄉"}
+        ]
+    },
+    {
+        "City": "桃園市",
+        "Districts": [
+            {"District": "中壢區"},
+            {"District": "平鎮區"},
+            {"District": "龍潭區"},
+            {"District": "楊梅區"},
+            {"District": "新屋區"},
+            {"District": "觀音區"},
+            {"District": "桃園區"},
+            {"District": "龜山區"},
+            {"District": "八德區"},
+            {"District": "大溪區"},
+            {"District": "復興區"},
+            {"District": "大園區"},
+            {"District": "蘆竹區"}
+        ]
+    },
+    {
+        "City": "苗栗縣",
+        "Districts": [
+            {"District": "竹南鎮"},
+            {"District": "頭份市"},
+            {"District": "三灣鄉"},
+            {"District": "南庄鄉"},
+            {"District": "獅潭鄉"},
+            {"District": "後龍鎮"},
+            {"District": "通霄鎮"},
+            {"District": "苑裡鎮"},
+            {"District": "苗栗市"},
+            {"District": "造橋鄉"},
+            {"District": "頭屋鄉"},
+            {"District": "公館鄉"},
+            {"District": "大湖鄉"},
+            {"District": "泰安鄉"},
+            {"District": "銅鑼鄉"},
+            {"District": "三義鄉"},
+            {"District": "西湖鄉"},
+            {"District": "卓蘭鎮"}
+        ]
+    },
+    {
+        "City": "臺中市",
+        "Districts": [
+            { "District": "中區"},
+            { "District": "東區"},
+            { "District": "南區"},
+            { "District": "西區"},
+            { "District": "北區"},
+            {"District": "北屯區"},
+            {"District": "西屯區"},
+            {"District": "南屯區"},
+            {"District": "太平區"},
+            {"District": "大里區"},
+            {"District": "霧峰區"},
+            {"District": "烏日區"},
+            {"District": "豐原區"},
+            {"District": "后里區"},
+            {"District": "石岡區"},
+            {"District": "東勢區"},
+            {"District": "和平區"},
+            {"District": "新社區"},
+            {"District": "潭子區"},
+            {"District": "大雅區"},
+            {"District": "神岡區"},
+            {"District": "大肚區"},
+            {"District": "沙鹿區"},
+            {"District": "龍井區"},
+            {"District": "梧棲區"},
+            {"District": "清水區"},
+            {"District": "大甲區"},
+            {"District": "外埔區"},
+            {"District": "大安區"}
+        ]
+    },
+    {
+        "City": "彰化縣",
+        "Districts": [
+            {"District": "彰化市"},
+            {"District": "芬園鄉"},
+            {"District": "花壇鄉"},
+            {"District": "秀水鄉"},
+            {"District": "鹿港鎮"},
+            {"District": "福興鄉"},
+            {"District": "線西鄉"},
+            {"District": "和美鎮"},
+            {"District": "伸港鄉"},
+            {"District": "員林市"},
+            {"District": "社頭鄉"},
+            {"District": "永靖鄉"},
+            {"District": "埔心鄉"},
+            {"District": "溪湖鎮"},
+            {"District": "大村鄉"},
+            {"District": "埔鹽鄉"},
+            {"District": "田中鎮"},
+            {"District": "北斗鎮"},
+            {"District": "田尾鄉"},
+            {"District": "埤頭鄉"},
+            {"District": "溪州鄉"},
+            {"District": "竹塘鄉"},
+            {"District": "二林鎮"},
+            {"District": "大城鄉"},
+            {"District": "芳苑鄉"},
+            {"District": "二水鄉"}
+        ]
+    },
+    {
+        "City": "南投縣",
+        "Districts": [
+            {"District": "南投市"},
+            {"District": "中寮鄉"},
+            {"District": "草屯鎮"},
+            {"District": "國姓鄉"},
+            {"District": "埔里鎮"},
+            {"District": "仁愛鄉"},
+            {"District": "名間鄉"},
+            {"District": "集集鎮"},
+            {"District": "水里鄉"},
+            {"District": "魚池鄉"},
+            {"District": "信義鄉"},
+            {"District": "竹山鎮"},
+            {"District": "鹿谷鄉"}
+        ]
+    },
+    {
+        "City": "嘉義市",
+        "Districts": [
+            { "District": "西區"},
+            { "District": "東區"}
+        ]
+    },
+    {
+        "City": "嘉義縣",
+        "Districts": [
+            {"District": "番路鄉"},
+            {"District": "梅山鄉"},
+            {"District": "竹崎鄉"},
+            {"District": "阿里山鄉"},
+            {"District": "中埔鄉"},
+            {"District": "大埔鄉"},
+            {"District": "水上鄉"},
+            {"District": "鹿草鄉"},
+            {"District": "太保市"},
+            {"District": "朴子市"},
+            {"District": "東石鄉"},
+            {"District": "六腳鄉"},
+            {"District": "新港鄉"},
+            {"District": "民雄鄉"},
+            {"District": "大林鎮"},
+            {"District": "溪口鄉"},
+            {"District": "義竹鄉"},
+            {"District": "布袋鎮"}
+        ]
+    },
+    {
+        "City": "雲林縣",
+        "Districts": [
+            {"District": "斗南鎮"},
+            {"District": "大埤鄉"},
+            {"District": "虎尾鎮"},
+            {"District": "土庫鎮"},
+            {"District": "褒忠鄉"},
+            {"District": "東勢鄉"},
+            {"District": "臺西鄉"},
+            {"District": "崙背鄉"},
+            {"District": "麥寮鄉"},
+            {"District": "斗六市"},
+            {"District": "林內鄉"},
+            {"District": "古坑鄉"},
+            {"District": "莿桐鄉"},
+            {"District": "西螺鎮"},
+            {"District": "二崙鄉"},
+            {"District": "北港鎮"},
+            {"District": "水林鄉"},
+            {"District": "口湖鄉"},
+            {"District": "四湖鄉"},
+            {"District": "元長鄉"}
+        ]
+    },
+    {
+        "City": "臺南市",
+        "Districts": [
+            {"District": "中西區"},
+            { "District": "東區"},
+            { "District": "南區"},
+            { "District": "北區"},
+            {"District": "安平區"},
+            {"District": "安南區"},
+            {"District": "永康區"},
+            {"District": "歸仁區"},
+            {"District": "新化區"},
+            {"District": "左鎮區"},
+            {"District": "玉井區"},
+            {"District": "楠西區"},
+            {"District": "南化區"},
+            {"District": "仁德區"},
+            {"District": "關廟區"},
+            {"District": "龍崎區"},
+            {"District": "官田區"},
+            {"District": "麻豆區"},
+            {"District": "佳里區"},
+            {"District": "西港區"},
+            {"District": "七股區"},
+            {"District": "將軍區"},
+            {"District": "學甲區"},
+            {"District": "北門區"},
+            {"District": "新營區"},
+            {"District": "後壁區"},
+            {"District": "白河區"},
+            {"District": "東山區"},
+            {"District": "六甲區"},
+            {"District": "下營區"},
+            {"District": "柳營區"},
+            {"District": "鹽水區"},
+            {"District": "善化區"},
+            {"District": "新市區"},
+            {"District": "大內區"},
+            {"District": "山上區"},
+            {"District": "安定區"}
+        ]
+    },
+    {
+        "City": "高雄市",
+        "Districts": [
+            {"District": "新興區"},
+            {"District": "前金區"},
+            {"District": "苓雅區"},
+            {"District": "鹽埕區"},
+            {"District": "鼓山區"},
+            {"District": "旗津區"},
+            {"District": "前鎮區"},
+            {"District": "三民區"},
+            {"District": "楠梓區"},
+            {"District": "小港區"},
+            {"District": "左營區"},
+            {"District": "仁武區"},
+            {"District": "大社區"},
+            {"District": "東沙群島"},
+            {"District": "南沙群島"},
+            {"District": "岡山區"},
+            {"District": "路竹區"},
+            {"District": "阿蓮區"},
+            {"District": "田寮區"},
+            {"District": "燕巢區"},
+            {"District": "橋頭區"},
+            {"District": "梓官區"},
+            {"District": "彌陀區"},
+            {"District": "永安區"},
+            {"District": "湖內區"},
+            {"District": "鳳山區"},
+            {"District": "大寮區"},
+            {"District": "林園區"},
+            {"District": "鳥松區"},
+            {"District": "大樹區"},
+            {"District": "旗山區"},
+            {"District": "美濃區"},
+            {"District": "六龜區"},
+            {"District": "內門區"},
+            {"District": "杉林區"},
+            {"District": "甲仙區"},
+            {"District": "桃源區"},
+            {"District": "那瑪夏區"},
+            {"District": "茂林區"},
+            {"District": "茄萣區"}
+        ]
+    },
+    {
+        "City": "南海島",
+        "Districts": [
+            {"District": "東沙群島"},
+            {"District": "南沙群島"}
+        ]
+    },
+    {
+        "City": "澎湖縣",
+        "Districts": [
+            {"District": "馬公市"},
+            {"District": "西嶼鄉"},
+            {"District": "望安鄉"},
+            {"District": "七美鄉"},
+            {"District": "白沙鄉"},
+            {"District": "湖西鄉"}
+        ]
+    },
+    {
+        "City": "金門縣",
+        "Districts": [
+            {"District": "金沙鎮"},
+            {"District": "金湖鎮"},
+            {"District": "金寧鄉"},
+            {"District": "金城鎮"},
+            {"District": "烈嶼鄉"},
+            {"District": "烏坵鄉"}
+        ]
+    },
+    {
+        "City": "屏東縣",
+        "Districts": [
+            {"District": "屏東市"},
+            {"District": "三地門鄉"},
+            {"District": "霧臺鄉"},
+            {"District": "瑪家鄉"},
+            {"District": "九如鄉"},
+            {"District": "里港鄉"},
+            {"District": "高樹鄉"},
+            {"District": "鹽埔鄉"},
+            {"District": "長治鄉"},
+            {"District": "麟洛鄉"},
+            {"District": "竹田鄉"},
+            {"District": "內埔鄉"},
+            {"District": "萬丹鄉"},
+            {"District": "潮州鎮"},
+            {"District": "泰武鄉"},
+            {"District": "來義鄉"},
+            {"District": "萬巒鄉"},
+            {"District": "崁頂鄉"},
+            {"District": "新埤鄉"},
+            {"District": "南州鄉"},
+            {"District": "林邊鄉"},
+            {"District": "東港鎮"},
+            {"District": "琉球鄉"},
+            {"District": "佳冬鄉"},
+            {"District": "新園鄉"},
+            {"District": "枋寮鄉"},
+            {"District": "枋山鄉"},
+            {"District": "春日鄉"},
+            {"District": "獅子鄉"},
+            {"District": "車城鄉"},
+            {"District": "牡丹鄉"},
+            {"District": "恆春鎮"},
+            {"District": "滿州鄉"}
+        ]
+    },
+    {
+        "City": "臺東縣",
+        "Districts": [
+            {"District": "臺東市"},
+            {"District": "綠島鄉"},
+            {"District": "蘭嶼鄉"},
+            {"District": "延平鄉"},
+            {"District": "卑南鄉"},
+            {"District": "鹿野鄉"},
+            {"District": "關山鎮"},
+            {"District": "海端鄉"},
+            {"District": "池上鄉"},
+            {"District": "東河鄉"},
+            {"District": "成功鎮"},
+            {"District": "長濱鄉"},
+            {"District": "太麻里鄉"},
+            {"District": "金峰鄉"},
+            {"District": "大武鄉"},
+            {"District": "達仁鄉"}
+        ]
+    },
+    {
+        "City": "花蓮縣",
+        "Districts": [
+            {"District": "花蓮市"},
+            {"District": "新城鄉"},
+            {"District": "秀林鄉"},
+            {"District": "吉安鄉"},
+            {"District": "壽豐鄉"},
+            {"District": "鳳林鎮"},
+            {"District": "光復鄉"},
+            {"District": "豐濱鄉"},
+            {"District": "瑞穗鄉"},
+            {"District": "萬榮鄉"},
+            {"District": "玉里鎮"},
+            {"District": "卓溪鄉"},
+            {"District": "富里鄉"}
+        ]
+    }
+]

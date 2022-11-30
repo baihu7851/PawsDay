@@ -1,0 +1,85 @@
+﻿@using PawsDay.Services.Product
+@using PawsDay.ViewModels.SearchProduct
+@using System.Text.Json
+@model SearchProductViewModel
+@inject ProductServices service;
+@{
+    ViewData["Title"] = "服務搜尋";
+    SearchProductViewModel search = (SearchProductViewModel)Model;
+    var filterArea = service.FilterArea();
+}
+@if (search.ProductCard.Any())
+{
+    @foreach (var card in search.ProductCard)
+    {
+        <div class="commodity-card">
+            <a asp-route="Product" asp-route-id="@card.ProductId" class="commodity-item">
+                <div class="d-none">
+                    <input value="@card.ProductId" class="product-id" />
+				</div>
+                <div class="commodity-img">
+                    <img src="@card.Image" alt="保姆服務照片">
+                </div>
+                <div class="commodity-content">
+                    <h2 class="commodity-title" id="commodity-title">@card.SitterName</h2>
+                    <p class="commodity-title">｜</p>
+                    <h2 class="commodity-title" id="commodity-service-type">@card.ServiceType</h2>
+                    <p class="commodity-service">
+                        @Html.Raw(card.Introduce)
+                    </p>
+                    <span class="commodity-place">
+                        <i class="fa-solid fa-location-dot"></i>
+                        @foreach (var area in @card.ServiceArea)
+                        {
+                            <p>@area.County-@area.District</p>
+                        }
+                    </span>
+                    <span class="commodity-evaluation">
+                        <span class="commodity-fraction" id="commodity-evaluation">
+                            @card.EvaluationAverage
+                        </span>
+                        <span class="star-group">
+                            <span class="star" style="width:calc(67.5px* @card.EvaluationAverage /5);">
+                                @for (var i = 0; i < 5; i++)
+                                {
+                                    <i class="fa-solid fa-star"></i>
+                                }
+                            </span>
+                            <span class="star-border">
+                                @for (var i = 0; i < 5; i++)
+                                {
+                                    <i class="fa-solid fa-star"></i>
+                                }
+                            </span>
+                        </span>
+                        <span class="evaluation-quantity">
+                            (@card.EvaluationQuantity)
+                        </span>|
+                        <span class="commodity-reserve">@card.OrderQuantity+ 已預定</span>
+                    </span>
+                    <span class="commodity-price">TWD @card.Price 起</span>
+                </div>
+            </a>
+            @if (Context.User.Identity.IsAuthenticated)
+            {
+                <span class="commodity-collect">
+                    @if (@card.Collect)
+                    {
+                        <i class="fa-solid fa-heart "></i>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-heart"></i>
+                    }
+                </span>
+            }
+        </div>
+    }
+}
+else
+{
+    <div class="commodity-null">
+        <img src="~/images/no order.png" alt="" class="null-img">
+        <p>查無資料</p>
+    </div>
+}

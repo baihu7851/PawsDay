@@ -1,0 +1,147 @@
+@charset "UTF-8";
+.problem-header {
+  text-align: center;
+}
+.problem-header .logo {
+  height: 60px;
+}
+.problem-header img {
+  height: 100%;
+  width: auto;
+}
+
+.problem-container {  
+    background-image: url('../../images/pawsdaybanner.png');
+    background-size: 100%;
+    text-align: center;
+}
+.problem-container .main-area {
+  display: flex;
+  align-items: center;
+}
+.problem-container .slogan {
+  color: var(--clr-specfont);
+  font-size: 22px;
+  line-height: 41px;
+  letter-spacing: 3px;
+}
+
+.sub-container{
+    margin-bottom:50px;
+}
+
+.sub-container .breadcrumb {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 10px 0 30px 0;
+}
+.sub-container .breadcrumb-link {
+  color: var(--clr-border);
+  text-decoration: none;
+}
+
+.search-container .search-area {
+  margin-bottom: 50px;
+  height: 210px;
+}
+.search-container .search-area .slogan {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.search-container .search-area .search-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-container .search-area .input-group {
+  max-width: 600px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: 0 20px;
+}
+.search-container .search-area .support-search-input {
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+  height: 40px;
+  border: 1px solid var(--clr-bg-g);
+}
+.search-container .search-area .support-search-input:focus {
+  border: 1px solid var(--clr-border);
+}
+.search-container .search-area .search-btn {
+  height: 40px;
+  color: white;
+  background-color: var(--clr-border);
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  transition: 0.5s;
+}
+.search-container .search-area .search-btn:hover {
+  background-color: var(--clr-specfont);
+}
+.search-container .search-area .hot-search {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.search-container .search-area .hot-search-link {
+  text-decoration: none;
+}
+
+.help-container{
+    margin-bottom:60px
+}
+
+.help-container .title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 33px;
+  color: var(--clr-font);
+  margin-bottom: 15px;
+}
+.help-container .icon {
+  width: 50px;
+  margin: 20px 15px;
+}
+.help-container .text {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  margin-left: 10px;
+}
+.help-container .list-group {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+}
+.help-container .item-btn {
+    height:110px;
+  display: flex;
+  
+  align-items: center;
+  border-color: var(--clr-border);
+  border-radius: var(--radius);
+}
+.help-container .item-btn:hover {
+  background-color: transparent;
+  box-shadow: 0 0 0 0.05rem var(--clr-border);
+}
+
+@media screen and (min-width: 768px) {
+  .problem-header {
+    text-align: left;
+  }
+}
+@media screen and (min-width: 992px) {
+  .search-container .search-area {
+    height: 255px;
+  }
+  .search-container .slogan {
+    font-size: 28px;
+    line-height: 44px;
+  }
+}

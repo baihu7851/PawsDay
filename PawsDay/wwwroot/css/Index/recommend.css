@@ -1,0 +1,208 @@
+/* recommend */
+.recommend-card{
+    position:relative;
+}
+a {
+    text-decoration: none;
+    color: var(--clr-font);
+}
+a:hover {
+    color: var(--clr-font);
+}
+.more {
+    position: absolute;
+    width: 20px;
+    margin: 0 2px;
+    height: 24px;
+    border-radius: 25%;
+    background-color: #fff;
+    box-shadow: 1px 1px 8px 1px var(--clr-specfont);
+    opacity: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.recommend {
+    overflow: hidden;
+    margin-top: 20px;
+    padding: 10px 15px 20px;
+    position: relative;
+}
+
+.recommend .recommend-container {
+    width: calc(600%);
+    position: relative;
+    right: -1px;
+    transition: 1s;
+}
+
+.recommend .recommend-more {
+    right: calc(100% - 9px);
+}
+
+.recommend .recommend-more-second {
+    right: calc(197%);
+}
+
+.recommend h2 {
+    font-size: 24px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.recommend .more {
+    top: calc(50% - 12px);
+    right: calc(83.5% - 6px);
+}
+
+.recommend .more-second {
+    right: calc(67% - 15px);
+}
+
+.recommend-image {
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    font-size: 14px;
+    color: #fff;
+    height:100px;
+}
+@media screen and (min-width:450px) {
+    .recommend-image {
+        height: 140px;
+    }
+}
+@media screen and (min-width:600px) {
+    .recommend-image {
+        height: 100px;
+    }
+}
+@media screen and (min-width:992px) {
+    .recommend-image {
+        height: 140px;
+    }
+}
+
+.recommend img {
+    width: 120%;
+    position: relative;
+    right: 10%;
+    border-radius: 10px;
+    background-color: var(--clr-bg-y);
+}
+
+.recommend-place {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.recommend-place h3 {
+    padding: 0 3px;
+}
+
+.recommend-collect {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+}
+    .recommend-collect .fa-heart {
+        padding: 5px;
+        transition: .5s;
+    }
+
+    .recommend-collect .fa-solid {
+        color: indianred;
+    }
+
+    .recommend-collect .fa-regular {
+        color: #fff;
+    }
+
+        .recommend-collect .fa-regular:hover {
+            color: indianred;
+        }
+
+.recommend-top {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-border);
+    color: #fff;
+    border-top-right-radius: var(--radius);
+    padding: 0 5px;
+}
+
+@media screen and (min-width:600px) {
+    .recommend .recommend-container {
+        width: 400%;
+        right: -1px;
+    }
+
+    .recommend .recommend-more {
+        right: calc(100% - 15px);
+    }
+
+    .recommend .more {
+        right: calc(75% - 4px);
+    }
+
+    .recommend .more-second {
+        right: calc(300%);
+    }
+}
+
+@media screen and (min-width:768px) {
+    .recommend .recommend-container {
+        width: 295%;
+        right: -1px;
+    }
+
+    .recommend .recommend-more {
+        right: calc(96%);
+    }
+
+    .recommend .more {
+        right: calc(66.5% - 2px);
+    }
+
+    .recommend .more-second {
+        right: calc(300%);
+    }
+}
+
+.recommend-title {
+    font-size: var(--font);
+    color: var(--crl-font);
+    word-spacing: 5px;
+}
+
+    .recommend-title h3,
+    .recommend-title span {
+        display: inline-block;
+        margin: 3px 0;
+    }
+
+.recommend-evaluation {
+    font-size: 12px;
+    color: var(--clr-font-lg);
+    word-spacing: 3px;
+}
+
+    .recommend-evaluation span {
+        margin: 3px 0;
+    }
+
+.recommend-price {
+    margin: 8px 0;
+    font-size: var(--font);
+}
+
+.recommend .fa-star {
+    color: var(--clr-primary);
+}

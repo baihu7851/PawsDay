@@ -1,0 +1,396 @@
+﻿@using PawsDay.Services.Product
+@using PawsDay.ViewModels.Product
+@using System.Text.Json
+@inject ProductServices service;
+@{
+	ViewData["Title"] = "保姆服務";
+	ProductViewModel product = (ProductViewModel)Model;
+	var selected = service.SelectedDetail();
+	selected.SelectedId = product.ProductDetail.ProductId;
+	var bookingmemeberId = service.GetMemberId();
+	var weekdayjson = JsonSerializer.Serialize(product.ChooseDetail.Weekday);
+	var timejson = JsonSerializer.Serialize(product.ChooseDetail.Times);
+	var areajson = JsonSerializer.Serialize(product.ChooseDetail.Areas);
+	var typesjson = JsonSerializer.Serialize(product.ChooseDetail.Types);
+	var discountjson = JsonSerializer.Serialize(product.DiscountDetail);
+	var MemberIdjson = JsonSerializer.Serialize(ViewData["MemberId"]);
+}
+@section topCSS{
+	<link href="~/css/Index/recommend.css" rel="stylesheet" />
+	<link href="~/css/Product/commodity.css" rel="stylesheet" />
+	<link href="~/css/Product/commodity-calendar.css" rel="stylesheet" />
+}
+
+	<div class="container commodity recommend-card" id="commodity">
+		<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">首頁</a></li>
+				<li class="breadcrumb-item">@product.ProductDetail.ServiceType</li>
+				<li class="breadcrumb-item active" aria-current="page">@product.ProductDetail.SitterName</li>
+			</ol>
+		</nav>
+		<div id="carouselExampleIndicators" class="commodity-photo carousel slide" data-bs-ride="true">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+					class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+					aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+					aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+			@foreach (var image in @product.ProductDetail.Images)
+			{
+				@if (image == product.ProductDetail.Images[0])
+				{
+					<div class="carousel-item active">
+						<img src="@image" alt="">
+					</div>
+				}
+				else
+				{
+					<div class="carousel-item">
+						<img src="@image" alt="">
+					</div>
+				}
+			}
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+				data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+				data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+		<span class="anchor" id="anchor-photo"></span>
+	</div>
+	<div class="row commodity-container">
+		<div class="commodity-content col-lg-10 col-12">
+			<div class="commodity-header">
+				<h2 class="commodity-title" id="commodity-title">@product.ProductDetail.SitterName | @product.ProductDetail.ServiceType</h2>
+				<div class="commodity-place">
+					<i class="fa-solid fa-location-dot"></i>
+					@foreach (var area in @product.ProductDetail.ServiceArea)
+					{
+						<p>@area.County-@area.District</p>
+					}
+				</div>
+				<span class="commodity-evaluation">
+					<span class="commodity-fraction" id="commodity-evaluation">
+						@product.ProductDetail.EvaluationAverage
+					</span>
+					<span class="star-group">
+						<span class="star" style="width:calc(15.75px* @product.ProductDetail.EvaluationAverage);">
+							@for (var i = 0; i < 5; i++)
+							{
+								<i class="fa-solid fa-star"></i>
+							}
+						</span>
+						<span class="star-border">
+							@for (var i = 0; i < 5; i++)
+							{
+								<i class="fa-solid fa-star"></i>
+							}
+						</span>
+					</span>
+					<span class="evaluation-quantity">
+						( @product.EvaluationDetail.Count )
+					</span>|
+					<span class="commodity-reserve">@product.ProductDetail.OrderQuantity+ 已預定</span>
+				</span>
+				@if (Context.User.Identity.IsAuthenticated){
+					<span class="commodity-collect">
+						@if (product.ProductDetail.Collect)
+						{
+							<em class="fa-solid fa-heart " id="commodity-heart"></em>
+						}
+						else
+						{
+							<em class="fa-regular fa-heart" id="commodity-heart"></em>
+						}
+					</span>
+				}
+				<a asp-route="Member/MessageBox-Sitter/{id}" asp-route-id="@product.ProductDetail.SitterId" class="commodity-messages">
+					<i class="fa-solid fa-comments"></i>
+				</a>
+			</div>
+			@if (@product.DiscountDetail.Quantity != 0 && @product.DiscountDetail.Discount != 0)
+			{
+				<div class="commodity-item commodity-discount">
+					<h3 class="commodity-item-title">
+						優惠方案
+					</h3>
+					<div class="commodity-item-content">
+						選擇 <p class="time">@product.DiscountDetail.Quantity</p> 個時段(含)以上享 <p class="discount">@product.DiscountDetail.Discount</p> 折
+					</div>
+					<span class="anchor" id="anchor-discount"></span>
+				</div>
+			}
+			<div class="commodity-item commodity-service">
+				<h3 class="commodity-item-title">服務內容</h3>
+				<span class="commodity-item-content">
+					@Html.Raw(product.ProductDetail.Introduce)
+				</span>
+				<span class="anchor" id="anchor-service"></span>
+			</div>
+			<div class="commodity-item commodity-choose">
+				<h3 class="commodity-item-title">選擇方案</h3>
+				<div class="commodity-item-content row">
+					<div class="commodity-calendar col-lg-6 col-12">
+						<div class="container banner">
+							<button class="left-btn pawsday-btn" onclick="premonth()">
+								<i class="fa-solid fa-chevron-left"></i>
+							</button>
+							<button class="right-btn pawsday-btn" onclick="nextmonth()">
+								<i class="fa-solid fa-chevron-right"></i>
+							</button>
+						</div>
+						<div class="container calendar">
+							<div class="calendar-head row">
+								<div class="head-col">Sun</div>
+								<div class="head-col">Tue</div>
+								<div class="head-col">Mon</div>
+								<div class="head-col">Wed</div>
+								<div class="head-col">Thur</div>
+								<div class="head-col">Fri</div>
+								<div class="head-col">Sat</div>
+							</div>
+							<div class="calendar-body">
+							</div>
+						</div>
+					</div>
+					<form method="post" class="commodity-option col-lg-6 col-12">
+						<div class="row">
+							<label class="title col-12" for="">
+								時段
+								<span class="choose-error d-none" id="time-error"> (請選擇連續的時段)</span>
+								<span class="choose-error d-none" id="salon-error"> (到府洗澡請至少選擇2個時段)</span>
+								<p>計時單位：30分鐘（06:00 -> 6:00～6:29）</p>
+							</label>
+							<ul class="commodity-time accordion" id="accordionExample">
+							</ul>
+							<div class="col-12" for="">
+								<label class="title">地區</label>
+								<div class="choose-select">
+									<select class="pawsday-input col-5" id="city">
+										<option selected disabled>-- 縣／市 --</option>
+										@foreach (var item in @product.ChooseDetail.County)
+										{
+											<option>@item</option>
+										}
+									</select>
+									<select class="pawsday-input col-5" id="district">
+										<option selected disabled>-- 區 --</option>
+									</select>
+								</div>
+							</div>
+							<div class="type-label col-12" for="">
+								<label class="title">寵物</label>
+								<span class="type-btn">
+									<i class="fa-solid fa-plus" id="type-plus"></i>
+									<i class="fa-solid fa-minus" id="type-minus"></i>
+								</span>
+								<span class="choose-error d-none" id="pet-error">請選擇寵物類別/體型</span>
+								<span class="choose-error d-none" id="quantity-error">最多以五隻毛孩為限</span>
+								<div class="choose-type choose-select">
+									<select class="pawsday-input col-5 pettype" id="pettype">
+										<option selected disabled value="">-- 類別 --</option>
+										@foreach (var item in @product.ChooseDetail.PetType)
+										{
+											<option>@item</option>
+										}
+									</select>
+									<select class="pawsday-input col-5 shapetype" id="shapetype">
+										<option selected disabled>-- 體型 --</option>
+									</select>
+								</div>
+							</div>
+							<div class="d-none">
+								<input asp-for="@selected.MemberId" value="@bookingmemeberId" id="selected-member"/>
+								<input asp-for="@selected.SelectedId" id="selected-id" class="product-id" />
+								<input asp-for="@selected.SelectedDay" id="selected-day" />
+								<input asp-for="@selected.SelectedTime" id="select-time" />
+								<input asp-for="@selected.SelectedCounty" id="select-county" />
+								<input asp-for="@selected.SelectedDistrict" id="select-district" />
+								<input asp-for="@selected.SelectedShapeTypes" id="select-shapetype" />
+								<input asp-for="@selected.SelectedPrice" id="select-price" />
+							</div>
+						</div>
+						<div class="commodity-checkout">
+							<span class="commodity-amount">
+								<p id="commodity-price">TWD 0</p>
+								<div class="check-price">
+									<i class="fa-solid fa-magnifying-glass-dollar check"></i>
+									<div class="price-list">
+										<table class="price-table">
+											<thead>
+												<tr>
+													<th class="table-item"><br />類型</th>
+													<th class="table-item"><br />體型</th>
+													<th class="table-item">(06:00~23:59)日間時段</th>
+													<th class="table-item">(00:00~05:59)夜間時段</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var type in @product.ChooseDetail.Types)
+												{
+													<tr>
+														<td class="table-item">@type.PetType</td>
+														<td class="table-item">@type.ShapeType.Split("(")[0]</td>
+														<td class="table-item">TWD @type.Price</td>
+														<td class="table-item">TWD @type.OvernightPrice</td>
+													</tr>
+												}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</span>
+							<button type="button" class="pawsday-btn btn-disabled" disabled id="create-cart">加入購物車</button>
+							@if (Context.User.Identity.IsAuthenticated){
+								<button type="submit" class="pawsday-btn btn-disabled" disabled asp-controller="ShoppingCart" asp-action="ProductToBooking" id="to-booking">立即購買</button>
+							}
+						</div>
+						<span class="choose-error commodity-checkout w-100 d-none" id="create-error">尚有規格未選擇完整</span>
+						<span class="choose-error commodity-checkout w-100 d-none" id="create-message">已加入購物車</span>
+						<span class="choose-error commodity-checkout w-100 d-none" id="create-notLogin">購物車已達上限 <a asp-controller="ShoppingCart" asp-action="Cart">前往購物車</a>／<a href="#anchor-choose" class="product-login">立即登入</a></span>
+						<div class="commodity-confirm">
+							<div class="is-text">
+								請先與保姆 <a asp-route="Member/MessageBox-Sitter/{id}" asp-route-id="@product.ProductDetail.SitterId" class="is-chat">聊聊</a> ，確認您選擇的時間保姆是否可配合，再 <p class="is-important">加入購物車</p>／<p class="is-important">立即購買</p> 。
+							</div>
+							<p class="thanks">PawsDay感謝您的配合！</p>
+						</div>
+					</form>
+				</div>
+				<span class="anchor" id="anchor-choose"></span>
+			</div>
+			<div class="commodity-item commodity-notice">
+				<h3 class="commodity-item-title">購買須知</h3>
+				<div class="commodity-item-content">
+					<h4 class="service-type">@product.ProductDetail.ServiceType</h4>
+					<p class="service-type-content">
+						@Html.Raw(product.ProductDetail.NoticeIntroduce)
+					</p>
+				</div>
+				<span class="anchor" id="anchor-notice"></span>
+			</div>
+			<div class="commodity-item commodity-cancel">
+				<h3 class="commodity-item-title">取消政策</h3>
+				<span class="commodity-item-content">
+					會員於預定日前 5 天（含）之前取消，退還100%費用<br>
+					會員於預定日 前1 ~ 5 天之間取消，退還50%費用<br>
+					會員於預定日當日取消，退還0%費用
+				</span>
+				<span class="anchor" id="anchor-cancel"></span>
+			</div>
+			<div class="commodity-item commodity-sitter">
+				<h3 class="commodity-item-title">保姆資訊</h3>
+				<div class="commodity-item-content sitter-item">
+					<div class="sitter-item sitter-img">
+						<img src="@product.ProductDetail.SitterImg" alt="用戶頭貼">
+					</div>
+					<div class="sitter-item sitter-content">
+						<div class="sitter-name">@product.ProductDetail.SitterName</div>
+						<p class="sitter-info">
+							@Html.Raw(product.ProductDetail.SitterInfo)
+						</p>
+					</div>
+				</div>
+				<span class="anchor" id="anchor-sitter"></span>
+			</div>
+			<div class="commodity-item commodity-evaluation-group">
+				<h3 class="commodity-item-title">用戶評價</h3>
+				<div class="commodity-item-content">
+					<div class="evaluation-top">
+						<span class="commodity-fraction" id="commodity-evaluation">
+							@product.ProductDetail.EvaluationAverage
+						</span>
+						<div class="star-group">
+							<span class="star" style="width:calc(29.25px* @product.ProductDetail.EvaluationAverage);">
+								@for (var i = 0; i < 5; i++)
+								{
+									<i class="fa-solid fa-star"></i>
+								}
+							</span>
+							<span class="star-border">
+								@for (var i = 0; i < 5; i++)
+								{
+									<i class="fa-solid fa-star"></i>
+								}
+							</span>
+						</div>
+					</div>
+					<ul>
+						@if (@product.EvaluationDetail.Count != 0)
+						{
+							@foreach (var item in @product.EvaluationDetail)
+							{
+								<li class="evaluation-item">
+									<div class="item-img">
+										<img src="@item.EvaluatorImg" alt="用戶頭貼">
+									</div>
+									<div class="evaluation-content">
+										<div class="name">@item.Evaluator</div>
+										<span class="star">
+											@for (var i = 0; i < item.Evaluation; i++)
+											{
+												<i class="fa-solid fa-star good-star"></i>
+											}
+											@for (var i = 0; i < (5 - @item.Evaluation); i++)
+											{
+												<i class="fa-solid fa-star bad-star"></i>
+											}
+										</span>
+										<p class="day">@item.MessageTime</p>
+										<p class="evaluation-text">
+											@item.Message
+										</p>
+									</div>
+								</li>
+							}}
+						else
+						{
+							<li class="evaluation-item evaluation-null">
+								<div class="evaluation-content">
+									<p class="evaluation-text">
+										尚未有任何評價
+									</p>
+								</div>
+							</li>
+						}
+					</ul>
+				</div>
+				<span class="anchor" id="anchor-evaluation"></span>
+			</div>
+		</div>
+		<div class="commodity-bar col-lg-2 col-12">
+			<ul>
+				<li><a href="#anchor-photo">保姆照片</a></li>
+				<li><a href="#anchor-service">服務內容</a></li>
+				<li><a href="#anchor-choose">選擇方案</a></li>
+				<li><a href="#anchor-notice">購買須知</a></li>
+				<li><a href="#anchor-cancel">取消政策</a></li>
+				<li><a href="#anchor-sitter">保姆資訊</a></li>
+				<li><a href="#anchor-evaluation">用戶評價</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<partial name="_Recommend"></partial>
+@section endJS{
+	<script>
+		let weekdayjs = @Html.Raw(weekdayjson);
+		let timejs = @Html.Raw(timejson);
+		let areajs = @Html.Raw(areajson);
+		let typesjs = @Html.Raw(typesjson);
+		let discountjs = @Html.Raw(discountjson);
+		let MemberIdjs = @Html.Raw(MemberIdjson);
+	</script>
+	<script src="~/js/Index/recommend.js"></script>
+	<script src="~/js/Product/productSelect.js"></script>
+}
+
+

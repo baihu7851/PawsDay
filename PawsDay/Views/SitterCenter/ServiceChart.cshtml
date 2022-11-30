@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "營運統計";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+    <script src="~/chart.js/dist/chart.min.js"></script>
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-order.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/siiter-chart.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service ">
+                    <div class="container-service-header">
+                            <h2 class="currenttitle">營運統計</h2>
+                        <select id="chart-cycle" class="col-3 col-lg-2">
+                            <option value="week">最近7天</option>
+                            <option value="month">最近1個月</option>
+                            <option value="season">最近3個月</option>
+                        </select>
+
+                    </div>
+
+                    <div class="container-service-body row">
+                        <img class="chartimg" src="~/images/Chart.png">
+                        <div class="chart-box pricebox col-9">
+                            <h3 class="d-none chart-title">銷售總額</h3>
+                        </div>
+                        <div class="chart-box orderbox col-9">
+                                <h3 class="d-none chart-title">訂單數量</h3>
+                        </div>
+                        <div class="chart-box cusbox col-9">
+                            <h3 class="d-none chart-title">不重複客戶數</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </section>
+    </article>
+
+
+
+    @section endJS
+    {
+    <script src="~/js/SitterCenter/SitterChart.js" asp-append-version="true"></script>
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+   
+}

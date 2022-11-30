@@ -1,0 +1,560 @@
+[
+  {
+    "TestType": "Quiz",
+    "Content": [
+      {
+        "QuestionId": "Q01",
+        "QuestionText": "保姆進行服務前的確認時，要注意什麼？",
+        "Answer": [
+          {
+            "Id": "A01",
+            "Text": "毛小孩跟自己是否適合彼此",
+            "Value": 1
+          },
+          {
+            "Id": "A02",
+            "Text": "與飼主協調照顧細節",
+            "Value": 1
+          },
+          {
+            "Id": "A03",
+            "Text": "以上皆是",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q02",
+        "QuestionText": "帶毛小孩出門時，下列哪一項可能造成毛小孩有生命危險？",
+        "Answer": [
+          {
+            "Id": "A04",
+            "Text": "散步時解開鏈子讓牠自由奔跑",
+            "Value": 2
+          },
+          {
+            "Id": "A05",
+            "Text": "過馬路時牽好牽繩注意來車",
+            "Value": 0
+          },
+          {
+            "Id": "A06",
+            "Text": "使用兩隻手拉牽繩，以防萬一毛小孩突然暴衝導致鬆手",
+            "Value": 0
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q03",
+        "QuestionText": "怎麼傳照片給飼主才是對的？",
+        "Answer": [
+          {
+            "Id": "A07",
+            "Text": "透過LINE傳照片給飼主",
+            "Value": 0
+          },
+          {
+            "Id": "A08",
+            "Text": "任何毛小孩的活動都透過平台聊天室傳給飼主",
+            "Value": 2
+          },
+          {
+            "Id": "A09",
+            "Text": "服務一次傳一張照片代表就夠了",
+            "Value": 0
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q04",
+        "QuestionText": "提供到府洗澡時，下列哪個做法是正確的？",
+        "Answer": [
+          {
+            "Id": "A10",
+            "Text": "只需要注意清潔毛小孩就好，環境留給飼主整理",
+            "Value": 0
+          },
+          {
+            "Id": "A11",
+            "Text": "發現毛小孩皮膚有異常情形，可以不與飼主溝通直接取消服務",
+            "Value": 0
+          },
+          {
+            "Id": "A12",
+            "Text": "開始服務前先與毛小孩互動，建立良好信任",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q05",
+        "QuestionText": "與毛小孩互動時，下列哪個做法是正確的？",
+        "Answer": [
+          {
+            "Id": "A13",
+            "Text": "每隻毛小孩的個性與喜好都不同，多多細心陪伴",
+            "Value": 2
+          },
+          {
+            "Id": "A14",
+            "Text": "為了討毛小孩喜歡，在身上噴灑香水吸引牠",
+            "Value": 0
+          },
+          {
+            "Id": "A15",
+            "Text": "毛小孩調皮搗蛋時，直接打牠給予教訓",
+            "Value": 0
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q06",
+        "QuestionText": "下列哪種食物是毛小孩可以吃的？",
+        "Answer": [
+          {
+            "Id": "A16",
+            "Text": "洋蔥",
+            "Value": 0
+          },
+          {
+            "Id": "A17",
+            "Text": "水煮雞肉",
+            "Value": 2
+          },
+          {
+            "Id": "A18",
+            "Text": "生雞蛋",
+            "Value": 0
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q07",
+        "QuestionText": "到府照顧毛小孩時，一定要做什麼？",
+        "Answer": [
+          {
+            "Id": "A19",
+            "Text": "不論是否有紗窗或防護網，門窗通通打開通風",
+            "Value": 0
+          },
+          {
+            "Id": "A20",
+            "Text": "抵達和離開時，主動拍照通知飼主",
+            "Value": 2
+          },
+          {
+            "Id": "A21",
+            "Text": "自備零食餵給毛小孩，不用經過飼主同意",
+            "Value": 0
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q08",
+        "QuestionText": "下列哪些是提供服務時，不需要拍照回報飼主的？",
+        "Answer": [
+          {
+            "Id": "A22",
+            "Text": "毛小孩的進食狀況",
+            "Value": 0
+          },
+          {
+            "Id": "A23",
+            "Text": "毛小孩的排泄狀況",
+            "Value": 0
+          },
+          {
+            "Id": "A24",
+            "Text": "不論什麼都要回報給飼主",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q09",
+        "QuestionText": "到府照顧毛小孩時，哪些行為是可以做的？",
+        "Answer": [
+          {
+            "Id": "A25",
+            "Text": "我吃飯的時候，毛小孩用渴望的眼神盯著我，就把食物分給牠",
+            "Value": 0
+          },
+          {
+            "Id": "A26",
+            "Text": "因為毛小孩很熟悉環境，可以讓牠自由出入各場所，包含廚房和窗邊",
+            "Value": 0
+          },
+          {
+            "Id": "A27",
+            "Text": "以上都不行",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q10",
+        "QuestionText": "關於平台取消政策的敘述，下列何者正確？",
+        "Answer": [
+          {
+            "Id": "A28",
+            "Text": "取消政策是為了保障飼主與保姆的權益",
+            "Value": 2
+          },
+          {
+            "Id": "A29",
+            "Text": "飼主在訂單成立後，不論什麼時候取消都會被全額扣款",
+            "Value": 0
+          },
+          {
+            "Id": "A30",
+            "Text": "保姆臨時有事，可以隨時取消訂單，不需要與飼主溝通",
+            "Value": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "TestType": "Aptitude",
+    "Content": [
+      {
+        "QuestionId": "Q11",
+        "QuestionText": "你通常是個怎麼樣的人？",
+        "Answer": [
+          {
+            "Id": "A31",
+            "Text": "善於交際的人",
+            "Value": 1
+          },
+          {
+            "Id": "A32",
+            "Text": "安靜緘默的人",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q12",
+        "QuestionText": "當你和一群人在一起時，你會？",
+        "Answer": [
+          {
+            "Id": "A33",
+            "Text": "參與大家的對話",
+            "Value": 1
+          },
+          {
+            "Id": "A34",
+            "Text": "只和你熟知的人單獨交談",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q13",
+        "QuestionText": "對你而言，被稱為怎麼樣的人是更適合的？",
+        "Answer": [
+          {
+            "Id": "A35",
+            "Text": "感性的人",
+            "Value": 4
+          },
+          {
+            "Id": "A36",
+            "Text": "理性的人",
+            "Value": 3
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q14",
+        "QuestionText": "你往往是？",
+        "Answer": [
+          {
+            "Id": "A37",
+            "Text": "情感駕馭理智",
+            "Value": 4
+          },
+          {
+            "Id": "A38",
+            "Text": "理智駕馭情感",
+            "Value": 3
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q15",
+        "QuestionText": "在一群初識的人前，你通常是？",
+        "Answer": [
+          {
+            "Id": "A39",
+            "Text": "介紹他人",
+            "Value": 1
+          },
+          {
+            "Id": "A40",
+            "Text": "由他人介紹你",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q16",
+        "QuestionText": "你認為自己的交友狀況？",
+        "Answer": [
+          {
+            "Id": "A41",
+            "Text": "少許朋友",
+            "Value": 2
+          },
+          {
+            "Id": "A42",
+            "Text": "很多朋友",
+            "Value": 1
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q17",
+        "QuestionText": "你更傾向於哪種做事風格？",
+        "Answer": [
+          {
+            "Id": "A43",
+            "Text": "依邏輯行事",
+            "Value": 3
+          },
+          {
+            "Id": "A44",
+            "Text": "靠感覺行事",
+            "Value": 4
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q18",
+        "QuestionText": "你覺得通常別人要花費多長時間來了解你？",
+        "Answer": [
+          {
+            "Id": "A45",
+            "Text": "很久",
+            "Value": 2
+          },
+          {
+            "Id": "A46",
+            "Text": "一小段時間",
+            "Value": 1
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q19",
+        "QuestionText": "多數時候，你傾向於？",
+        "Answer": [
+          {
+            "Id": "A47",
+            "Text": "和他人待在一起",
+            "Value": 1
+          },
+          {
+            "Id": "A48",
+            "Text": "一個人獨處",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q20",
+        "QuestionText": "面對事情時，你通常是？",
+        "Answer": [
+          {
+            "Id": "A49",
+            "Text": "熱忱的",
+            "Value": 4
+          },
+          {
+            "Id": "A50",
+            "Text": "堅決的",
+            "Value": 3
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q21",
+        "QuestionText": "你會如何形容自己？",
+        "Answer": [
+          {
+            "Id": "A51",
+            "Text": "熱情的",
+            "Value": 1
+          },
+          {
+            "Id": "A52",
+            "Text": "安靜的",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q22",
+        "QuestionText": "被如何形容是更好的讚賞？",
+        "Answer": [
+          {
+            "Id": "A53",
+            "Text": "富同情心",
+            "Value": 4
+          },
+          {
+            "Id": "A54",
+            "Text": "有競爭力",
+            "Value": 3
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q23",
+        "QuestionText": "你比較欣賞哪種判斷方式？",
+        "Answer": [
+          {
+            "Id": "A55",
+            "Text": "體諒的",
+            "Value": 4
+          },
+          {
+            "Id": "A56",
+            "Text": "公正的",
+            "Value": 3
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q24",
+        "QuestionText": "你認為或希望自己是個怎麼樣的人？",
+        "Answer": [
+          {
+            "Id": "A57",
+            "Text": "有邏輯頭腦",
+            "Value": 3
+          },
+          {
+            "Id": "A58",
+            "Text": "具有同理心",
+            "Value": 4
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q25",
+        "QuestionText": "你剛認識的人要相處多久才能說出你的興趣？",
+        "Answer": [
+          {
+            "Id": "A59",
+            "Text": "真正了解你之後才能",
+            "Value": 2
+          },
+          {
+            "Id": "A60",
+            "Text": "馬上就能",
+            "Value": 1
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q26",
+        "QuestionText": "遇到問題時，你通常會仰賴？",
+        "Answer": [
+          {
+            "Id": "A61",
+            "Text": "思考",
+            "Value": 3
+          },
+          {
+            "Id": "A62",
+            "Text": "感覺",
+            "Value": 4
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q27",
+        "QuestionText": "你在什麼處境下才能和人說比較多話？",
+        "Answer": [
+          {
+            "Id": "A63",
+            "Text": "只要願意就能輕鬆和幾乎任何人說個沒完",
+            "Value": 1
+          },
+          {
+            "Id": "A64",
+            "Text": "只能在特定場合下與特定的人才願意多話",
+            "Value": 2
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q28",
+        "QuestionText": "你更願意在一個什麼樣的主管手下工作？",
+        "Answer": [
+          {
+            "Id": "A65",
+            "Text": "脾氣好，但前後不一致",
+            "Value": 4
+          },
+          {
+            "Id": "A66",
+            "Text": "對人嚴厲，但條理分明",
+            "Value": 3
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q29",
+        "QuestionText": "做決定時，對你來說比較重要的是？",
+        "Answer": [
+          {
+            "Id": "A67",
+            "Text": "權衡事實的利弊",
+            "Value": 3
+          },
+          {
+            "Id": "A68",
+            "Text": "考慮人們的感受",
+            "Value": 4
+          }
+        ]
+      },
+      {
+        "QuestionId": "Q30",
+        "QuestionText": "多數人認為你？",
+        "Answer": [
+          {
+            "Id": "A69",
+            "Text": "待人十分坦率",
+            "Value": 1
+          },
+          {
+            "Id": "A70",
+            "Text": "不太把自己的事情告訴別人",
+            "Value": 2
+          }
+        ]
+      }
+
+    ]
+  },
+  {
+    "TestType": "Answers",
+    "Content": [
+      {
+        "QuestionId": "Q31",
+        "QuestionText": "您要幫飼主照顧貓咪，貓咪卻因為害怕陌生人不敢靠近怎麼辦？"
+      },
+      {
+        "QuestionId": "Q32",
+        "QuestionText": "您曾經對毛小孩的付出當中，印象最深刻的經驗是？"
+      },
+      {
+        "QuestionId": "Q33",
+        "QuestionText": "飼主在服務結束後對您說：「我家寶貝給你照顧後，走路都一拐一拐的」，您會如何處理？"
+      }
+    ]
+  }
+]

@@ -1,0 +1,201 @@
+/* container */
+main {
+    background-color: var(--clr-bg-y);
+    padding: 20px;
+}
+
+.container-style {
+    background-color: #ffffff;
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+    .container-style h2 {
+        color: var(--clr-specfont);
+        font-size: var(--vicefont);
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+/* 進度條 */
+.progress-content {
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    border-bottom: 5px solid var(--clr-bg-y);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    border: 1px solid var(--clr-specfont);
+    border-radius: var(--radius);
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#progress1 .progress-bar {
+    background-image: linear-gradient( to right, var(--clr-primary) 25%, var(--clr-bg-g) 25% );
+}
+
+#progress1 span:nth-child(2) {
+    color: var(--clr-border);
+    font-weight: 700;
+}
+
+#progress2 .progress-bar {
+    background-image: linear-gradient( to right, var(--clr-primary) 50%, var(--clr-bg-g) 50% );
+}
+
+#progress2 span:nth-child(3) {
+    color: var(--clr-border);
+    font-weight: 700;
+}
+
+#progress3 .progress-bar {
+    background-image: linear-gradient( to right, var(--clr-primary) 75%, var(--clr-bg-g) 75% );
+}
+
+#progress3 span:nth-child(4) {
+    color: var(--clr-border);
+    font-weight: 700;
+}
+
+#progress4 .progress-bar {
+    background-color: var(--clr-primary);
+}
+
+#progress4 span:nth-child(5) {
+    color: var(--clr-border);
+    font-weight: 700;
+}
+
+/* 資料填寫 */
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+.preview {
+    margin-bottom: 20px;
+}
+
+[id*="preview-"] {
+    height: 250px;
+    border: 1px solid var(--clr-bg-g);
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+[id*="preview-idcard-"] img {
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+
+#preview-license img {
+    height: auto;
+    width: calc(20% - 10px);
+    margin: 0 5px;
+}
+
+/* 測驗 */
+.test-content .question {
+    padding: 10px 20px;
+    border: 1px solid var(--clr-primary);
+    border-radius: var(--radius);
+}
+
+.test-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 0;
+}
+
+.question,
+.choice p,
+.short-answer label {
+    margin-bottom: 10px;
+}
+
+.choice .question div {
+    margin-bottom: 5px;
+}
+
+.choice label {
+    margin-left: 5px;
+}
+
+.short-answer .pawsday-input {
+    margin-bottom: unset;
+}
+
+/* 簽署內文 */
+.contract-content,
+.contract-check {
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid var(--clr-primary);
+    border-radius: var(--radius);
+}
+
+    .contract-content h3 {
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .contract-content p {
+        font-size: var(--font);
+        padding-bottom: 15px;
+    }
+
+    .contract-content:first-child p:not(:first-of-type, :last-of-type) {
+        text-indent: 2em;
+    }
+
+    .contract-content span {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 700;
+        padding-bottom: 5px;
+    }
+
+    .contract-content:nth-child(2) :not(span, p:first-of-type) {
+        padding-left: 28px;
+    }
+
+    .contract-check .col {
+        margin: 5px 0;
+    }
+
+/* 按鈕 */
+.step-control {
+    text-align: right;
+}
+
+.next-btn,
+.previous-btn,
+.done-btn {
+    display: inline-block;
+}
+
+#petsitter-step4 .step-control {
+    text-align: center;
+    padding-top: 30px;
+}
+
+/* RWD */
+@media screen and (min-width: 768px) {
+    .progress-content {
+        padding: 30px;
+    }
+}

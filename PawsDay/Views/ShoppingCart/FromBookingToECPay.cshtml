@@ -1,0 +1,40 @@
+﻿@using PawsDay.ViewModels.ShoppingCart.Booking
+@model SendECPayDTO
+@{
+    ViewData["Title"] = "FromBookingToECPay";
+}
+
+<h1>請稍後，正在跳轉綠界金流...</h1>
+
+<form id="form" method="post" action="https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5">
+
+
+    <input class="d-none" asp-for="ChoosePayment" value="@Model.ChoosePayment">
+    <input class="d-none" asp-for="CustomField1" value="@Model.CustomField1">
+    <input class="d-none" asp-for="CustomField2" value="@Model.CustomField2">
+    <input class="d-none" asp-for="EncryptType" value="@Model.EncryptType">
+    <input class="d-none" asp-for="IgnorePayment" value="@Model.IgnorePayment">
+    <input class="d-none"asp-for="ItemName" value="@Model.ItemName">
+    <input class="d-none" asp-for="MerchantID" value="@Model.MerchantID">
+    <input class="d-none" asp-for="MerchantTradeDate" value="@Model.MerchantTradeDate">
+    <input class="d-none" asp-for="MerchantTradeNo" value="@Model.MerchantTradeNo">
+    <input class="d-none" asp-for="OrderResultURL" value="@Model.OrderResultURL">
+    @*<input class="d-none" asp-for="ClientBackURL" value="@Model.ClientBackURL">*@
+    <input class="d-none" asp-for="PaymentType" value="@Model.PaymentType">
+    <input class="d-none" asp-for="ReturnURL" value="@Model.ReturnURL">
+    <input class="d-none" asp-for="TotalAmount" value="@Model.TotalAmount">
+    <input class="d-none" asp-for="TradeDesc" value="@Model.TradeDesc">
+    <input class="d-none" asp-for="CheckMacValue" value="@Model.CheckMacValue">
+
+    
+</form>
+
+
+
+<script>
+    window.onload= ()=>{
+        var form = document.querySelector('#form');
+        form.submit();
+    }
+
+</script>

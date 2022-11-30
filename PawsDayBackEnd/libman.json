@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "vue@2.7.10",
+      "destination": "wwwroot/vue/"
+    },
+    {
+      "library": "bootstrap-vue@2.22.0",
+      "destination": "wwwroot/bootstrap-vue/"
+    },
+    {
+      "library": "toastr@2.1.4",
+      "destination": "wwwroot/toastr/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "Chart.js@3.9.1",
+      "destination": "wwwroot/Chart.js/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "font-awesome@6.2.0",
+      "destination": "wwwroot/font-awesome/"
+    },
+    {
+      "library": "axios@0.21.1",
+      "destination": "wwwroot/axios/"
+    },
+    {
+      "library": "js-cookie@3.0.1",
+      "destination": "wwwroot/js-cookie/"
+    }
+  ]
+}

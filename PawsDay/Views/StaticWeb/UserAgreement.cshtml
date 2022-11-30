@@ -1,0 +1,579 @@
+﻿@{
+    Layout = "_LayoutSearchNone";
+}
+
+@section topCSS{
+    <link rel="stylesheet" href="~/css/staticWeb/staticPrivacy.css">
+}
+
+@{
+    ViewData["Title"] = "UserAgreement";
+}
+
+<section class="contact-title-container">
+    <h2 class="title-h2">
+        PawsDay<br>使用者條款
+    </h2>
+</section>
+
+<div class="container privacy-container">
+    <section class="privacy-btn">
+        <select class="form-select pawsday-input" aria-label="Default select example" id="privacy-select">
+            <option value="隱私權保護政策"><a href="#">使用條款</a></option>
+            <option value="隱私權保護政策"><a asp-controller="StaticWeb" asp-action="InsutanceProtection">保險與保障</a></option>
+            <option value="隱私權保護政策"><a asp-controller="StaticWeb" asp-action="PrivacyPolicy">隱私權政策</a></option>
+        </select>
+    </section>
+
+    <div class="row">
+        <section class="privacy-list-container col-md-2">
+            <ul class="privacy-list">
+                <li class="user-agreement link-a">
+                    <a href="#">
+                        <p>使用條款</p>
+                    </a>
+                </li>
+                <li class="insutance-protection">
+                    <a asp-controller="StaticWeb" asp-action="InsutanceProtection">
+                        <p>保險與保障</p>
+                    </a>
+                </li>
+                <li class="privacy-policy">
+                    <a asp-controller="StaticWeb" asp-action="PrivacyPolicy">
+                        <p>隱私權政策</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="privacy-body col-md-10">
+            <div class="privacy-wrap">
+                <ul class="privacy-content">
+                    <!-- 日期 -->
+                    <li class="textarea-data" style="margin-bottom: 10px; text-align: right;">
+                        日期：西元2022年09月01日<br>版本：第1版
+                    </li>
+                    <hr>
+                    <!-- 1.接受條款 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        1.
+                        接受條款
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        請在存取或使用本服務之前仔細閱讀本條款。<br>
+                        「使用條款」和「隱私政策」為PawsDay與您之間具有法律約束力的協議。這些使用條款包含的條款定義了您在使用和參與（1）PawsDay網站，通訊系統和應用程序方面的限制，法定權利和義務，包括分類廣告、論壇、各種電子郵件、聊天功能和互聯網鏈接以及透過位於PawsDay所提供的所有內容和PawsDay服務和（2）提供服務的平台即每個「服務提供者」與獲得服務的平台用戶之間的線上交易及獲得服務的平台用戶之間的線上交易及產品服務交易透過的平台。以下所述使用條款納入隱私政策適用於平台的所有用戶，也包括服務提供者的用戶的平台上內容、資料、私人和公共資料。
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您允許平台可作為服務提供者和服務用戶搜尋服務和提供服務的配對場所，並且透過使用拜訪、註冊和以其他方式參與本平台（包括所提供的服務）
+                        （1）您是服務提供者或預訂的服務用戶，（2）您有權簽訂這些使用條款，並且您有權使用本使用條款，
+                        （3）您授權透過使用平台做服務搜尋、預訂、付款轉移，以及（4）您同意受這些使用條款和任何其他文件的所有條款和條件的約束。如果您不同意上述說明，則不應點註冊和同意接受此類資料或使用本平台服務，在這種情況下，您將被禁止使用本平台。如果您不同意本使用條款中的任何條款，請立即停止查看或參與本平台，若不同意此條款或任何其他條款仍使用本平台，本平台將不會承擔任何與您透過平台進行的所有交易造成的損失或損害賠償責任。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">1.1</span>修改使用和/或隱私權政策的條款
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台有隨時自行決定更改、修改或以其他方式修改「使用條款」以及任何其他文件的權利，更改後之條款將發佈在網域https://pawsday.com/上。您有責任查看任何更改後的使用條款，您在任何修改後使用「本平台」即表示您同意並接受任何修訂後的「使用條款」，如果您不同意遵守這些或任何修改後的使用條款，請不要使用平台。
+                    </li>
+
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">1.2</span>隱私政策
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台制定了隱私政策，向用戶解釋如 何收集和使用其資料，隱私政策在上面引用，並在此列入本文提出的使用條款，您使用本平台將受隱私政策的約束。<br>
+                        隱私政策可參照此頁面<a href="./Privacy-Policy.html" style="color:var(--clr-border)">隱私權政策</a>。
+                    </li>
+                    <hr>
+
+                    <!-- 2.會員資格和平台使用 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        2.
+                        會員資格和平台使用
+                    </li>
+
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">2.1</span>獲得許可
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        本平台特此授權您一個可撤銷的使用許可來使用本平台，但前提是（a）您不得在未經本平台同意的情況下做任何內容複製、分發或製作本平台的衍生作品;
+                        （b）您將不會修改或修改本平台的任何部分（c）您會遵守本平台的使用條款和條件。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">2.2</span>會員資格標準
+                    </li>
+
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台之使用僅適用於年滿20歲以上之人，且有完全之行為能力簽署具法律效力之合約。並且：（a）您上傳的所有註冊資料都是真實準確的，（b）您將保持此類資料的準確性，以及（c）您的使用透過此平台提供的平台和服務不會違反任何適用的法律或法規。如果本平台認為您未滿20歲，或者您未遵守任何適用的地方法律，法規或規定，您的帳戶（定義如下）可能會在沒有警告的情況下被終止。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        使用平台搜尋或查詢服務及預訂或使用本平台的服務項目，您需要創建一個受密碼保護的帳戶。要創建一個帳戶，您可以使用您現有的Facebook帳戶或Line帳戶或Goolge帳戶和登錄憑據（您的「第三方網站密碼」）來註冊帳戶。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您全權負責隨時保護您的第三方網站密碼（統稱為「密碼」），並始終保護您的密碼安全。您應對您帳戶發生的所有活動負全部責任，若有任何違反安全或未經授權使用您的帳戶的行為，您應立即通知本平台；您不得在未經許可的情況下使用他人的帳戶。您在此確認並同意本平台將不會因未經授權使用您的帳戶而導致的損失承擔責任，儘管有上述規定，您可能會因未經授權使用而造成本平台的損失承擔責任。<br>
+                        您同意您將會遵守以下政策（「帳戶政策」）：創建帳戶時您必須提供準確和完整的資料。您不得使用任何自動化系統，包括「機器人」、「蜘蛛」，「離線閱讀器」、「刮板」等以任何目的拜訪本平台，而不事先經過本平台的書面同意。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您不得以任何手動或自動方式收集服務提供者或服務用戶的資料，包括姓名，地址，電話號碼或電子郵件地址，複製受版權保護的文本或以其他方式濫用或挪用平台資料或內容，包括在競爭者或第三方網站上使用。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        未經本平台明確書面許可，您不得以任何形式招募、索取或以其它方式聯繫服務提供者或用戶提供就職或承包與本平台無關的業務。<br>
+                        您不得採取任何（a）無理纏繞的行為，或自行決定阻礙平台的基礎設施;
+                        （b）干擾或企圖干擾平台的正常模式或任何第三方參與平台;或者（c）繞過或沒透過本平台進行家訪或交易服務行為。您同意不從本平台收集或收集任何個人身份數據，包括姓名或其他帳戶隱私資料，也不得將本平台提供的通信系統用於任何商業性招攬目的。<br>
+                        如果您無法遵守上述任何成員資格條件或帳戶政策，請不要使用本平台。若本平台發現您違反了會員資格條件或此處所述的任何其他條款，本平台有權自行決定立即終止您對本平台的使用。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">2.3</span>其他政策
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        您的拜訪、使用和參與本平台將受使用條款和規範、指南和其他政策的約束，包括版權政策和任何其他限制本平台上發布的限制（「附加策略」）。您在此同意隨時遵守附加政策及其義務。您在此確認並同意，如果您未能遵守本協議的任何條款和條件或本文引用的文件（包括帳戶政策，會員資格標準或附加政策），本平台可自行決定終止您的帳戶。
+                    </li>
+                    <hr>
+
+                    <!-- 3.會員行為 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        3.會員行為
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">3.1</span>對發佈內容的限制
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        扭曲您發布內容的來源—包括冒充他人提供虛假或不準確的個人資料；提供或創建違反使用條款的外部網站的鏈接；旨在以任何方式傷害或剝削20歲以下的任何個人（「未成年人」）；招攬或收集任何未成年人的個人身份資料（包括姓名、電子郵件地址、家庭住址，電話號碼或其學校名稱）；嘗試在他人不知情的情況下收集、存儲、發布私人或個人身份資料（例如姓名、電子郵件地址、電話號碼、密碼、帳戶資料、信用卡號碼、家庭地址或其他聯繫資料）侵犯他人之隱私；<br>
+                        包含可能會損害本平台或任何第三方的虛假資料或虛假陳述;<br>
+                        色情、騷擾、仇恨、非法、淫穢、誹謗、誹謗、威脅、歧視、文化或種族冒犯;煽動，提倡或表達色情、淫穢、粗俗、褻瀆、仇恨、偏執、種族主義或無理暴力;鼓勵被視為刑事犯罪的行為，引起民事責任或違反任何法律;促進種族主義、仇恨或任何形式的對任何群體或個人的人身傷害;包含裸露、暴力或不適當的主題;或者是不適當的;受版權保護，受商業機密保護或受第三方所有權（包括隱私權和公開權）的保護（除非您是此類權利的所有權人或獲得所有權人之授權發布材料並授權本平台所有許可在此授權的權利);<br>
+                        包含或宣傳他人的版權作品的非法或未經授權的傳播，例如盜版應用程式或指向他們的鏈接，用於規避製造商安裝的版權保護設備，盜版音樂或指向盜版音樂文件的鏈接的資料或歌詞、吉他標籤或樂譜、藝術作品、教學工具或其他任何侵犯他人版權，知識產權或任何其他專有權利的複制、展示、使用、表演或分發的項目;旨在基於年齡、性別、殘疾、種族、性取向、種族或宗教等原因，以任何理由威脅、追蹤、誹謗、欺騙、貶低、傷害或恐嚇個人或群體或煽動或鼓勵其他人這樣做;意圖損害或破壞其他用戶的應用程式，或允許他人非法拜訪軟體或繞過網站或服務器的安全，包括垃圾郵件;冒充或試圖透過任何方式冒充本平台員工、代理人、經理、服務提供者、其他用戶或任何其他人;宣傳或招攬與本平台無關或適合本平台的業務（由本平台自行決定）;<br>
+                        包含或可能被視為「垃圾郵件」、「連鎖信」、「傳銷」、「聯盟營銷」或未經許可的商業廣告；<br>
+                        包含龐氏騙局、優惠卡、信用諮詢、線上調查或線上競賽的廣告；<br>
+                        分發或包含病毒或任何其他可能損害本平台或本平台用戶的利益或財產的技術；<br>
+                        包含與商業服務或網站的鏈接（但根據使用條款允許的除外）；<br>
+                        是非本地或不相關的內容；使用任何形式的自動化設備或應用程式，在未經本平台明確書面許可的情況下上傳資料。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">3.2</span>禁止發送消息
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您不會向其他用戶發送以下訊息：<br>
+                        提供國內或國際資金轉帳，金額超過服務的要價，鼓勵使用其他第三方服務或平台進行消息傳遞和徵求企業的平台。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">3.3</span>有關服務的禁止
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        在使用本平台時，您不應該：<br>
+                        (1)在本平台上的任何不適當的類別或區域中發佈內容或項目； 發布顯示您的聯繫人或社交媒體資料的列表中的圖片或內容。<br>
+                        (2)違反任何法律、第三方權利、帳戶政策或使用條款的任何規定，如以下禁止之規定：<br>
+                        (a)未能為您預約的寵物照顧服務付款或是您無法驗證照顧服務提供者的身份是否為本人。<br>
+                        (b)拒絕就您預約的服務來付款（除非服務提供者未能實質性地達到雙方同意的服務協議條款），或雙方明顯地發生溝通問題或您無法正確驗證服務提供者的身份是否為本人。<br>
+                        (3)操縱任何服務的價格或干擾其他用戶。<br>
+                        (4)迴避或操縱本平台的費用結構，結算流程或積欠本平台費用。<br>
+                        (5)發布虛假、不準確、有誤導性、誹謗性內容（包括任何本平台用戶的個人資料）。<br>
+                        (6)採取任何可能破壞評論系統的行動。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">3.4</span>評論<br>
+                        作為本平台的用戶，您同意在為其他用戶留下評語意見時做謹慎和良好的判斷，以下行為構成對評論的不當使用：
+                        (a)威脅為其他用戶提供負面或正面的評論
+                        (b)留下評論意見，以便使服務提供者或服務使用者看起來比實際更好。<br>
+                        (1)對不當使用評論的懲處—如果您違反了上述任何有關留言評語的規定，本平台可自行決定採取以下任何行動：<br>
+                        (a)取消您的評語或任何您的資料；
+                        (b)限制您的帳戶權利；
+                        (c)暫停您的帳戶。<br>
+                        (2)舉報不當使用評論—您可以透過pawsday@gmail.com聯繫本平台關於任何不恰當地使用評論。<br>
+                        (3)解決與評論相關的爭議—如果本平台用戶之間有任何爭議，本平台將成為此類爭議的決定裁判，如果本平台在評論平台的用戶之間發生任何相關的爭議，本平台有權自行決定刪除此類評論而無需承擔任何責任。
+                    </li>
+                    <hr>
+
+                    <!-- 4.服務提供者規則-->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        4.服務提供者規則
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">4.1</span>個人簡介和服務內容不得欺詐
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        除了本使用條款或附加政策中規定的任何例外情況，服務提供者不得：（a）將任何不相符的服務或優惠列入提供的服務 （b）不實告知服務地點；
+                        （c）在個資、服務內容、評語、服務相關的任何標題或描述中表示不適當的關鍵字 （d）使用誤導性的標題或不準確地描述服務（e）在個人資料中包含任何欺詐性資料。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">4.2</span>不能使用任何技術來避免或限制本平台服務費用
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        除本使用條款或附加條款中列出的例外情況外，服務提供者不得：（a）向第三方網站提供目錄或鏈接直接獲得服務； （b）超過多個發佈限制 （c）發佈單一服務，但在服務描述中提供額外的加購服務
+                        （d）為提供服務而提供過低的預估收取費用 （e）透過本平台提供機會在本平台之外銷售其他服務 （f）使用他人個人資料頁面或用戶名稱來宣傳未透過本平台篩選的服務或禁止的服務。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">4.3</span>提供本平台用戶安全、簡單、方便的經驗
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        除本使用條款或附加政策的例外情況外，服務提供者不得：（a）要求服務用戶付現金或未經本平台特別許可的其他付款方式付款 （b）發布任何與本平台無關的第三方鏈接
+                        （c）您的服務內容、個資頁面或任何頁面中使用HTML和JavaScript （d）推廣抽獎、獎品、獎金、機會遊戲、贈品或隨機抽獎 （e）發佈使用褻瀆語言
+                        （f）授權第三方服務提供者使用您的帳戶發佈（g）未持寵物美容相關執照提供到府美容服務。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute;  top: 0;">4.4</span>違反任何服務提供者規則的懲處
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        如果服務提供者違反上述有關發布的規則，本平台可自行決定採取以下任何行動：（a）取消發布； （b）限制服務提供者的帳戶權利； （c）暫停服務提供者的帳戶
+                        （d）沒收服務提供者被取消的服務中賺取的任何費用。
+                    </li>
+                    <hr>
+
+                    <!-- 5.服務用戶或服務使用者規則 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        5.服務用戶或服務使用者規則
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">5.1</span>服務使用者不應：<br>
+                        （a）使用服務而不付款； （b）註冊、協議價格、或以其他方式索取服務並無意付款； （c）不透過本平台與服務提供者進行交易和使用服務。<br>
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">5.2</span>違反任何服務使用者規則的制裁
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        如果服務用戶違反任何上述的發佈規則，本平台可自行決定採取以下任何行動：（a）取消發佈 （b）限制服務用戶的帳戶權限 （c）暫停服務用戶的帳戶。
+                    </li>
+                    <hr>
+
+                    <!-- 6.上傳內容 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        6.上傳內容
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">6.1</span>非保密
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        平台允許您和其他用戶交流，包括您的個人資料、您的要約、您的要求、評語和所有的交談內容、共享和發布內容，您知道您有發佈這些內容，本平台不擔保任何內容的保密性。<br>
+                        您同意也授權平台的註冊用戶搜尋到任何非保密的上傳內容，您同意本平台可以自由地以提供服務為目使用或傳播此類上傳內容。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">6.2</span>您的保證
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        您應自行負責您上傳的內容以及發佈的內容，您確認和保證您的上傳內容：（a）您擁有使用權和願意授權給本平台使用所有專利、商標、商業機密、權利；
+                        （b）您擁有已上傳內容中每個可識人的書面同意您的發布，您同意支付由於您發佈到或透過平台發布的任何上傳內容而支付所有版稅、費用和任何其他資金。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">6.3</span>您的所有權和本平台許可
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        您可以保留您上傳內容的所有權，但您在此授權給本平台您任何在本平台上發布的內容——永久性、全球性、非獨占性、免版稅、使用、複製、分發、重新格式化、翻譯、準備派生作品、展示與平台和本平台業務運營相關的已上傳內容，包括促銷和任何媒體格式。您也在此授權平台的每個用戶許可以透過平台看您的上傳內容，並且透過平台的功能允許使用、複製、分發、展示您的上傳內容，一旦您從平台中刪除或刪除已上傳內容，您授權的上述許可即終止。<br>
+                        您同意並理解平台的技術處理和傳輸（包括您上傳的內容）可能涉及：（a）透過各種網絡傳輸； （b）改變內容來適應連接網絡或設備的技術。<br>
+                        您同意並理解，您上傳的內容可能會被本平台轉載或複製到部落格、目錄、電子郵件、平台、網站和社交媒體來達到促銷和營銷目的。<br>
+                        您可以隨時從平台上刪除已上傳的內容，如果您刪除已上傳的內容，您將透過電子郵件通知本平台刪除並重新發布的資料，本平台才將其刪除，否則本平台會認為您已同意轉貼。
+
+                    </li>
+
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">6.4</span>本平台的免責聲明和刪除權
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        本平台不認可任何已上傳內容或其中表達的任何意見，本平台明確表示不承擔與所有有關上傳內容的所有責任。
+                        本平台不允許在平台發佈侵犯版權和侵犯知識產權的內容，並且根據下文J節所述的進行「撤銷」程序，如果得到通知，本平台將刪除任何有關的數據或上傳內容（若此類發布或上傳的內容侵犯他人的智慧財產權）。
+                        本平台保留刪除任何數據或上傳內容的權利，恕不另外通知，如果經本平台判定為屢次侵權，也將終止用戶拜訪平台。除了版權侵犯和侵犯智慧財產權等相關法令之外，本平台還有權自行決定任何數據或上傳內容是否有違規行為或有無遵守使用條款，包括但不僅限於色情、淫穢、誹謗，
+                        本平台可能隨時刪除此類上傳的內容或終止用戶上傳此類資料的行為，而無需事先通知。<br>
+                        （1）
+                        您同意並理解在使用本平台時，您會接觸到來自各種來源的上傳內容，且本平台不對此類上傳內容的準確性、實用性、安全性或智慧財產權負責。您同意也明白您可能會接觸到不準確、冒犯、不雅或令人反感的上傳內容，您也同意在此放棄任何可能針對本平台平等權利追究法律責任並同意在法律允許保證本平台及其所有人、成員、管理人員、經營人、股東、董事、代理人、關聯公司或許可人沒有相關之責任。<br>
+                        （2）
+                        您全權負責您的照片、個人資料、其他內容（包括您透過本平台發布或傳給其他平台用戶的內容）。您了解並同意本平台可以無責任地自行決定審查和刪除任何違反本協議、可能具有冒犯性、非法、可能侵犯其權利、損害或威脅本平台用戶安全的內容。<br>
+                        （3）
+                        有時本平台可能會收到金融機構的投訴，認為交易具有欺詐性，且工作沒有執行，這可能是由於虛假或欺詐性的信用卡交易，當本平台收到第三方金流支付平台的通知時，受影響用戶之服務款項得暫時保留時，本平台會通知您。<br>
+                        金融機構的調查之間，本平台需要最多200天的時間才能向您發放款項，因為本平台無法從第三方金流支付平台獲取款項。<br>
+                        如果您認為交易是真實的，請告知本平台，您可以繼續在系統內與本平台用戶互動。<br>
+                        （4） 由於GDPR限制，本平台的服務對象不包含歐盟公民。
+                    </li>
+                    <hr>
+                    <!-- 7.強制性第三方驗證服務 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        7.強制性第三方驗證服務
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台使用各種工具讓本平台盡可能地為服務提供者和服務用戶提供安全與保障，這些工具可以做背景調查和國家數據庫的身份驗證，如果您不希望本平台在任何國家數據庫上搜索您，請勿在本平台上註冊為服務提供者。<br>
+                        透過在平台上註冊為服務提供者，您在此允許本平台用您提供的資料進行背景調查，您明白本平台可能會審核第三方驗證服務提供的資料，應此審核結果本平台可能會對您的帳戶採取其認為必要的任何行動，您在此授權本平台在此驗證您的保證，您同意本平台有權但無義務驗證此類保證，可以自行決定採取其認為適當的措施。您同意賠償本平台背景調查和驗證可能導致的任何損失或責任。您在此同意本平台提供此第三方驗證服務作為一種便利，並不對第三方驗證服務的質量、準確性或可靠性進行控製或承擔任何責任，本平台會根據第三方驗證服務提供的資料終止您的本平台會員資格的權利。
+                    </li>
+                    <hr>
+                    <!-- 8.可選的第三方驗證服務 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        8.可選的第三方驗證服務
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        本平台使用各種工具讓本平台的平台盡可能地為服務提供者和服務用戶提供安全有保障的環境，這些工具包括服務提供者的名稱驗證、地址驗證、身分證字號驗證、護照號碼和犯罪背景檢查。當本平台啟用本平台的付款解決方案時，本平台使用第三方支付平台-綠界金流執行身份驗證。<br>
+                        本平台可以向服務提供者和服務用戶提供這些或其他第三方驗證服務，服務提供者和服務用戶可以使用這些服務來驗證資料，例如姓名、地址、身份證字、犯罪背景和專業證照。註冊或使用平台，您聲明並保證您和您的每個家庭成員從未成為投訴、禁止令、法律訴訟或有任何重罪相關（暴力、虐待、忽視、欺詐、盜竊的刑事罪行或任何涉及危害他人安全的罪行）的罪犯，您在此本平台並同意本平台有權但無義務驗證此類陳述和保證，並自行決定採取其認為適當的措施。
+                    </li>
+                    <hr>
+
+                    <!-- 9.修改或終止平台 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        9.修改或終止平台
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">9.1</span>修改或刪除平台
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台有隨時修改或終止平台的權利，並可自行決定是否通知。您同意本平台對您或任何第三方的修改，暫停或終止不承擔責任。<br>
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">9.2</span>本平台的終止
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        您在此確認並同意，本平台有自行決定刪除的權利—終止或停用您的帳戶、阻止您使用電子郵件或IP地址、終止您使用平台、立即撤消並丟棄平台上的任何上傳內容（「終止服務」），本平台認為您違反了使用條款的規定做任何終止時恕不另行通知。<br>
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">9.3</span>您終止帳戶
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        您可以隨時取消本平台使用或終止使用條款，透過傳送電子郵件至本平台客服信箱pawsday@gmail.com，告知客服您欲終止您的帳戶，客服便會協助您取消平台的使用並終止您的帳戶。<br>
+                        <!--修改信箱網址-->
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">9.4</span>終止結果
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        您的帳戶終止後，您將沒有權利參與平台——包括您的服務提供權、購買權、獲得任何費用或報酬的權利，也包括給他人折扣。您同意您在本協議中獲得任何費用或賠償的權利取決於您是否有正確使用本平台、遵守使用條款、持續使用您的帳戶。如果終止服務，您的帳戶將被禁用，您可能無權拜訪您的帳戶或帳戶中包含的任何文件或其他數據。儘管如此，剩餘數據仍可能保留在本平台系統中。<br>
+                        除了當本平台事先取消或終止您在本平台使用時（在這種情況下，不需要本平台的後續通知），本平台將透過電子郵件通知您此類終止或取消（如果您在註冊期間提供了有效的電子郵件地址），在本平台送出此通知後立即生效。<br>
+                        在終止服務時：您的使用許可將立即終止；並且您應立即銷毀所有本平台數據（如下所述）以及您擁有的其他內容，您也同意本平台對您或任何第三方對於您終止產生的損失不承擔任何責任。在終止服務時，本平台有使用從平台收集的任何數據用於內部分析的權利，並且您在此授權本平台的所有相關使用有效。
+                        本平台在任何情況下都沒有義務將您上傳的內容退還給您。<br>
+                        您同意賠償本平台及其職員、經理、會員、分支機構、繼承人、受讓人、股東、董事、代理人、服務提供者、供應商、員工任何應第三方終止服務而引起或產生的索賠要求，包括合理的律師費用和法院費用。
+                    </li>
+                    <hr>
+
+                    <!-- 10.強制性第三方驗證服務 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        10.智慧財產權
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">10.1</span>本平台擁有平台上所有的數據
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        文本、腳本、圖形、照片、聲音、音樂、影片、互動功能等（「數據」）以及平台上的商標內容和標誌（「標誌」）均歸本平台所有。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台擁有數據的所有權利，您同意不會拿本平台數據以商業為目的使用，也不會複製或發佈明確允許數據外的任何數據，包括透過平台獲取的上傳內容。如果您下載或複製成個人使用的數據副本，您必須註明和包含所有版權和其他所有權聲明。您同意不干擾本平台的安全功能或妨礙平台的任何數據。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">10.2</span>本平台對您使用數據和商標的許可
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台的數據與商標有受到版權、商標、專利、商業機密和其他法律的保護，本平台擁有其數據和商標中的所有權利。<br>
+                        本平台還可能包含其他使用的數據，您不得複制、修改、翻譯、發佈、廣播、傳輸、分發、執行、展示或銷售。
+                    </li>
+                    <hr>
+
+                    <!-- 11.本平台費用 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        11.本平台費用
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">11.1</span>服務提供者的收取費用
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        加入本平台後，您可以免費使用發佈服務和查看發佈的內容。 本平台有權自行決定向服務提供者收取其他服務的費用——聯繫服務用、回應本平台產生的工作機會、透過本平台與服務用戶進行交易的費用。
+                        透過本平台完成的預訂交易服務費為20％，所有透過本平台向服務提供者配對的服務用戶都需要透過該平台進行支付。您明確同意和允許本平台向您收取適當費用，任何稅款以及您在使用本平台時可能產生的任何其他費用會從您的信用卡，綠界金流或其他付款方式收取。<br>
+                        本平台向服務提供者提供收費服務，並且可能在未來提供額外的服務，如廣告、稅務，服務提供者可以選擇購買其他服務。 本平台保留自行決定向這些服務收取費用的權利。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">11.2</span>服務使用者（服務用戶）收取的費用
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        加入本平台後，搜尋和查看服務的服務是免費的。本平台目前沒向服務用戶收取服務用戶和服務提供者之間在平台上完成的交易的費用。但是本平台保留在未來按照交易向服務用戶收取費用的權利，並且有權自行決定這樣做。在本平台透過在平台上發布更改通知您十四（14）天後，本費用政策的更改將生效。<br>
+                        如果適用，您同意根據當時有效的本平台費用，向您的帳戶做收費動作。如果您沒有按時付款或本平台無法以任何理由向您的信用卡，綠界金流或其他付款方式收費，本平台保留暫停或終止您對平台和帳戶的拜訪權並終止使用條款的權利。您明確同意和允許本平台向您收取適當費用，任何適用稅款以及您在使用本平台時可能產生的任何其他費用，並且費用將記入您註冊時指定的信用卡，綠界金流或其他付款方式。如果您取消您的帳戶，您將不會收到任何退款。如果您有任何帳戶到期，您同意本平台向您的信用卡收取未支付費用或以其他方式向您收取此類未付費用。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">11.3</span>稅款
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您了解本平台僅作為服務用戶和服務提供者之間的媒合仲介平台。您了解並同意地方稅法因地區而異，您有責任確定自己的納稅申報需求，本平台不會提供稅務諮詢給用戶。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">11.4</span>不退款政策<br>
+                        本平台上所有的交易服務費都是不會退還的。
+                    </li>
+                    <hr>
+
+                    <!-- 12.使用條款的談判，註冊用戶之間的爭議 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        12.用戶爭議
+                    </li>
+
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">12.1</span>註冊用戶之間的爭議
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        根據有關本平台參與者與評論相關的爭議的規定，您與在平台上或透過平台發現的個人和其他組織之間的互動都與平台無關，在與任何第三方（包括服務提供者和服務用戶）進行任何線上或線下交易之前，您應採取合理的預防措施並進行您認為必要或適當的任何調查。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您決定是否使用服務提供者的服務，向服務用戶提供服務，或使用上傳的內容與資料（包括發文、要約、要求、評論），都是您的個人的決定，也將獨自負責。您同意並了解本平台不能夠為您在平台做的決定或您的適合性提供建議或提供言論準確性的參考。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        服務提供者保留在預訂之前、預訂確認後、在工作期間隨時提供拒絕或結束預訂的權利，如果服務使用者提供的不準確或誤導性資料，根據本節規定的預訂支付將不會退還已經提供的服務。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        只有在確認預訂後，本平台上提供的任何資料和要求才能作為糾紛決策的依據，只有透過本平台聊天進行溝通才能解決爭議。其他第三方程式（例如Line、Facebook、WeChat等等）的溝通不會被視為服務提供者與服務使用者之間合約的一部分。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        儘管有上述規定，您同意本平台不對任何此類交易或交易產生的損失或損害負責或承擔任何責任。如果您在本平台上與平台用戶、第三方之間發生爭議，您同意本平台沒有義務參與其中。您完全負責您與其他https://pawsday.com用戶的互動。本平台保留權利，但沒有義務監控您與其他用戶之間的爭議。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        家庭寵物餵食和其他提供的寵物服務並不適於所有寵物，尤其是侵略性較強不善於社交寵物。您同意，作為服務使用者，您有責任確認服務提供者提供的服務是否適合您的寵物，並仔細選擇服務提供者。雖然某些服務提供者可能會收到本平台或其服務使用者的正向評論，但本平台對服務提供者或服務提供者的住所的品質或安全性沒辦法做完全的保證。本平台不是服務使用者和服務提供者之間的協議或交易的一方，因此無法驗證或以其他方式驗證服務提供者提出的任何索賠（包括服務提供者持有的任何醫療證明或保險範圍）。此外，在為寵物餵食或其他寵物照顧相關服務提供之前，您有責任分享關於您的寵物的所有相關資料，包括醫療問題、飲食習慣、過敏症狀或其他狀況。作為服務使用者，您同意，您使用本網站所產生的全部風險，包括預訂服務提供者提供的服務，完全屬於您自己的風險。您同意，本平台對寵物餵食服務或其他服務提供者提供的服務（包括與您的寵物有關的人身傷害、交配、死亡）的管理相關的任何損害不承擔任何責任（無論是由服務提供者，服務提供者的任何家庭成員、朋友、寵物、其他關聯公司、其他第三方造成的），服務使用者的責任是做出符合他們自身和寵物的最佳利益的決定。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">12.2</span>領取寵物
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        服務使用者必須在預訂時與寵物服務提供者達成一致的時間和地點領取寵物。如果寵物未在上述時間和地點被取回，寵物服務提供者有權將寵物送到首選的收養中心、家中、其他住所等。嚴格說來，本平台或寵物服務提供者對此後產生的任何問題均不承擔責任。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">12.3</span>取消和退款
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        Pawsday平台為提供保姆承攬服務相關保障，如在保姆與客戶雙方確認同意成立訂單後，客戶臨時取消，將依照取消政策向客戶收取部份費用，扣取約定之平台營運所需費用後，提供保姆金額補貼。<br>
+                        客戶於預定日前 5 天（含）之前取消，退還100%費用<br>
+                        客戶於預定日 前1 ~ 5 天之間取消，退還50%費用<br>
+                        客戶於預定日當日取消，退還0%費用<br>
+                    </li>
+
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        取消條款——如果您想取消預訂，則應使用本平台服務提供機制來執行此操作。此外，本平台對本平台服務以外的任何付款不承擔任何責任。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">12.4</span>遺失寵物
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        您同意本平台對寵物服務提供者在照顧時丟失的寵物不承擔任何責任。<br>
+                        本平台只會協助發佈遺失寵物廣告，本平台將以$1000刊登協尋廣告。任何走失或遺失的寵物必須在事件發生24小時內向本平台回報。
+                    </li>
+                    <hr>
+
+                    <!-- 13.廣告 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        13.廣告
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ;">
+                        平台上可能會有廣告。因此，本平台可能會在服務上顯示廣告和促銷資訊。在本平台上發布廣告的方式、模式、範圍可能會發生變化，本平台上廣告的出現並不一定意味著本平台對任何廣告產品或服務的認可。您同意本平台對於您因任何此類交易或平台上此類廣告商的存在而導致的任何損失或損害不承擔任何責任。
+                    </li>
+                    <hr>
+
+                    <!-- 14.免責聲明 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        14.免責聲明
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative;  ">
+                        您同意自己承擔使用本平台的風險，在法律允許的範圍內，本平台及其員工、經理、成員、股東、董事、子公司、附屬公司、總公司、服務提供者、供應商、代理商不承擔任何明示、暗示、法定或其他形式的保證。除非另有明確規定，在法律允許範圍內，本平台和透過本平台提供的服務、數據、上傳的內容與此平台包含或呈現的任何資料均有「原樣呈現」、「可用」和「相關」基礎。本平台對於數據、內容、資料、透過平台上傳內容、任何未經授權使用本平台的安全服務器和所有個人資料的錯誤或準確性不作任何擔保——包括其中存儲的財務資料、任何第三方透過本平台傳播的錯誤訊息、病毒、特洛伊馬等等，任何中斷平台發送消息或從本平台發送消息的第三方，任何誹謗、侵犯或非法行為，任何第三方的行為或由使用任何數據、內容、資料、平台物質或上傳的內容而發生的損失或損害。
+                        本平台對第三方透過平台、任何鏈接網站、任何橫幅廣告或其他廣告提供的產品或服務廣告不提供承諾、擔保、保證或承擔責任。
+                        本平台不會監督您與任何一方之間的交易（包括第三方服務提供者的產品或服務）如您透過媒介決定使用任何產品或服務，您應用您的最佳判斷並對自行決定負責。<br>
+                        您對任何服務使用者或服務提供者的交易，由您自行承擔風險。您同意本平台不必檢查服務提供者、服務使用者或其他用戶的背景或記錄。本平台有一個評論的系統，請利用其他用戶的評論和第三方推薦對服務提供者進行合邏輯審核並注意安全。本平台的服務是按「原樣」和「現有」的方式由服務提供者提供與呈現。本平台明確聲明您願意免除本平台做任何形式的保證。
+                    </li>
+                    <hr>
+
+                    <!-- 15.責任限制 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        15.責任限制
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">15.1</span>
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        本平台或其各自的員工、成員、股東、董事、總公司、服務提供者均不對以下情況負責
+                        （1）拜訪或使用本平台與服務提供者所產生的後果與損害； （2）平台或上傳內容的數據、標誌、內容、資料或物質的錯誤或不準確；
+                        （3）未經授權拜訪或使用本平台的安全服務器或存儲其中的個人資料或財務資料； （4）任何第三方透過本平台傳輸或透過平台傳播的任何病毒、特洛伊木馬或類似內容；
+                        （5）任何平台資訊傳送的中斷； （6）本平台上傳內容的數據、內容、資料或物質的錯誤或遺漏； （7）服務談判或服務合約形成期間或之後出現的任何爭議或是平台用戶之間發生的爭議；
+                        （8）任何第三方的誹謗性的和侵犯性的非法的行為（9）在本平台上發布的任何數據、標誌、內容、資料、材料或物質（無論本平台是否被告知此類損害）上述責任限制適用於司法管轄區的範圍。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">15.2</span>
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        在任何情況下，本平台若因任何上述之相關上傳內容而承擔責任不會超過您在此之前實際支付給本平台的費用總額。
+                        您在此確認並同意，本平台對於上傳的內容或任何第三方的誹謗、冒犯、非法行為以及上述所有責任或損害均不承擔任何責任。您同意本平台對平台用戶導致的直接、間接、偶發、特殊的損害不承擔任何責任。<br>
+                        本平台對任何第三方網站的內容、隱私政策或做法不做任何控制也不承擔任何責任。此外，本平台也不能檢查或編輯任何第三方網站的內容。透過使用本平台，您明確地瞭解並同意本平台免對因使用任何第三方網站而引起的問題負起責任。因此，請您務必閱讀您拜訪的第三方網站的條款、條件和隱私政策。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">15.3</span>您同意本平台無須負責以下種類的損害 ：<br>
+                        （1）無法使用本平台的服務；<br>
+                        （2）因使用本平台的服務而導致您的財產受損或損壞；<br>
+                        （3）未經授權更改您的上傳內容；<br>
+                        （4）由第三方造成的全部或部分損害；<br>
+                        （5）任何服務提供者、服務使用者、用戶或其他第三方的行為或疏忽；<br>
+                        （6）您與他人與使用服務相關的行為（包括與其他服務使用者的互動，無論是線上還是線下）某些司法管轄區有限制損害責任，因此上述的限制不一定適用在您身上。
+                    </li>
+                    <hr>
+
+
+                    <!-- 16.沒有第三方受益人 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        16.沒有第三方受益人
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您同意，除使用條款中另有明文規定外，本使用條款不得有任何第三方受益人。
+                    </li>
+                    <hr>
+
+                    <!-- 17.注意 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        17.注意
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        您同意本平台會透過電子郵件、普通郵件或網站上的發佈做使用條款更改的通知。
+                    </li>
+                    <hr>
+
+                    <!-- 18.一般資料 -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        18.一般資料
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">18.1</span>完整的使用條款
+                    </li>
+                    <li class="textarea-list"
+                        style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        使用條款、在本平台上發布的隱私政策、任何其他法律聲明和附加政策均構成您與本平台的完整協議。如果使用條款的任何條款被當地司法法院認定為無效，則該條款的無效將不會影響使用條款中其餘條款的有效性，而該條款仍具有效力。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">18.2</span>限制規定<br>
+                        您同意由本平台產生的任何訴因必須在訴因產生後一年內開始訴訟。
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        <span style="position: absolute; left: 20px; top: 0;">18.3</span>章節標題<br>
+                        使用條款中的標題僅為方便起見，並沒有法律或合約的效力。
+                    </li>
+
+                </ul>
+            </div>
+
+        </section>
+    </div>
+
+</div>
+

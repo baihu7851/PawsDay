@@ -1,0 +1,116 @@
+﻿@using ApplicationCore.Common
+@model IEnumerable<OrderViewModel>
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+}
+    @{
+    ViewData["Title"] = "訂單列表";
+    string GetDateName(DateTime dateTime)
+    {
+        return dateTime.ToString("MMMM", new System.Globalization.CultureInfo("en-us")).Substring(0, 3).ToUpper();
+    }   
+}
+
+<article>
+    <section class="container section">
+
+        <partial name="_MemberCenterSidebarPartial"></partial>
+
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-order">
+                <div class="container-order-header">
+                    <h2 class="currenttitle">訂單列表</h2>
+                </div>
+                <div class="container-order-body">
+                        @if(Model.Count()==0)
+                        {
+                            <div class="order-null">
+                                <img src="./member img/no order.png" alt="" class="order-null-img">
+                                <p>尚未有任何訂單 Q_Q</p>
+                            <a class="pawsday-btn" asp-route="Search" asp-route-searchinput="Recommend">立馬搜尋保姆</a>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach(var item in Model)
+                            {                            
+                                <div class="order">
+                                <a class="order-a"  asp-controller="MemberCenter" asp-action="OrderDetail" asp-route-id="@item.OrderNumber">
+                                    <div class="order-program">
+                                        <div class="order-img col-4" style="background-image: url('@item.ProductImage')">
+                                        </div>
+                                        <div class="col-6">
+                                            @if (item.OrderStatus == (int)OrderStatus.Success)
+                                            {
+                                                @if (item.ServiceDate < DateTime.UtcNow)
+                                                {
+                                                    <div class="order-state">服務結束</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="order-state">待服務</div>
+                                                }
+                                            }
+                                            else if (item.OrderStatus == (int)OrderStatus.Complete)
+                                            {
+                                                <div class="order-state">訂單完成</div>
+                                            }
+                                            else if (item.OrderStatus == (int)OrderStatus.Handle)
+                                            {
+                                                <div class="order-state">訂單處理中</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="order-state order-cancel">已取消</div>
+                                            }
+                                            <h3 class="order-h3">@item.SitterName</h3>
+                                            <div class="order-content">
+                                                <div>
+                                                    <i class="fa-solid fa-bag-shopping"></i>
+                                                    <p class="order-service">@item.ServiceName</p>
+                                                </div>
+                                                <div>
+                                                    <i class="fa-solid fa-tag"></i>
+                                                    <p class="order-id">訂單編號：@item.OrderNumber</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order-money col-12">
+                                            <span class="money-currency">TWD</span><span class="money-dollor">@item.TotalPrice</span>
+                                        </div>
+                                        <div class="order-date col-2">
+                                            <span class="order-date-mon">@GetDateName(item.ServiceDate)</span><br />
+                                            <span class="order-date-day">@item.ServiceDate.Day</span>
+                                        </div>
+                                    </div>
+                                    <div class="order-link">
+                                        @if (item.ServiceDate < DateTime.UtcNow && item.OrderStatus == (int)OrderStatus.Success|| item.OrderStatus ==(int)OrderStatus.Complete)
+                                        {
+                                            <a class="order-evaluation" asp-controller="MemberCenter" asp-action="OrderEvaluation" asp-route-id="@item.OrderNumber">給予評論</a>
+                                        }
+                                        <a class="order-connect" asp-route="Member/MessageBox-Official/{id}" asp-route-id="@item.OrderNumber">聯繫客服</a>
+                                        <a class="order-sitter-connect" asp-route="Member/MessageBox-Sitter/{id}" asp-route-id="@item.SitterId">聯繫保姆</a>
+                                    </div>
+                                </a>  
+                                </div>
+                            }                            
+                           
+                            
+                        
+                        }
+                </div>
+                
+            </div>
+
+        </section>
+    </section>
+</article>
+
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+}
+    @section endCSS{
+}

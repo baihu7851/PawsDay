@@ -1,0 +1,62 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model SitterAptitudeViewModel
+@{
+    ViewData["Title"] = "保姆基本資料";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+    <script src="~/chart.js/dist/chart.min.js"></script>
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-order.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service">
+                    <div class="container-service-header">
+                        <h2 class="currenttitle">保姆資料設定</h2>
+                        <ul>
+                                <a asp-controller="SitterCenter" asp-action="Basic">
+                                <li class="service-btn petsitter-info e">個人介紹</li>
+                                </a>
+                                <a asp-controller="SitterCenter" asp-action="Account">
+                                <li class="service-btn account-info ">收款帳號</li>
+                                </a>
+                                <a asp-controller="SitterCenter" asp-action="Aptitude">
+                                <li class="service-btn verify-info this-page">認證狀態</li>
+                                </a>
+                        </ul>
+                    </div>
+                    <!-- 認證資料頁籤 -->
+                    <div class="container-service-body verify-info-sheet">
+                        <div class="verify name-verify">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <p>實名認證</p>
+                        </div>
+                        <div class="verify text-verify">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <p>合適度測驗通過</p>
+                        </div>
+                            <div class="chart">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                    </div>
+
+                </div>
+            </section>
+        </section>
+    </article>
+
+
+    @section endJS
+    {
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+
+    <script src="~/js/SitterCenter/SitterAptitude.js" asp-append-version="true"></script>
+
+    }

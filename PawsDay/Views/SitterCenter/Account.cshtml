@@ -1,0 +1,72 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model SitterAccountViewModel
+@{
+    ViewData["Title"] = "保姆基本資料";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+    <script src="~/ckeditor5/ckeditor.min.js"></script>
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-order.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service">
+                    <div class="container-service-header">
+                        <h2 class="currenttitle">保姆資料設定</h2>
+                        <ul>
+                            <a asp-controller="SitterCenter" asp-action="Basic">
+                                <li class="service-btn petsitter-info e">個人介紹</li>
+                                </a>
+                                <a asp-controller="SitterCenter" asp-action="Account">
+                                <li class="service-btn account-info this-page">收款帳號</li>
+                                </a>
+                                <a asp-controller="SitterCenter" asp-action="Aptitude">
+                                <li class="service-btn verify-info ">認證狀態</li>
+                                </a>
+                        </ul>
+                    </div>
+                    <!-- 收款設定頁籤 -->
+                    <div class="container-service-body account-info-sheet">
+                        <form method="post">
+                        <div class="inputs">  
+                            <label asp-for="@Model.Bank" for="bankid" class="pawsday-input-label">
+                                收款銀行
+                                    <span asp-Validation-for="@Model.Bank" class="text-danger">*</span>
+                            </label>
+                                <select asp-for="@Model.Bank" asp-items="@Model.BankList" class="input pawsday-input" id="bankid">
+                                
+                            </select>
+                        </div>
+                        <div class="inputs">
+                                <label asp-for="@Model.Account" for="accountid" class="pawsday-input-label">
+                                收款帳號
+                                        <span asp-Validation-for="@Model.Account" class=" text-danger">*</span>
+                            </label>
+                                <input asp-for="@Model.Account type=" text" placeholder="123456780000" class="pawsday-input" id="accountid" required>
+                        </div>
+                        <div class="container-input-save">
+                            <button type="submit" asp-controller="SitterCenter" asp-action="Account" class="pawsday-btn" id="save-accountinfo">儲存</button>
+                                <p>@Model.Message</p>
+                            </div>
+                            </form>
+                    </div>
+
+                </div>
+            </section>
+        </section>
+    </article>
+
+
+    @section endJS
+    {
+    <script src="~/js/Editor.js"></script>
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+    <script src="~/js/SitterCenter/SitterAccount.js" asp-append-version="true"></script>
+    }

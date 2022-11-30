@@ -1,0 +1,171 @@
+.pet-null {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.pet-null-img {
+    width: 150px;
+    height: 150px;
+    background-image: url("../member\ img/no pet.jpg");
+    background-repeat: no-repeat;
+    background-size: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.pet-null p {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    color: var(--clr-specfont);
+    margin-bottom: 30px;
+}
+
+.pet-info-sheet {
+    padding: 20px 0;
+}
+
+.pet-add {
+    display: block;
+    margin: 30px 15px 20px;
+    font-size: 20px;
+    color: var(--clr-border);
+}
+
+    .pet-add:hover {
+        color: var(--clr-specfont);
+    }
+
+    .pet-add i {
+        margin-right: 10px;
+    }
+
+.pet-header {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--clr-bg-g);
+    margin: 10px 15px;
+}
+
+    .pet-header:hover {
+        box-shadow: 0px 0px 5px var(--clr-bg-g);
+    }
+
+.pet-edit {
+    margin-right: 20px;
+    background-color: white;
+}
+
+    .pet-edit:hover, .pet-cancel:hover {
+        color: var(--clr-border);
+    }
+
+.pet-cancel {
+    background-color: white;
+}
+.container-input-body {
+    border: 1px solid var(--clr-bg-g);
+    margin: 15px;
+    border-radius: var(--radius);
+}
+
+.input-body-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.label-checkbox {
+    margin-right: 3px;
+}
+
+.container-input-btn {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+    .container-input-btn div:first-child {
+        margin-right: 20px;
+    }
+
+.container-input-cancel button {
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    background-color: #fff;
+}
+
+.container-input-cancel:hover button {
+    background-color: var(--clr-bg-g);
+}
+
+
+/* Modal */
+.modal-content::before {
+    content: "";
+    height: 8px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background-color: var(--clr-border);
+}
+
+.modal-cancel-header {
+    position: relative;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.modal-cancel-title {
+    font-size: var(--vicefont);
+    font-weight: 700;
+}
+
+.modal-cancel-header button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.modal-cancel-body {
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+
+.modal-cancel-footer {
+    margin-right: 10px;
+    margin-left: auto;
+    margin-bottom: 20px;
+}
+
+.cancel-btn {
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: var(--radius);
+    margin-right: 10px;
+    background-color: var(--clr-bg-g);
+}
+
+    .cancel-btn:hover {
+        background-color: var(--clr-font-g);
+        color: #fff;
+    }
+
+@media screen and (min-width:992px) {
+    .label-checkbox {
+        margin-right: 3px;
+        width: 17%;
+        text-align: center;
+    }
+
+        .label-checkbox input {
+            margin-right: 6px;
+        }
+}

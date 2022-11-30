@@ -1,0 +1,115 @@
+﻿@using System.Text.Json
+@inject PawsDay.Interfaces.Account.ILineLoginService lineLoginService;
+@inject PawsDay.Interfaces.Account.IGoogleLoginService googleLoginService;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="PawsDay 是一個創新的共享寵物照顧平台，我們的使命是讓每一個毛小孩被愛、替寵物家長解決各種無法親自照顧寵物的困擾" />
+    <meta property="og:title" content="PawsDay 寵物照顧平台" />
+    <meta property="og:description" content="PawsDay 是一個創新的共享寵物照顧平台，我們的使命是讓每一個毛小孩被愛、替寵物家長解決各種無法親自照顧寵物的困擾" />
+    <meta property="og:image" content="/images/news/new.webp" />
+    <meta property="og:type" content="website" />
+    <title>PawsDay - @ViewData["Title"]</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="~/ico/pawsday-favicon.png">
+    <link rel="stylesheet" href="~/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/Layout/pawsday.css" />
+    <link rel="stylesheet" href="~/css/Layout/layout.css" />
+    <link rel="stylesheet" href="~/css/Layout/loginregister.css" />
+
+
+    @await RenderSectionAsync("topJS", required: false)
+    @await RenderSectionAsync("topCSS", required: false)
+</head>
+<body>
+    <partial name="_LinkPartial.cshtml"></partial>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-7">
+                    <h1>PawsDay</h1>
+                    <a asp-controller="Home" asp-action="Index" class="header-logo">
+                        <img src="~/images/logo.png" alt="PawsDay">
+                    </a>
+                </div>
+                <nav class="menu menu-search col-md-6" id="menu-search">
+                    <partial name="_SearchForm"></partial>
+                </nav>
+                <div class="menu-button col-md-3 col-3">
+                    <partial name="_ShoppingCart"></partial>
+                    <label class="menu-button-login">
+                        <img src="~/images/paw.png" alt="">
+                        <nav class="menu menu-member col-md-6">
+                            <partial name="_MemberMenu"></partial>
+                        </nav>
+                    </label>
+                    <label class="menu-button-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </label>
+                    <label class="menu-button-member">
+                        <i class="fa-solid fa-bars"></i>
+                    </label>
+                </div>
+                <nav class="menu menu-member col-md-6" id="menu-member">
+                    <partial name="_MemberMenu"></partial>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <partial name="_LoginRegisterPartial"></partial>
+        <partial name="_LoginPartial"></partial>
+        <partial name="_SignUpPartial"></partial>
+        <partial name="_ForgotPartial"></partial>
+        <partial name="_AccountMessagePartial"></partial>
+        @RenderBody()
+    </main>
+    <partial name="_Footer"></partial>
+
+    <script src="~/vue/dist/vue.js"></script>
+    <script src="~/js-cookie/js.cookie.min.js"></script>
+    <script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/Layout/LayoutCart.js"></script>
+    <script src="~/js/Layout/menuBar.js"></script>
+    <script src="~/js/Product/productSearch.js"></script>
+    @await RenderSectionAsync("endJS", required: false)
+    @await RenderSectionAsync("endCSS", required: false)
+    <script>
+        let isLoginPop = @Html.Raw(JsonSerializer.Serialize((Nullable<bool>)TempData["isLoginPop"] ?? false));
+        let isLoginEmailPop = @Html.Raw(JsonSerializer.Serialize((Nullable<bool>)TempData["isLoginEmailPop"] ?? false));
+        let isForgotPop = @Html.Raw(JsonSerializer.Serialize((Nullable<bool>)TempData["isForgotPop"] ?? false));
+        let isSignUpPop = @Html.Raw(JsonSerializer.Serialize((Nullable<bool>)TempData["isSignUpPop"] ?? false));
+        let isAccountMsgPop = @Html.Raw(JsonSerializer.Serialize((Nullable<bool>)TempData["isAccountMsgPop"] ?? false));
+    </script>
+    <script>
+        function LineLogin() {
+            var URL = 'https://access.line.me/oauth2/v2.1/authorize?';
+            URL += 'response_type=code';
+            URL += '&client_id=@lineLoginService.Channel_ID.Value';   //TODO:這邊要換成你的client_id
+            URL += '&redirect_uri=@lineLoginService.CallBackURL';   //TODO:要將此redirect url 填回你的 LineLogin後台設定
+            URL += '&scope=openid%20profile%20email';
+            URL += '&state=abcde';
+            window.location.href = URL;
+        }
+        function GoogleLogin() {
+            var url = "https://accounts.google.com/o/oauth2/v2/auth?";
+            url += "scope=email profile";
+            url += "&redirect_uri=@googleLoginService.CallBackURL";
+            url += "&response_type=code";
+            url += "&client_id=@googleLoginService.Client_ID.Value";   //todo: replace it with google SSO client_id
+            url += "&state=12345";
+            url += "&prompt=select_account";
+            url += "&nonce=234a";
+            window.location.href = url;
+        }
+    </script>
+    <script src="~/js/Account/Layout.js"></script>
+</body>
+</html>

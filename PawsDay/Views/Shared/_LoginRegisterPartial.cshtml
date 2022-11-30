@@ -1,0 +1,57 @@
+﻿@inject PawsDay.Interfaces.Account.IGoogleLoginService googleLoginService;
+
+<div>
+    <!-- Modal login-register -->
+    <div class="modal fade login-register-modal" id="login-register" tabindex="-1"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body modal-container login-register">
+                    <div class="col-12 switch-close-modal">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="col-12">
+                        <div class="title">登入註冊 PawsDay</div>
+                        <div class="subtitle">立即登入，隨時收到獨家優惠</div>
+                    </div>
+                    <div class="col-12 content">
+                        <div class="d-grid gap-3 list-group login-link-group">
+                            
+                            <button id="google-login-btn" class="list-group-item rounded-pill login-url">
+                                <div class="position-absolute icon google">
+                                    <svg height="20px" width="20px" viewBox="0 0 533.5 544.3"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
+                                              fill="#4285f4" />
+                                        <path d="M272.1 544.3c73.4 0 135.3-24.1 180.4-65.7l-87.7-68c-24.4 16.6-55.9 26-92.6 26-71 0-131.2-47.9-152.8-112.3H28.9v70.1c46.2 91.9 140.3 149.9 243.2 149.9z"
+                                              fill="#34a853" />
+                                        <path d="M119.3 324.3c-11.4-33.8-11.4-70.4 0-104.2V150H28.9c-38.6 76.9-38.6 167.5 0 244.4l90.4-70.1z"
+                                              fill="#fbbc04" />
+                                        <path d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z"
+                                              fill="#ea4335" />
+                                    </svg>
+                                </div>
+                                <span class="text">使用 Google 繼續</span>
+                            </button>
+                           
+
+                            <button id="line-login-btn"
+                               class="list-group-item rounded-pill login-url">
+                                <i class="fa-brands fa-line position-absolute icon"></i>
+                                <span class="text">使用 LINE 繼續</span>
+                            </button>
+                            <a href="" class="list-group-item rounded-pill login-url"
+                               data-bs-toggle="modal" data-bs-target="#login">
+                                <i class="fa-regular fa-envelope position-absolute icon login"></i>
+                                <span class="text">使用 電子郵件 繼續</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

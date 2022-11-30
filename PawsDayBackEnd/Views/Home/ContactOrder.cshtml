@@ -1,0 +1,205 @@
+﻿
+@{
+    ViewData["Title"] = "ContactOrder";   
+}
+
+@section topCSS
+{
+    <style>
+        .contact-group{
+            box-sizing:border-box;
+            padding:10px 0 0;
+            margin:5px;
+            border:2px solid #bbb;
+            border-radius:6px;
+        }
+    </style>
+}
+
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="contactvue">
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800 font-weight-bold">訂單回覆</h1>
+
+            <div class="d-flex flex-row mb-3">
+
+                <div class="input-group mw-100 navbar-search col-9">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">搜尋：</span>
+                    </div>
+
+                    <input type="text" v-model="searchinput"
+                           class="form-control bg-white border-1 border-secondary small w-50" id="searchinput"
+                           placeholder="請輸入關鍵字" aria-label="Search" aria-describedby="basic-addon2">
+
+                    <b-form-select @@change="search" v-model="selectedSearch" :options="optionsSearch"
+                                   class="border border-secondary w-25">
+                    </b-form-select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" 
+                                type="button" 
+                                @@click="searchContact"
+                                :disabled="!isSearch">
+                                送出
+                            </button>
+                    </div>
+                </div>
+
+                <!-- Select Pages -->
+                <div class="col-3  ml-md-3 my-2 my-md-0 mw-100 mb-2 input-group">
+                    <template>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="pages">筆數</label>                                
+                                <b-form-select id="pages" v-model="selected" 
+                                    :options="options" 
+                                    @@change="changeSelect"
+                                    class="input-group-text">
+                                </b-form-select>
+                                                 
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <b-card no-body>
+                <b-tabs v-model="tabIndex" fill>
+                    <b-tab title="會員回覆" @@click="changeUser(0)"></b-tab>
+                    <b-tab title="保姆回覆" @@click="changeUser(1)"></b-tab>
+                </b-tabs>
+            </b-card>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold"> 搜尋結果:{{totalPage}}筆</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <b-table class="table table-bordered" striped hover :items="contactList" :fields="fields">
+                            <template #cell(actions)="row" >
+                                <button class="btn bg-primary text-white" @@click="changestatus($event)"
+                                        data-toggle="modal" data-target=".modal">
+                                    詳細資料
+                                </button>
+                            </template>
+                            <template #cell(status)="row">
+                                <b-badge pill variant="success" v-if="row.item.status!=true">
+                                    已回覆
+                                </b-badge>
+                                <b-badge variant="danger" v-if="row.item.status==true">
+                                    未回覆
+                                </b-badge>                                
+                            </template>
+
+                        </b-table>
+                        <b-pagination v-model="currentPage" :total-rows="totalPage" :per-page="perPage" size="md"
+                                      @@click.native="changePage()"
+                                      class="justify-content-center mt-2 sec">
+                        </b-pagination>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+        <!-- modal -->
+        <div class="modal fade pt-md-5 " tabindex="-1" id="contactModal">
+            <div class="modal-dialog  modal-ml">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">詳細資料</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body  p-3 ">
+                        <div class="row d-flex justify-content-center">
+
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    訂單ID
+                                </div>
+                                <div class="context  h6">{{contactinfo.id}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    會員ID
+                                </div>
+                                <div class="context  h6">{{contactinfo.userId}}</div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    訂單編號
+                                </div>
+                                <div class="context  h6">{{contactinfo.number}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    姓名
+                                </div>
+                                <div class="context  h6">{{contactinfo.name}}</div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    回應訊息
+                                </div>
+                                <div>
+                                    <textarea class="context h6 form-control" rows="5" max-rows="10"
+                                              v-model="message" placeholder="請輸入留言"></textarea>
+                                    <button class="btn btn-secondary mt-3 bg-primary"
+                                            @@click="sendAnswer"
+                                            :disabled="!isMessage">
+                                        送出
+                                    </button>
+                                </div>
+                            </div>
+                                <div class="w-100 row d-flex text-center contact-group" v-for="item in contactinfo.content">
+                                <div class="col-6">
+                                    <div class=" title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                        詢問ID
+                                    </div>
+                                    <div class="context  h6">{{item.officialContactId}}</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class=" title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                        留言者
+                                    </div>
+                                        <div class="context h6 text-primary font-weight-bold" v-if="item.isUserSpeak==true">{{item.isUserSpeak | speakerStatus}}</div>
+                                        <div class="context h6 text-success" v-if="item.isUserSpeak!=true">{{item.isUserSpeak | speakerStatus}}</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class=" title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                        留言時間
+                                    </div>
+                                    <div class="context  h6">{{item.createTime | changeTime}}</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class=" title font-weight-bold h6 text-white bg-secondary w-100 text-center">
+                                        留言內容
+                                    </div>
+                                    <div class="context  h6">{{item.message}}</div>
+                                </div>
+                                <hr>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of Main Content -->
+
+    </div>
+</div>
+
+
+@section endJS
+    {
+    <script src="~/js/ContactOrder.js"></script>
+}

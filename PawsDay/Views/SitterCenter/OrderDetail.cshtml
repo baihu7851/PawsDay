@@ -1,0 +1,243 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model SitterOrderDetailViewModel
+@{
+    var pets = Model.PetDetails;
+    ViewData["Title"] = "訂單明細";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+    
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-ordersidebar.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-orderdetail.css">
+}
+
+
+    <article>
+        <section class="container container-link">
+            <ol class="container-link-ol">
+                <li>
+                    <a asp-controller="SitterCenter" asp-action="OrderList" class="container-link-a">訂單管理</a>
+                </li>
+                <li class="container-link-span">
+                    <span>></span>
+                    <span>訂單編號 @Model.OrderNumber</span>
+                </li>
+            </ol>
+        </section>
+        <section class="container section">
+            <partial name="_SitterOrderBar"></partial>
+            <section class="container-feature col-12 col-lg-8">
+                <section class="order-feature">
+                    <div class="order-feature-title col-12 col-lg-12">
+                        <p>@Model.OrderStatus</p>
+                    </div>
+                    <div class="order-feature-text col-12 col-lg-8">
+                            <h1>訂單編號 @Model.OrderNumber</h1>
+                        <div class="feature-text">
+                            <i class="fa-solid fa-user-large"></i>
+                            <span>訂購人姓名： @Model.CustomerDetail.BookingName</span>
+                        </div>
+                        <div class="feature-text">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>電子郵件：@Model.CustomerDetail.BookingEmail</span>
+                        </div>
+                        <div class="feature-text">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>聯絡電話：@Model.CustomerDetail.BookingPhone </span>
+                        </div>
+                        <div class="feature-text">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span>訂購日期：@Model.CreateTime.ToString("yyyy-MM-dd hh:mm") </span>
+                        </div>
+                        <div class="feature-text">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            <span>發票號碼：@Model.InvoiceNumber</span>
+                        </div>
+
+                        @if (Model.OrderStatus == "已取消")
+                        {
+                            <div class="feature-text-cancel text-danger">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>取消日期：@Model.CancelData.CancelDate.ToString("yyyy-MM-dd hh:mm")</span>
+                                <span></span>
+                            </div>
+                            <div class="feature-text-cancel text-danger">
+                                <i class="fa-regular fa-rectangle-xmark"></i>
+                                <span>取消原因：@Model.CancelData.CancelReason</span>
+                                <span></span>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div class="order-feature-link col-12 col-lg-4">
+                        <div class="feature-contact">
+                               <a asp-route="Sitter/MessageBox-Customer/{id?}" asp-route-id="@Model.CustomerID">聯絡顧客</a>
+                            </div>
+                        <div class="feature-contact">
+                                <a asp-route="Sitter/MessageBox-Official/{id?}" asp-route-id="@Model.OrderNumber">聯絡客服</a>
+                        </div>
+                        @if (Model.BeginTime < DateTime.Now && Model.OrderStatus.Contains("結束")) 
+                        {
+                            <div class="feature-evaluation">
+                                <a asp-controller="SitterCenter" asp-action="OrderEvaluation" asp-route-id="@Model.OrderNumber">給予評論</a>
+                            </div>
+                        }
+                        @if (Model.BeginTime > DateTime.Now.AddDays(3) && Model.OrderStatus=="待服務") 
+                        {
+                            <div class="feature-cancel">
+                            <button type="button" id="cancel-model" data-bs-toggle="modal" data-bs-target="#cancel-order">
+                                    取消訂單
+                                </button>
+                            </div>
+                        }
+                        
+                        <div class="feature-btn">
+                            <button type="button" href="" data-bs-toggle="modal" data-bs-target="#cancellation-policy">
+                                <i class="fa-solid fa-circle-question"></i>
+                                取消政策
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <section class="order-illustrate">
+                    <div class="order-illustrate-header">
+                        <ul>
+                            <li class="service-btn product-info">商品說明</li>
+                            <li class="service-btn service-info">購買須知</li>
+                            <li class="service-btn buyer-info">訂單明細</li>
+                        </ul>
+                    </div>
+                    <div class="container-illustrate-body product-sheet">
+                        @Html.Raw(Model.ProductDetail.ProductIntro)
+                    </div>
+                    <div class="container-illustrate-body service-sheet">
+                        <h4 class="illustrate-body-title">@Model.ProductDetail.ServiceType</h4>
+                        <p>
+                            @Html.Raw(Model.ServiceTypeIntro)
+                        </p>
+                    </div>
+                    <div class="container-illustrate-body buyer-sheet">
+                        <div class="illustrate-body-orderer">
+                            <div class="orderer-title">
+                                <h4>訂購人資料</h4>
+                            </div>
+                            <div class="orderer-body">
+                                <p>訂購人全名：@Model.CustomerDetail.BookingName</p>
+                                <p>聯絡電話：@Model.CustomerDetail.BookingPhone</p>
+                                <p>電子郵件信箱：@Model.CustomerDetail.BookingEmail</p>
+                            </div>
+                        </div>
+                        <div class="illustrate-body-address">
+                            <div class="address-title">
+                                <h4>服務地址</h4>
+                            </div>
+                            <div>
+                                <p>@Model.CustomerDetail.Addredss</p>
+                            </div>
+                        </div>
+                        @foreach(var pet in pets)
+                        {
+                            <div class="illustrate-body-pet">
+                                <div class="pet-title">
+                                    <h4>毛孩</h4>
+                                </div>
+                                <div>
+                                    <p>名字：@pet.PetName</p>
+                                    <p>性別：@pet.PetSex</p>
+                                    <p>寵物類別：@pet.PetType</p>
+                                    <p>體型類別：@pet.ShapeType</p>
+                                    <p>出生年：@pet.BirthYear</p>
+                                    <p>出生月：@pet.BirthMonth</p>
+                                    <p>個性：@pet.Description</p>
+                                    <p>是否已結紮：@pet.Ligation</p>
+                                    <p>是否定期打疫苗：@pet.Vaccine</p>
+                                    <p>毛孩補充敘述:@pet.Remark</p>
+                                </div>
+                            </div>
+                        }
+                        
+                        <div class="illustrate-body-phone">
+                            <div class="phone-title">
+                                <h4>托育期間聯絡方式</h4>
+                            </div>
+                            <div>
+                                <p>聯絡人姓名：@Model.CustomerDetail.Name</p>
+                                <p>聯絡電話：@Model.CustomerDetail.Phone</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+        </section>
+    </article>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="cancellation-policy" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <section class="modal-section">
+                    <div class="modal-h5">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <h5>取消政策</h5>
+                    </div>
+                    <div class="modal-text">
+                        <p>保姆取消訂單請主動與顧客說明原因</p>
+                        <p>服務3日內不可取消訂單，如有特殊情況請聯絡客服</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <section class="modal-section">
+                    <div class="modal-h5">
+                        <h5>取消我的訂單</h5>
+                    </div>
+                    <div class="modal-p">
+                        <p>本款項將全額退還給顧客</p>
+                    </div>
+                    <form method="post">
+                    <div class="modal-input">
+                        <div class="inputs">
+                            <label for="cancel-select" class="pawsday-input-label">
+                                請選擇取消原因
+                            </label>
+                            <select class="pawsday-input" id="cancel-select" asp-for="@Model.CancelData.CancelReason">
+                                <option selected disabled>-選擇取消原因-</option>
+                                <option value="個人因素">個人因素</option>
+                                <option value="聯絡不上顧客">聯絡不上顧客</option>
+                                <option value="行程無法銜接">行程無法銜接</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-btn">
+                        <button class="modal-btn-no" type="reset" data-bs-dismiss="modal" aria-label="Close">保留訂單 不取消了</button>
+                        <button asp-action="OrderDetail" asp-controller="SitterCenter" class="pawsday-btn" id="cancel-btn" type="submit">我要取消訂單</button>
+                        <input class="order-cancel-id" asp-for="@Model.CancelData.OrderId" value="@Model.OrderID">
+                    </div>
+                </form>
+                </section>
+            </div>
+        </div>
+    </div>
+
+@section endJS
+{
+    <script src="~/js/SitterCenter/SitterOrderDetail.js" asp-append-version="true"></script>
+
+}

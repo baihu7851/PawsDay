@@ -1,0 +1,102 @@
+﻿@model OrderEvaluationViewModel
+@section topJS{
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-order-sidebar.css">
+    <link rel="stylesheet" href="~/css/member/member-order-evaluation.css">    
+}
+@{
+    ViewData["Title"] = "給予評論";
+}
+
+<article>
+    <section class="container container-link">
+        <ol class="container-link-ol">
+            <li>
+                <a asp-controller="MemberCenter" asp-action="Order" class="container-link-a">訂單管理</a>
+            </li>
+            <li>
+                <span>></span>
+                <a asp-controller="MemberCenter" asp-action="OrderDetail" class="container-link-a" asp-route-id="@Model.OrderNum">
+                    >
+                    <span>訂單編號 @Model.OrderNum</span>
+                </a>
+            </li>    
+            <li class="container-link-span">
+                <span>></span>
+                <span>評論</span>
+            </li>
+        </ol>
+    </section>
+    <section class="container section">
+        <partial name="_MemberCenterOrderSidebarPartial"></partial>
+        <section class="container-feature col-12 col-lg-8">
+            @if (Model.Message==null)
+            {
+                <section class="order-feature">
+                    <div class="order-feature-header col-12 col-lg-12">
+                        <p>請給這次體驗打個分數吧！(最高5顆星)</p>
+                    </div>
+                    <form method="post">
+                    <div class="order-feature-star" id="order-feature-star">
+                            <label>
+                                <input asp-for="@Model.Evaluation" value="" class="feature-star-input d-none">
+                                <i class="fa-solid fa-star " title="1"></i>
+                                <i class="fa-solid fa-star " title="2"></i>
+                                <i class="fa-solid fa-star" title="3"></i>
+                                <i class="fa-solid fa-star" title="4"></i>
+                                <i class="fa-solid fa-star" title="5"></i>
+                            </label>
+                    </div>
+                    <div class="container-input col-12 col-lg-12">
+                       
+                        <div class="inputs">
+                            <label for="evaluation-text" class="pawsday-input-label">
+                                告訴我們你的想法
+                                <span class="text-danger">*</span>
+                            </label>
+                                <textarea asp-for="@Model.Message" placeholder="你覺得這次體驗如何呢？請告訴我們(字數不得超過100)" class="pawsday-input pawsday-textarea" id="evaluation-text" required></textarea>
+                                <input class="d-none" asp-for="@Model.OrderId">
+                        </div>
+                        <div class="container-input-save">
+                            <span id="error-message" class="text-danger error-message"></span>
+                            <span>你的評論將提供給其他主人參考</span>
+                                <button class="pawsday-btn" id="submit-btn" type="submit" asp-action="OrderEvaluation" asp-controller="MemberCenter" asp-route-id="@Model.OrderId">送出</button>
+                        </div>                        
+                    </div>
+                    </form>
+                </section>
+            }
+            else
+            {
+                <section class="order-feature">
+                    <div class="order-feature-header col-12 col-lg-12">
+                        <p>已評論</p>
+                    </div>
+                    <div class="order-feature-stared">
+                        @for (int i = 0; i < Model.Evaluation; i++)
+                        {
+                           <i class="fa-solid fa-star"></i>
+                        }
+                    </div>
+                    <div class="container-input col-12 col-lg-12">
+                        <div class="inputs">
+                            <label for="evaluation-text" class="pawsday-input-label">
+                                你的評論
+                            </label>
+                            <textarea class="pawsday-input pawsday-textarea" id="evaluation-text" disabled>@Model.Message
+                                </textarea>
+                        </div>
+                    </div>
+                </section>
+            }
+            
+        </section>
+
+    </section>
+</article>
+
+@section endJS{
+    <script src="~/js/OrderEvaluation.js"></script>
+}

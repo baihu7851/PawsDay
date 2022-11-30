@@ -1,0 +1,32 @@
+﻿section{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+}
+
+.errorimg {
+    display: flex;
+    justify-content: center;
+}
+
+.errorimg img {
+    width: 500px;
+}
+
+.errortext {
+    display: block;
+    text-align: center;
+    font-weight: var(--fw-specfont);
+    font-size: var(--vicefont);
+}
+
+@media screen and (max-width:767.85px) {
+    .errorimg img {
+        width: 100%;
+    }
+
+    .errortext {
+        font-size: 18px;
+    }
+}

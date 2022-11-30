@@ -1,0 +1,51 @@
+﻿
+.image-preview, .old-image-preview {
+    height: 200px;
+    width: 300px;
+    border: 1px solid var(--clr-bg-g);
+    border-radius: 6px;
+    margin: 3px;
+    box-sizing: border-box;
+}
+.old-image-preview {
+    overflow:hidden;
+}
+
+    .deleteimg {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+
+    .deleteimg:hover {
+        cursor: pointer;
+    }
+
+
+
+.upload {
+    display: none;
+}
+
+.person-img-camera {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview {
+    overflow: hidden;
+    position: relative;
+}
+
+    .image-preview img, .old-image-preview img{
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 100%;
+    }

@@ -1,0 +1,81 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model IEnumerable<CustomerChatViewModel>
+@{
+    var historys = Model;
+    ViewData["Title"] = "聊天室列表";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-chatroom.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service">
+                    <div class="container-service-header">
+                        <h2 class="currenttitle">聊天室</h2>
+                        <ul>
+                                <a asp-route="Sitter/MessageList-Official">
+                                <li class="service-btn pawsday-chat">PawsDay訊息</li>
+                            </a>
+                                <a asp-route="Sitter/MessageList-Customer">
+                                <li class="service-btn customer-chat this-page">顧客訊息</li>
+                            </a>
+                        </ul>
+                    </div>
+                        <div class="containert-body customer-sheet">
+                            <div class="table-head">
+                                <div class="col-md-3 p-0">顧客姓名</div>
+                                <div class="col-md-9 p-0">訊息內容</div>
+                            </div>
+
+                        @if (historys.Count()==0)
+                        {
+                            <div class="table-body-null">
+                                <img src="~/images/pug.jpg" alt="">
+                                <p>還沒有訊息</p>
+                            </div>
+                        }
+                        else
+                        {
+                            
+                            foreach (var history in historys)
+                            {
+                                <a class="table-body-group" asp-route="Sitter/MessageBox-Customer/{id?}" asp-route-id="@history.CustomerID">
+                                    <div class="col-md-3 p-0 col-12">@history.CustomerName</div>
+                                    <div class="col-md-9 p-0 table-body-text col-12">
+                                        <div class="col-md-1 p-0 col-1 chat-personal-img">
+                                            <img src="@history.ImageUrl" alt="頭貼">
+                                        </div>
+                                        <div class="col-md-11 col-11">
+                                            <p class="body-text-p">@history.LastestContext</p>
+                                            <p class="body-text-date">@history.CreateTime.ToString("yyyy-MM-dd mm:ss")</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        }
+
+                            
+                            
+                        </div>
+                    
+                </div>
+            </section>
+        </section>
+    </article>
+
+    @section endJS
+    {
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+}
+
+
+
+

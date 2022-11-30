@@ -1,0 +1,109 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model IEnumerable<OfficialChatViewModel>
+@{
+    var historys = Model;
+    ViewData["Title"] = "聊天室列表";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-chatroom.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service">
+                    <div class="container-service-header">
+                        <h2 class="currenttitle">聊天室</h2>
+                        <ul>
+                                <a asp-route="Sitter/MessageList-Official">
+                                <li class="service-btn pawsday-chat this-page">PawsDay訊息</li>
+                                </a>
+                                <a asp-route="Sitter/MessageList-Customer">
+                                <li class="service-btn customer-chat ">顧客訊息</li>
+                                </a>
+                        </ul>
+                    </div>
+                        <div class="containert-body pawsday-sheet">
+                            <div class="table-head">
+                                <div class="col-md-3 p-0">訂單編號</div>
+                                <div class="col-md-2 p-0 ">方案名稱</div>
+                                <div class="col-md-7 p-0">訊息內容</div>
+                            </div>
+
+                        @if (historys.Count() == 0)
+                        {
+                            <div class="table-body-null">
+                                <img src="~/images/pug.jpg" alt="">
+                                <p>還沒有訊息</p>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var history in historys)
+                            {
+                                @if (history.OrderID == 0)
+                                {
+                                    <div class="table-body-group">
+                                        <div class="col-md-5 p-0 col-12"></div>
+                                        <div class="col-md-7 p-0 table-body-text col-12">
+                                            <div class="col-md-1 p-0 col-1">
+                                                <img src="~/images/P.png" alt="官方頭像">
+                                            </div>
+                                            <div class="col-md-11 col-11">
+                                                <p class="body-text-p">@history.LastestContext</p>
+                                                <p class="body-text-date">@history.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a class="table-body-group" asp-route="Sitter/MessageBox-Official/{id?}" asp-route-id="@history.OrderNumber">
+                                        <div class="col-md-3 p-0 col-12">@history.OrderNumber</div>
+                                        <div class="col-md-2 p-0 table-body-service col-12">@history.ServiceType</div>
+                                        <div class="col-md-7 p-0 table-body-text col-12">
+                                            @if (history.IsUserSpeak == true)
+                                            {
+                                                <div class="col-md-1 p-0 col-1">
+                                                    <img src="@history.ImageUrl" alt="保姆頭像">
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-md-1 p-0 col-1">
+                                                    <img src="~/images/P.png" alt="官方頭像">
+                                                </div>
+                                            }
+                                            <div class="col-md-11 col-11">
+                                                <p class="body-text-p">@history.LastestContext</p>
+                                                <p class="body-text-date">@history.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                }
+                            }
+
+                        }
+
+                            
+                        </div>
+                        
+                </div>
+            </section>
+        </section>
+    </article>
+
+    @section endJS
+    {
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+}
+
+
+
+

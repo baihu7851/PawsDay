@@ -1,0 +1,394 @@
+﻿@using ApplicationCore.Common
+@using PawsDay.Services.MemberCenter
+@inject MemberCenterSidebarServices service;
+
+@model MemberPetInfoViewModel;
+
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-pet.css">
+}
+    
+    @{
+    ViewData["Title"] = "毛孩資料";
+    var petInfoVM = Model;
+
+    var userId = ViewBag.Data;
+    //var part = service.Partial(userId);
+    var petlist = (IEnumerable<MemberPetInfoViewModel>)ViewData["pets"];
+    int idx = 1;
+}
+
+
+<article>
+    <section class="container section">
+        <partial name="_MemberCenterSidebarPartial"></partial>
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-input">
+                <div class="container-input-header">
+                    <h2 class="currenttitle">帳號設定</h2>
+                    <ul>
+                        <a asp-controller="MemberCenter" asp-action="PersonInformation">
+                        <li class="basic-info ">
+                            基本資料
+                        </li>
+                        </a>
+                        <a sdisabled>
+                        <li class="pet-info this-page">
+                            毛孩資料
+                        </li>
+                        </a>
+                        <a asp-controller="MemberCenter" asp-action="AccountSafety">
+                        <li class="account-info">
+                            帳號安全
+                        </li>
+                        </a>
+                    </ul>
+                </div>
+
+                <!-- 毛孩資料頁籤 -->
+
+                <div class="container-pet-information">
+                    <!-- 新增毛孩 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header pet-add" id="headingOne" style="width: 100px;">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <i class="fa-regular fa-square-plus"></i>
+                                新增毛孩
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <form method="post" asp-controller="MemberCenter" asp-action="PetInformation" class="container-input-body row pet-info-sheet">
+                                    <div class="input-body-title">
+                                        新增毛孩資料
+                                    </div>
+                                    <hr class="">
+                                    <div class="inputs col-12 col-lg-6 ">
+                                        <label for="petname" class="pawsday-input-label">
+                                            毛孩名字
+                                            <span class="text-danger">*</span>
+                                            <span asp-validation-for="@Model.PetName" class="input-span text-danger"></span>
+                                        </label>
+                                        <input type="text" asp-for="@Model.PetName" placeholder="毛孩名字" class="pawsday-input" id="petname" required>
+
+                                    </div>
+                                    <div class="inputs col-12 col-lg-6">
+                                        <label for="pet-sex" class="pawsday-input-label">
+                                            性別
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="pawsday-input" id="pet-sex" asp-for="@Model.PetGender" asp-items="@Model.PetGenderList">
+                                        </select>
+                                        <span asp-validation-for="@Model.PetGender" class="input-span text-danger"></span>
+                                    </div>
+                                    <div class="inputs col-12 col-lg-6">
+                                        <label for="pet-type" class="pawsday-input-label">
+                                            寵物類別
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="pawsday-input" id="pet-type" asp-for="@Model.PetType" asp-items="@Model.PetTypeList">
+                                        </select>
+                                        <span asp-validation-for="@Model.PetType" class="input-span text-danger"></span>
+                                    </div>
+                                    <div class="inputs col-12 col-lg-6">
+                                        <label for="body-type" class="pawsday-input-label">
+                                            體型類別
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="pawsday-input" id="body-type" asp-for="@Model.ShapeType" asp-items="@Model.ShapeTypeList">
+                                        </select>
+                                        <span asp-validation-for="@Model.ShapeType" class="input-span text-danger"></span>
+                                    </div>
+                                    <div class="inputs col-12 col-lg-6">
+                                        <label for="pet-birth-year" class="pawsday-input-label">
+                                            出生年
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="number" name="BirthYear" placeholder="毛孩出生年" class="pawsday-input" id="pet-birth-year" min="2000" max="2022">
+                                        <span asp-validation-for="@Model.BirthYear" class="input-span text-danger"></span>
+                                    </div>
+                                    <div class="inputs col-12 col-lg-6">
+                                        <label for="pet-birth-month" class="pawsday-input-label">
+                                            出生月
+                                        </label>
+                                        <select class="pawsday-input" id="pet-birth-month" asp-for="@Model.BirthMonth" asp-items="@Model.BirthMonthList">
+                                        </select>
+                                    </div>
+                                    <div class="inputs col-12">
+                                        <label for="" class="pawsday-input-label">
+                                            個性(可複選)
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="checkbox-option">
+
+                                            @foreach (var disposition in Model.PetDispositionList)
+                                            {
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="PetDispositionType" id="@idx++" value="@disposition.Value" checked="@disposition.Selected">
+                                                    @disposition.Text
+                                                </label>
+                                            }
+                                            <span asp-validation-for="@Model.PetDispositionType" class="input-span text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="inputs col-12 col-lg-6">
+                                        <label for="" class="pawsday-input-label">
+                                            是否已結紮
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="radio-option">
+                                            @foreach (var ligation in Model.LigationList)
+                                            {
+                                                <label>
+                                                    <input type="radio" name="Ligation" value="@ligation.Value">
+                                                    @ligation.Text
+                                                </label>
+                                            }
+                                            <span asp-validation-for="@Model.Ligation" class="input-span text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="inputs col-12 col-lg-6">
+                                        <label for="" class="pawsday-input-label">
+                                            是否有定期打疫苗
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="radio-option">
+                                            @foreach (var vaccine in Model.VaccineList)
+                                            {
+                                                <label>
+                                                    <input type="radio" name="Vaccine" value="@vaccine.Value">
+                                                    @vaccine.Text
+                                                </label>
+                                            }
+                                            <span asp-validation-for="@Model.Vaccine" class="input-span text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="inputs col-12 col-lg-12 ">
+                                        <label for="pettext" class="pawsday-input-label">
+                                            毛孩補充描述
+                                        </label>
+                                        <input type="text" name="Description" placeholder="毛孩補充描述" class="pawsday-input" id="pettext">
+                                    </div>
+
+                                    <div class="container-input-btn">
+                                        <div class="container-input-cancel">
+                                            <button method="get" asp-controller="MemberCenter" asp-action="PetInformation">取消</button>
+                                        </div>
+                                        <div class="container-input-save">
+                                            <button type="submit" class="pawsday-btn" method="post" asp-controller="MemberCenter" asp-action="CreatePetInformation">儲存</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    @foreach (var pet in petlist)
+                    {
+                        <!-- 毛孩項目 -->
+
+                        <div class="accordion-item" petId="@pet.PetID">
+
+                            <div class="pet-header" id="heading-@(idx)">
+                                <div id="petTitle@(pet.PetID)">
+                                    @pet.PetName
+                                </div>
+                                <div class="pet-link">
+                                    <button type="button" class="pet-edit" data-bs-toggle="collapse" data-bs-target="#collapse-@(idx)"
+                                        aria-expanded="false" aria-controls="collapse-@(idx)">
+                                        <i class="fa-solid fa-pencil"></i>
+                                        編輯
+                                    </button>
+                                    <button type="button" class="pet-cancel">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        刪除
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="collapse-@(idx)" class="accordion-collapse collapse" aria-labelledby="heading-@(idx)"
+                             data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="container-input-body row pet-info-sheet">
+                                        <div class="inputs col-12 col-lg-6 ">
+                                            <label for="petname" class="pawsday-input-label">
+                                                毛孩名字
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" value="@pet.PetName" placeholder="毛孩名字" class="pawsday-input" id="petname@(pet.PetID)"
+                                               required>
+                                        </div>
+                                        <div class="inputs col-12 col-lg-6">
+                                            <label for="pet-sex" class="pawsday-input-label">
+                                                性別
+                                                <span class="text-danger">*</span>
+                                            </label>
+
+                                            <select class="pawsday-input" id="pet-sex@(pet.PetID)">
+                                                @foreach (var item in Model.PetGenderList)
+                                                {
+                                                    <option value="@item.Value" selected="@(pet.PetGender.ToString().ToLower() == item.Value)">@item.Text</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="inputs col-12 col-lg-6">
+                                            <label for="pet-type" class="pawsday-input-label">
+                                                寵物類別
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select class="pawsday-input" id="pet-type@(pet.PetID)">
+                                                @foreach (var type in Model.PetTypeList)
+                                                {
+                                                    <option value="@type.Value" selected="@(pet.PetType.ToString().ToLower() == type.Text ? true:false)">@type.Text</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="inputs col-12 col-lg-6">
+                                            <label for="body-type" class="pawsday-input-label">
+                                                體型類別
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select class="pawsday-input" id="body-type@(pet.PetID)">
+                                                @foreach (var shape in Model.ShapeTypeList)
+                                                {
+                                                    <option value="@shape.Value" selected="@(pet.ShapeType.ToString().ToLower() == shape.Text ? true:false)">
+                                                        @shape.Text
+                                                    </option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="inputs col-12 col-lg-6">
+                                            <label for="pet-birth-year" class="pawsday-input-label">
+                                                出生年
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="number" value="@pet.BirthYear" placeholder="毛孩出生年" class="pawsday-input" id="pet-birth-year@(pet.PetID)" min="2000" max="2022">
+                                        </div>
+                                        <div class="inputs col-12 col-lg-6">
+                                            <label for="pet-birth-month" class="pawsday-input-label">
+                                                出生月
+                                            </label>
+                                            <select class="pawsday-input" id="pet-birth-month@(pet.PetID)" >
+                                                @foreach (var month in Model.BirthMonthList)
+                                                {
+                                                    <option value="@month.Value" selected="@(pet.BirthMonth.ToString() == month.Value ? true:false)">@month.Text</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="inputs col-12">
+                                            <label for="" class="pawsday-input-label">
+                                                個性(可複選)
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="checkbox-option" >
+                                                @foreach (var disposition in Model.PetDispositionList)
+                                                {
+                                                    <label class="label-checkbox">
+                                                        <input type="checkbox" name="PetDispositionType" value="@disposition.Value" id="disposition@(pet.PetID)"
+                                                       @(pet.PetDispositionType.Contains(disposition.Value) ? "checked" : "")>
+                                                        @disposition.Text
+                                                    </label>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="inputs col-12 col-lg-6">
+                                            <label for="" class="pawsday-input-label">
+                                                是否已結紮
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="radio-option" id="ligation@(pet.PetID)">
+                                                @foreach (var ligation in Model.LigationList)
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="Ligation@(idx)" value="@ligation.Value" @(ligation.Value == pet.Ligation ? "checked" : "")>
+                                                        @ligation.Text
+                                                    </label>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="inputs col-12 col-lg-6">
+                                            <label for="" class="pawsday-input-label">
+                                                是否有定期打疫苗
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="radio-option" id="vaccine@(pet.PetID)">
+                                                @foreach (var vaccine in Model.VaccineList)
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="Vaccine@(idx)" value="@vaccine.Value" @(vaccine.Value == pet.Vaccine? "checked" : "")>
+                                                        @vaccine.Text
+                                                    </label>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="inputs col-12 col-lg-12 ">
+                                            <label for="pettext" class="pawsday-input-label">
+                                                毛孩補充描述
+                                            </label>
+                                            <input type="text" value="@pet.Description" placeholder="毛孩補充描述" class="pawsday-input" id="pettext@(pet.PetID)">
+                                        </div>
+
+                                        <div class="container-input-btn">
+                                            <div class="container-input-cancel">
+                                                <button type="button" class="cancel-btn" data-bs-toggle="collapse" data-bs-target="#collapse-@(idx)"
+                                                        aria-controls="collapse-@(idx)">取消</button>
+                                            </div>
+                                            <div class="container-input-save">
+                                                <button type="button" class="pawsday-btn save-btn" data-bs-toggle="collapse" data-bs-target="#collapse-@(idx)"
+                                                    aria-controls="collapse-@(idx)">儲存</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        idx++;
+
+                    }
+
+                </div>
+
+
+            </div>
+        </section>
+    </section>
+</article>
+
+
+
+<!-- Modal -->
+@*<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-cancel-header">
+                <h5 class="modal-cancel-title" id="exampleModalLabel">刪除毛孩資料</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-cancel-body">
+                你確定要刪除   嗎?
+            </div>
+            <div class="modal-cancel-footer">
+                <button type="submit" method="post" asp-controller="MemberCenter" asp-action="PetInformation" class="cancel-btn" data-bs-dismiss="modal">取消</button>
+                <button type="submit" method="post" asp-controller="MemberCenter" asp-action="DeletePetInformation" class="pawsday-btn confirm-btn">確認</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+    <script src="~/js/MemberCenter/MemberPetInfo.js"></script>
+}

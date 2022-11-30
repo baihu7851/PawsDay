@@ -1,0 +1,83 @@
+﻿@using System.Text.Json
+@using PawsDay.Services.Layout
+@inject MenuServices munu;
+@{
+    ViewData["Title"] = "到府照顧";
+	var memberId = JsonSerializer.Serialize(munu.GetMemberId());
+}
+
+@section topCSS{
+    <link rel="stylesheet" href="~/css/ServiceContent/service_type.css">
+    <link href="~/css/Index/recommend.css" rel="stylesheet" />
+}
+    <main class="service-homecare">
+        <section class="pawsday-banner banner">
+            <h2>到府照顧</h2>
+        </section>
+        <div class="container container-style">
+            <div class="row">
+                <partial name="_ServiceMenu">
+
+                <article class="service-content col-md-6">
+                    <h3>服務內容</h3>
+                    <p>
+                        ＄400～700／次<br />
+                        30分鐘起
+                    </p>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-paw"></i>專業實名認證寵物保姆到府照顧寵物
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paw"></i>寵物保姆、餵食、環境清潔、陪伴玩耍、回報健康狀況、餵藥等客製服務
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paw"></i>每次接待少量的毛小孩，細心顧及每個毛小孩的需求
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paw"></i>全程與保姆維持連線，回報寵物狀況
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paw"></i>平台預約全程含青杉保險與品質保障
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paw"></i>鑰匙可以提前交付、警衛代收、信箱傳遞
+                        </li>
+                    </ul>
+                </article>
+                <div class="service-img col-md-2">
+                    <img src="~/images/service_homecare.jpg" alt="到府照顧" />
+                </div>
+            </div>
+            <div class="btn-box">
+                <a asp-route="Search" class="service-search-btn pawsday-btn">立即搜尋優良保姆</a>
+            </div>
+        </div>
+
+        <section class="service-introduction">
+            <div class="container">
+                <ul class="intro-list row row-cols-1 row-cols-md-3">
+                    <li class="col">
+                        <h4><i class="fa-solid fa-heart"></i>愛與專業的照護</h4>
+                        <span>600＋寵物保姆</span>本身皆為貓奴和狗奴，得通過身份證認證、寵物照護知識審核，客製化和用心的照護，全程會攝影回報給毛爸媽
+                    </li>
+                    <li class="col">
+                        <h4><i class="fa-solid fa-house"></i>安心值得信任</h4>
+                        <span>3000＋毛孩家庭</span>把他們的寵物交給我們，公開透明評論、免費家訪認識保姆、全程攝影含國泰保險、安全第三方線上支付、品質保障不滿意100%退費
+                    </li>
+                    <li class="col">
+                        <h4><i class="fa-solid fa-magnifying-glass"></i>簡單便利</h4>
+                        平台輕鬆搜尋預約、下訂寵物保姆，貓咪狗狗不用出門，便利又安心的居家到府服務
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <partial name="_Recommend">
+    </main>
+
+@section endJS{
+    <script>
+        let MemberIdjs = @Html.Raw(memberId);
+    </script>
+    <script src="~/js/Index/recommend.js"></script>
+}

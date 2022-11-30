@@ -1,0 +1,127 @@
+/* banner */
+.banner {
+    background-image: url(./service_process_banner.jpg);
+    background-size: cover;
+    background-position: 100%;
+    padding: 180px 0;
+}
+
+/* main通用 - 內容 */
+main h2,
+main h3 {
+    color: var(--clr-specfont);
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+main h2 {
+    font-size: var(--mainfont);
+}
+
+main h3 {
+    font-size: 28px;
+}
+
+main section {
+    padding: 40px 0;
+}
+
+/* 簡介 */
+.intro {
+    text-align: center;
+}
+
+    .intro p {
+        font-size: var(--font);
+        color: var(--clr-font-g);
+        line-height: 2;
+        margin-bottom: 10px;
+    }
+
+/* 流程 */
+.process {
+    background-color: var(--clr-bg-y);
+}
+
+    .process .container {
+        max-width: 500px;
+    }
+
+    .process li {
+        font-size: var(--font);
+        color: var(--clr-font-g);
+        margin-bottom: 30px;
+    }
+
+    .process span {
+        display: block;
+        font-weight: 700;
+        font-size: 18px;
+        padding-bottom: 5px;
+    }
+
+    .process i {
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+    .process .icon-box {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        border-radius: 50%;
+        background-color: var(--clr-border);
+        margin-right: 5px;
+    }
+
+    .process li,
+    .process .icon-box {
+        align-items: center;
+        justify-content: center;
+    }
+
+/* 更多介紹 */
+.more-intro {
+    max-width: 800px;
+}
+
+    .more-intro p {
+        color: var(--clr-font-g);
+        margin-bottom: 10px;
+        font-size: var(--font);
+        line-height: 2;
+        text-indent: 2em;
+    }
+
+/* 搜尋 */
+.search-area .container {
+    max-width: 600px;
+}
+
+.search-area .slogan {
+    color: var(--clr-specfont);
+    line-height: 1.5;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.search-area .slogan-vice {
+    font-size: 18px;
+}
+
+.search-record{
+    display:none;
+}
+/* RWD */
+@media screen and (min-width:768px) {
+    .process i {
+        font-size: 24px;
+    }
+
+    .process .icon-box {
+        width: 60px;
+        height: 60px;
+    }
+}

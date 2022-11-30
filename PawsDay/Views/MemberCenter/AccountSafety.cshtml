@@ -1,0 +1,98 @@
+﻿@model AccountSafetyViewModel
+@section topJS{
+    <script src="~/vue/dist/vue.min.js"></script>
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-account-safety.css">
+}
+
+@{
+    ViewData["Title"] = "帳號安全";
+}
+
+<article>
+    <section class="container section">
+        
+        <partial name="_MemberCenterSidebarPartial"></partial>
+
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-input">
+                <div class="container-input-header">
+                    <h2 class="currenttitle">帳號設定</h2>
+                    <ul>
+                        <a asp-controller="MemberCenter" asp-action="PersonInformation">
+                        <li class="basic-info">
+                            基本資料
+                        </li>
+                        </a>
+                        <a asp-controller="MemberCenter" asp-action="PetInformation">
+                        <li>
+                            毛孩資料
+                        </li>
+                        </a>
+                        <a disabled>
+                            <li class="account-info  this-page">
+                                帳號安全
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                <!-- 基本資料頁籤 -->
+                <div class="container-input-body basic-info-sheet">
+                    <div class="row container-password" id="password">
+                        <div class="container-h4">
+                            <h4>更改密碼</h4>
+                        </div>
+                        <form method="post">
+                        <div class="inputs col-12 col-lg-12">
+                            <label for="original" class="pawsday-input-label">
+                                原密碼
+                                <span class="text-danger">*</span>
+                            </label>
+                                <input asp-for="@Model.OldPassword"  placeholder="原密碼" class="pawsday-input" id="original" required v-model="inputData.oldPassword"   :class="{'is-invalid':inputDataCheck.oldPasswordError}">   
+                                <div class="text-danger password-check">{{inputDataCheck.oldPasswordErrorMsg}}</div>
+                        </div>
+                        <div class="inputs col-12 col-lg-12 ">
+                            <label for="newpassword" class="pawsday-input-label">
+                                新密碼
+                                <span class="text-danger">*</span>
+                            </label>
+                                <input asp-for="@Model.NewPassword" type="password" placeholder="新密碼 " class="pawsday-input" id="newpassword" required v-model="inputData.newPassword"
+                                       :class="{'is-invalid':inputDataCheck.newPasswordError}">
+                                <div class="text-danger password-check">{{inputDataCheck.newPasswordErrorMsg}}</div>
+                        </div>
+                        <div class="inputs col-12 col-lg-12 ">
+                                <input asp-for="@Model.NewCheckPassword" type="password" placeholder="再次確認新密碼 " class="pawsday-input" id="checkpassword" required v-model="inputData.newCheckPassword"
+                                       :class="{'is-invalid':inputDataCheck.newCheckPasswordError}">
+                                <div class="text-danger password-check">
+                                    {{inputDataCheck.newCheckPasswordErrorMsg}}
+                                </div>
+                                <div class="text-danger password-check">
+                                    {{inputDataCheck.ErrorMsg}}
+                                </div>
+                        </div>
+                            @if (Model.updateAccount.IsUpdate != false)
+                            {
+                            <div class="text-danger account-fail">
+                                <p>@Model.updateAccount.Message</p>
+                            </div>
+                        } 
+                        
+                        <div class="col-12 container-input-save ">
+                                <button class="pawsday-btn" :disabled="!isVerify" type="submit" asp-controller="MemberCenter" asp-action="AccountSafety">儲存</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</article>
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+    <script src="~/js/MemberCenter/AccountSafety.js"></script>
+}
+    @section endCSS{
+}

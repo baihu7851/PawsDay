@@ -1,0 +1,208 @@
+﻿.login-register-modal .modal-content {
+    border-top: 5px solid var(--clr-border);
+    border-radius: var(--radius);
+}
+
+.login-register-modal .modal-body {
+    padding: 0;
+}
+
+.login-register-modal .modal-container {
+    text-align: center;
+}
+
+.login-register-modal .switch-close-modal {
+    text-align: end;
+    font-size: 14px;
+}
+
+.login-register-modal .btn-close {
+    padding: 20px;
+}
+
+.login-register-modal .title {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.login-register-modal .subtitle {
+    color: #666666;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.login-register-modal .back-area {
+    text-align: start;
+    font-size: 15px;
+    padding: 10px 0 10px 10px;
+}
+
+.login-register-modal .login-link-group {
+    margin-bottom: 3rem;
+    padding: 0 1.5rem;
+}
+
+.login-register-modal .content {
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.login-register-modal .external-input {
+
+    border: 1px solid rgb(206, 212, 218);
+    border-top-right-radius: var(--radius) !important;
+    border-bottom-right-radius:var(--radius) !important;
+}
+
+.login-register-modal .input-group-text {
+    background-color: transparent;
+    color: rgba(135, 135, 135, 0.733);
+    font-size: 14px;
+}
+
+.login-register-modal .login-input-group {
+    height: 45px;
+}
+
+.login-register-modal .back-btn {
+    padding: 0 10px;
+    font-size: 20px;
+    color: black;
+}
+
+.login-register-modal .main-btn {
+    height: 45px;
+    border-radius: var(--radius);
+    background-color: var(--clr-primary);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--clr-specfont);
+    margin-bottom: 7px;
+    border-radius: var(--radius);
+}
+
+.login-register-modal .other-btn {
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: var(--clr-font-g);
+    border-radius: var(--radius);
+}
+
+.login-register-modal .link-area {
+    text-align: left;
+    margin-bottom: 30px 0;
+}
+
+.login-register-modal .notice {
+    font-family: sans-serif;
+}
+
+.login-register-modal .notice-text {
+    padding-left: 5px;
+}
+
+.login-register-modal .notice-url {
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--clr-border);
+}
+
+.login-register-modal .login-url {
+    border-color: rgba(207, 207, 207, 0.733);
+    font-size: 15px;
+    line-height: 2;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    position: relative;
+}
+
+    .login-register-modal .login-url:hover {
+        color: black;
+        border-color: rgb(176, 176, 176);
+    }
+
+.login-register-modal .position-absolute.icon {
+    left: 20px;
+    top: 12px;
+    padding: 0 0.5rem;
+    font-size: 22px;
+    line-height: 24px;
+}
+
+    .login-register-modal .position-absolute.icon.google {
+        top: 8px;
+    }
+
+.login-register-modal .fa-regular.fa-envelope.login {
+    color: black;
+}
+
+.login-register-modal .fa-brands.fa-facebook {
+    color: #1773ea;
+}
+
+.login-register-modal .fa-brands.fa-line {
+    color: #06c152;
+}
+
+.login-url + .login-url {
+    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+}
+
+#login .forgot-password-url {
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--clr-font-g);
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#login .forgot-password-area {
+    text-align: end;
+}
+
+#sign-up .terms-of-use {
+    text-align: start;
+    margin: 5px 0;
+}
+
+@media screen and (min-width: 768px) {
+    .login-register-modal .content {
+        padding: 0 80px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .login-register-modal .title {
+        font-size: 26px;
+        margin-bottom: 1rem;
+    }
+
+    .login-register-modal .subtitle {
+        padding-left: 15px;
+        font-size: 18px;
+        letter-spacing: 1px;
+        margin-bottom: 3rem;
+    }
+
+    .login-register-modal .position-absolute.icon {
+        top: 12px;
+    }
+
+    #login .btn.btn-link.more {
+        padding: 20px 0;
+    }
+
+    #login .btn-close {
+        font-size: 18px;
+    }
+}
+

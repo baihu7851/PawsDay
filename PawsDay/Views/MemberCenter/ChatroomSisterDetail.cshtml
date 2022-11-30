@@ -1,0 +1,100 @@
+﻿@model ChatroomSisterDetailViewModel
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-order-sidebar.css">
+    <link rel="stylesheet" href="~/css/member/member-order-evaluation.css">
+    <link rel="stylesheet" href="~/css/member/member-order-contact.css">
+    <link rel="stylesheet" href="~/css/member/member-chatroom.css">
+}
+@{
+    ViewData["Title"] = "與保姆聊聊";
+}
+
+<article>
+    
+    <section class="container section">
+        <partial name="_MemberCenterSidebarPartial"></partial>
+        <section class="container-feature col-12 col-lg-8">
+            <section class="order-feature">
+                <div class="order-feature-h2">
+                    <h2 class="currenttitle">聊天室</h2>
+                    <p>與 @Model.SitterName 保姆聊聊</p>
+                </div>
+                <div class="container-input col-12 col-lg-12">
+                   
+                    <div class="inputs">
+                        <textarea placeholder="訊息內容必須少於200字" class="pawsday-input pawsday-textarea" id="contact-us"
+                                      required asp-for="@Model.Message"></textarea>
+                        <input class="d-none" asp-for="@Model.SitterId" id="sitterid">
+                    </div>
+                    <div class="container-input-footer">
+                            <div id="error-message" class="text-danger error-message"></div>
+                        <div class="container-input-save">
+                            <button class="pawsday-btn" id="submit-btn">送出</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="order-message">
+                    @if (Model.Contact is null)
+                    { 
+                         <div class="table-body-null">
+                            <img src="~/images/no collect.png" alt="還沒有訊息">
+                            <p>還沒有訊息</p>
+                        </div>    
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.Contact)
+                        {
+                            @if (item.IsUserType == true)
+                            {
+                                <div class="order-message-ask">
+                                    @if (item.UserImage == null)
+                                    { 
+                                        <img src="~/images/paw.png">
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.UserImage" class="user-image" alt="會員頭像">
+                                    }                                    
+                                    <div class="message-ask-p">
+                                        <div class="message-ask-before"></div>
+                                        <p>@item.Message</p>
+                                        <p class="message-ask-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="order-message-reply">
+                                    <img src="@item.UserImage" alt="保姆頭像">
+                                    <div class="message-reply-p">
+                                        <div class="message-reply-before"></div>
+                                        <p>@item.Message</p>
+                                        <p class="message-reply-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    
+                    
+                    
+
+                </div>
+            </section>
+        </section>
+
+    </section>
+</article>
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberChatroomSiderbar.js"></script>
+    <script src="~/js/MemberCenter/MemberChatroom.js"></script>
+    
+}
+    @section endCSS{
+}

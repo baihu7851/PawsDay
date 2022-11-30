@@ -1,0 +1,212 @@
+﻿@{
+    ViewData["Title"] = "LineBot設定";
+}
+
+
+@section topCSS{
+    <link href="~/css/LineBot.css" rel="stylesheet" />
+}
+
+
+
+<div id="linebotvue" v-cloak>
+	<div class="container-fluid">
+		<h1 class="h3 mb-2 text-gray-800 font-weight-bold">LineBot設定</h1>
+
+
+		<!-- 列表 -->
+		<div class="card shadow mb-4">
+
+			<div class="card-header bg-success text-white font-weight-bold py-3" style="font-size: 28px;">
+				{{sheet}}
+			</div>
+			<div class="d-flex">
+				<button type="button" id="keywordbtn"
+						class="btn  btn-outline-secondary w-25 mt-3 ml-3 mr-1"
+						@@click="isKeyWord">
+					關鍵字
+				</button>
+				<button type="button" id="newbtn"
+						class="btn  btn-outline-secondary w-25 mt-3 ml-1 mr-1 templatebtn"
+						@@click="isnews">
+					最新消息
+				</button>
+				<button type="button" id="surveybtn"
+						class="btn btn-outline-secondary w-25 mt-3 ml-1 mr-1 templatebtn"
+						@@click="issurvey">
+					調查所
+				</button>
+				<button type="button" id="custombtn"
+						class="btn btn-outline-secondary w-25 mt-3 mr-3 ml-1 templatebtn"
+						@@click="iscustom">
+					自訂功能
+				</button>
+			</div>
+
+
+			<!-- body -->
+			<div class="card-body">
+
+				<!-- keyword -->
+				<div class="keyword-setting" v-if="keyword">
+					<div class="card-body">
+						<button class="btn btn-success mb-3"
+								@@click="addkeywordrow()">
+							增加關鍵字
+						</button>
+						<div class="table-responsive">
+							<!-- keywordtable -->
+							<b-table class="table table-bordered"
+									 striped
+									 hover
+									 :items="keywords"
+									 :fields="kwfields">
+
+								<template #cell(keyword)="row">
+									<input type="text"
+										   v-model="row.item.keyword"
+										   class="form-control"
+										   :disabled="!row.item.canbeedit">
+								</template>
+								<template #cell(action)="row">
+									<b-form-select v-model="row.item.action"
+												   :options="options"
+												   :disabled="!row.item.canbeedit"></b-form-select>
+								</template>
+								<template #cell(actions)="row">
+									<button class="btn btn-success"
+											@@click="savekeyword(row)"
+											v-show="row.item.canbeedit">
+										儲存
+									</button>
+									<button class="btn btn-danger"
+											@@click="deletekeyword(row)"
+											v-show="row.item.canbeedit">
+										刪除
+									</button>
+
+								</template>
+							</b-table>
+
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Template -->
+				<div class="template-setting" v-if="!keyword">
+					<div class="mb-3">
+						<h3 class="p-3 font-weight-bold bg-success rounded-lg text-white">現有資料參考</h3>
+						<div class="border border-success rounded-lg bg-light p-4">
+							<label class="ml-2">主旨</label>
+							<input class=" form-control mb-1" type="text" v-model="oldtitle" disabled>
+							<label class="ml-2">內文</label>
+							<input class=" form-control mb-1" type="text" v-model="oldtext" disabled>
+							<label class="ml-2">照片連結</label>
+							<div class="old-image-preview border border-secondary">
+                            <img :src="oldimgurl" />                        
+                            </div>
+							
+							<input class=" form-control mb-1" type="text" v-model="oldimgurl" disabled>
+							<label class="ml-2">選項資料</label>
+							<b-table class="table table-bordered"
+									 :items="olddetail"
+									 :fields="fields"></b-table>
+						</div>
+
+					</div>
+					<!-- 表單本體 -->
+					<h3 class="p-3 font-weight-bold bg-success rounded-lg text-white">修改資料</h3>
+					<div class="border border-success rounded-lg  p-4">
+						<b-form>
+							<b-form-group label="主旨"
+										  label-for="input-1">
+								<b-form-input id="input-1"
+											  v-model="form.title"
+											  type="text"
+											  placeholder="輸入20字內主旨"
+											  required></b-form-input>
+							</b-form-group>
+
+							<b-form-group label="內文"
+										  label-for="input-2">
+								<b-form-textarea id="input-2"
+												 v-model="form.text"
+												 placeholder="輸入200字內說明"
+												 required></b-form-textarea>
+							</b-form-group>
+
+							<b-form-group label="照片連結"
+										  label-for="input-3">
+										  <div class="image-preview border border-secondary">
+                                                    <label class="person-img-camera ">
+                                                        <i class="fa-solid fa-camera"></i>
+                                                        <input type="file" class="upload" accept=".png, .jpg, .jpeg">
+                                                    </label>
+                                                </div>
+								<b-form-textarea id="input-3"
+												 v-model="form.image"
+												 type="text"
+												 placeholder="照片連結"
+												 required></b-form-textarea>
+							</b-form-group>
+						</b-form>
+
+						<div class="template-detail-setting mt-4">
+							<button class="btn btn-secondary"
+									@@click="adddetail"
+									id="addbtn">
+								增加選項
+							</button>
+
+							<div v-for="(data,index) in form.detail">
+
+								<div class="border border-secondary rounded-lg p-3 mt-2">
+									<label v-if="!survey">選項類型</label>
+									<select class="form-control m-2"
+											required
+											v-model="data.type"
+											v-if="!survey"
+											@@change="changeselect(data)">
+										<option disabled value="">請選擇類型</option>
+										<option value="url">連結</option>
+										<option value="message">純文字</option>
+									</select>
+
+									<label>選項文字</label>
+									<input class=" form-control m-2"
+										   placeholder="輸入選項文字"
+										   v-model="data.text"
+										   required></input>
+
+									<label v-if="!survey">選項連結</label>
+									<textarea v-if="!survey"
+											  class="form-control m-2"
+											  v-show="data.type=='url'"
+											  v-model="data.url"
+											  placeholder="輸入選項連結"
+											  required></textarea>
+								</div>
+							</div>
+						</div>
+						<button id="save"
+								:disabled="!checksave"
+								class="btn btn-success mt-3 w-100"
+								@@click="save">
+							儲存設定
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+	</div>
+</div>
+
+@section endJS
+    {
+    <script src="~/js/LineBot.js" asp-append-version=true></script>
+    <script src="~/js/Image.js" asp-append-version=true></script>
+
+}

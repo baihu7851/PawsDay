@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "服務流程";
+    Layout = "_LayoutSearchNone";
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/ServiceContent/service_process.css">
+}
+    <main class="platform-intro">
+        <div class="banner"></div>
+        <article>
+            <section class="intro container">
+                <h2>PawsDay 您的毛孩好夥伴</h2>
+                <p>
+                    PawsDay是一個創新的共享寵物照顧平台<br />
+                    我們的使命是讓每一個毛小孩被愛、替寵物家長解決各種無法親自照顧寵物的困擾，<br />也提供喜愛寵物且有經驗與資源的人，成為保姆並自由接案的機會。<br />
+                </p>
+            </section>
+            <section class="process">
+                <h3>體驗流程</h3>
+                <ol class="container">
+                    <li class="row">
+                        <div class="icon-box col-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <div class="text-box col-10">
+                            <span>搜尋附近保姆</span><p>平台會自動推薦給毛爸媽評分最高、最值得信任的保姆</p>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <div class="icon-box col-2"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="text-box col-10">
+                            <span>發出預約請求</span><p>若選中了保姆，事前先與保姆聊聊，初步認識彼此和毛孩個性</p>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <div class="icon-box col-2"><i class="fa-solid fa-check"></i></div>
+                        <div class="text-box col-10">
+                            <span>安全下訂服務</span><p>透過平台安全付款，在毛小孩服務完成之後，平台才會將款項撥款給保姆</p>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <div class="icon-box col-2"><i class="fa-solid fa-camera"></i></div>
+                        <div class="text-box col-10">
+                            <span>服務期間回報</span><p>保姆服務期間全程回報毛孩狀況給毛爸媽，青杉人才保險給您雙重保障</6></p>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <div class="icon-box col-2"><i class="fa-solid fa-thumbs-up"></i></div>
+                        <div class="text-box col-10">
+                            <span>留下公開評論</span><p>鼓勵毛爸媽在服務結束後留下公開透明評論，提供更多的毛爸媽參考</p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section class="search-area pawsday-banner">
+                <div class="container">
+                    <h2 class="slogan slogan-main">立即搜尋寵物保姆</h2>
+                    <h3 class="slogan slogan-vice">馬上體驗最棒的寵物保姆到府服務</h3>
+                    <partial name="_SearchForm"></partial>
+                </div>
+            </section>
+        </article>
+    </main>
+ @section endJS{
+    <script src="~/js/Product/productSearch.js"></script>
+ }

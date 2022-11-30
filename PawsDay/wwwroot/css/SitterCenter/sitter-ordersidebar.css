@@ -1,0 +1,112 @@
+article{
+    padding-bottom: 20px;
+}
+
+
+.container-link-ol{
+    display: flex;
+    padding: 20px 15px;
+}
+.container-link-a{
+    color: var(--clr-border);
+    margin-right: 10px;
+}
+.container-link-a:hover{
+    color: var(--clr-border);
+    text-decoration: underline;
+}
+.container-link-span{
+    color: var(--clr-font-g);
+}
+
+.order-sidebar{
+    background-color: #fff;
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.order-sidebar-img{
+    height: 160px;
+    border-radius: var(--radius);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 50%;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+.order-sidebar-h2{
+    font-weight: 700;
+    font-size: var(--vicefont);
+    margin-bottom: 5px;
+    color: var(--clr-font);
+}
+.order-sidebar label{
+    color: var(--clr-font-g);
+    font-size: var(--font);
+    margin-bottom: 8px;
+}
+.order-sidebar p{
+    font-size: var(--font);
+    color: var(--clr-font);
+    margin-bottom: 12px;
+}
+.order-sidebar-separate{
+    border-bottom: 1px dotted var(--clr-border);
+    position: relative;
+}
+.order-sidebar-separate::before{
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    top: -10px;
+    left: -25px;
+    background-color: var(--clr-bg-y);
+}
+.order-sidebar-separate::after{
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    top: -10px;
+    right: -25px;
+    background-color: var(--clr-bg-y);
+}
+.order-sidebar-spend{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+}
+.order-sidebar-pay{
+    font-size: var(--font);
+    font-weight: 700;
+}
+.order-sidebar-currency,.order-sidebar-money{
+    color: var(--clr-border);
+    font-weight: 700;
+}
+.order-sidebar-money{
+    font-size: var(--vicefont);
+    margin-left: 5px;
+}
+.total-hr{
+    border-top: 1px solid var(--clr-border);
+    padding: 0 15px;
+    margin: 15px -15px;
+}
+.order-sidebar-cancel h4{
+    font-weight: 700;
+    font-size: var(--font);
+    margin-bottom: 15px;
+}
+.sidebar-cancel-text{
+    font-size: var(--font);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

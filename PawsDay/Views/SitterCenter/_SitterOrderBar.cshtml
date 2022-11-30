@@ -1,0 +1,48 @@
+﻿@using PawsDay.Services.SitterCenter
+
+@{
+    var part = Model.SideBar;
+}
+<section class="container-sidebar col-12 col-lg-4">
+    <div class="order-sidebar">
+        <div class="order-sidebar-img">
+            <img src="@part.ProductImageUrl" alt="">
+        </div>
+        <h2 class="order-sidebar-h2">@part.SitterName</h2>
+        <div>
+            <label>使用日期</label>
+            <p>@part.BegineDate.ToString("yyyy-MM-dd")</p>
+        </div>
+        <div>
+        <label>使用時段</label>
+            <p>@part.ServiceTime</p>
+        </div>
+        <div>
+            <label>方案</label>
+            <p>@part.ServiceType</p>
+        </div>
+
+        @foreach (var pet in part.OrderSidebarPetData)
+        {
+            <div>
+                <label>寵物種類</label>
+                <p>@pet.PetType</p>
+            </div>
+            <div>
+                <label>數量</label>
+                <p>@pet.ShapeType X @pet.PetCount</p>
+            </div>
+        }
+
+        <div class="order-sidebar-separate"></div>
+        <div class="order-sidebar-spend">
+            <div class="order-sidebar-pay">實際付款金額</div>
+            <div>
+                <span class="order-sidebar-currency">TWD</span><span class="order-sidebar-money">@part.TotolPrice</span>
+            </div>
+        </div>
+
+       
+
+    </div>
+</section>

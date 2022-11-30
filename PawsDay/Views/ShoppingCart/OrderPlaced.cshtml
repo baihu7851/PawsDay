@@ -1,0 +1,145 @@
+﻿@using PawsDay.Services.ShoppingCart
+@using PawsDay.ViewModels.ShoppingCart
+@using PawsDay.ViewModels.ShoppingCart.OrderPlaced
+@using System.Text.Json
+@using PawsDay.ViewModels.ShoppingCart.OrderPlaced.DTO
+@model List<OrderDetailDTO>
+@{
+    Layout = "_LayoutMemberNone";
+    ViewData["Title"] = "付款完成";
+    var listOfOrders = Model;
+    var totalPrice = listOfOrders.Sum(x => x.CartPrice);
+
+}
+
+
+@section topCSS{
+
+    <link href="~/css/ShoppingCart/01-cart.css" rel="stylesheet" type="text/css">
+    <link href="~/css/Index/recommend.css" rel="stylesheet" type="text/css">
+}
+    <div class="shoppingcart-page">
+        <div class="container shoppingcart-area">
+            <div class="process process-ordered py-4">
+                <p>
+                    <span class="ordered-cart">購物車</span>
+                    <i class="fa-solid fa-angle-right mx-2"></i>
+                    <span>填寫資料與付款</span>
+                    <i class="fa-solid fa-angle-right mx-2"></i>
+                    <span>訂購完成</span>
+                </p>
+            </div>
+
+
+
+            <div class="shoppingcart">
+                <div class="cart-title">
+                    <h2>訂單完成</h2>
+                </div>
+                <div class="cart-content">
+                    <ul class="cart-itemlist">
+
+
+                    @foreach (var order in listOfOrders){
+
+                        <li class="cart-item placed-item  d-flex flex-wrap align-items-center justify-content-center">
+
+                            <div class="order-no w-100 my-3 mx-3 fw-bold">
+                                <label for="">訂單編號</label>
+                                <span>#@order.OrderNumber</span>
+                                <p></p>
+                                @if(order.TxId != null){
+                                    <label id="labelforblocto">Blocto交易編號</label>
+                                    <span id="spanforblocto">@order.TxId</span>
+                                }
+
+                                
+                            </div>
+
+
+                            <div class="photo-area ">
+                                <div class="blocker" id="blocker"></div>
+                                <img class="d-block item-photo" src="@(order.PhotoUrl)">
+                            </div>
+                            <div class="item-details">
+                                <div class="details-name">
+                                    <a href="#">@order.SitterName</a>   
+                                    <p>@order.ServiceType</p>  
+                                </div>
+                                <div class="time-select">
+                                    <span class="">@order.ServiceDate</span>
+                                    <br/>
+                                    <span class="">@order.ServiceTime</span>  
+                                </div>
+                                <div class="pet-ordered">
+                                    <ul class="">
+
+                                        @{
+                                            var petNum = 1;
+                                        }
+                                        @foreach (var pet in order.ListOfPets)
+                                       {
+
+                                            <li class="w-100">
+                                                <label for="">毛孩@(petNum)</label>
+                                                <span>@pet.PetType</span>    
+                                                <span>@pet.ShapeType</span>    
+                                            </li>
+
+                                            petNum++;
+                                        }
+
+ 
+
+
+                                    </ul>
+                                </div>
+                                <p class="totalamount  mt-2">TWD @(order.CartPrice.ToString("#,###"))</p>
+
+                            </div>
+
+
+                        </li>
+
+                    }
+
+
+                    </ul>
+                </div>
+
+                <div class="show-money">
+
+                    <div class="checkout-finalize d-flex justify-content-end align-items-center">
+
+                        <p class="final-price mx-4 d-flex justify-content-between align-items-center w-100">
+                            <span class="d-block">付款金額</span>
+                        <span class="d-block">TWD @(totalPrice.ToString("#,###"))</span>
+
+
+                </div>
+
+                </div>
+            </div>
+
+            <p class="resume-shopping d-flex justify-content-end py-4">
+                <a asp-controller="ShoppingCart" asp-action="Cart" class="back-cart mx-4">
+                    返回購物車
+                </a>
+                <!-- <a href="../會員中心/member order-detail.html" class="back-orderlist">
+                    返回訂單列表
+                </a> -->
+                <a asp-controller="MemberCenter" asp-action="Order" class="back-orderlist">
+                    返回訂單列表
+                </a>
+            </p>
+
+
+            <partial name="_Recommend">
+            
+
+        </div>
+    </div>
+
+@section endJS{
+    <script src="~/js/Index/recommend.js"></script>
+}

@@ -1,0 +1,75 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model SitterBasicViewModel
+@{
+    ViewData["Title"] = "保姆基本資料";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+    <script src="~/ckeditor5/ckeditor.js"></script>
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-order.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service">
+                    <div class="container-service-header">
+                        <h2 class="currenttitle">保姆資料設定</h2>
+                        <ul>
+                            <a asp-controller="SitterCenter" asp-action="Basic">
+                                <li class="service-btn petsitter-info this-page">個人介紹</li>
+                            </a>
+                            <a asp-controller="SitterCenter" asp-action="Account">
+                                <li class="service-btn account-info">收款帳號</li>
+                            </a>
+                            <a asp-controller="SitterCenter" asp-action="Aptitude">
+                                <li class="service-btn verify-info">認證狀態</li>
+                            </a>
+                            
+                        </ul>
+                    </div>
+                    <!-- 保姆簡介頁籤 -->
+                    <div class="container-service-body petsitter-info-sheet">
+                        <form method="post">
+                        <div class="inputs">
+                            <label asp-for="@Model.SitterName" for="petsitter-name" class="pawsday-input-label">
+                                保姆暱稱
+                                    <span asp-Validation-for="@Model.SitterName" class="text-danger">*</span>
+                            </label>
+                                <input asp-for="@Model.SitterName" type="text" placeholder="保姆暱稱"  class="pawsday-input" id="petsitter-name" required>
+                        </div>
+                        <div class="inputs editorbox">
+                             <label asp-for="@Model.SitterDescription" for="editor" class="pawsday-input-label">
+                                個人介紹
+                                    <span asp-Validation-for="@Model.SitterDescription" class="text-danger">*</span>
+                            </label>
+                                <textarea asp-for="@Model.SitterDescription"  placeholder="請輸入50~200字保姆自我介紹" class="textarea" id="editor" maxlength="10"></textarea>
+                             
+                        </div>
+                        <div class="container-input-save">
+                            <button type="submit" class="pawsday-btn" id="save" asp-controller="SitterCenter" asp-action="Basic">儲存</button>
+                                    <p>@Model.Message</p>
+                            </div>
+                        </form>
+                            
+                    </div>
+
+                </div>
+            </section>
+        </section>
+    </article>
+
+
+    @section endJS
+    {
+
+    <script src="~/js/Editor.js"></script>
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+    <script src="~/js/SitterCenter/SitterBasic.js" asp-append-version="true"></script>
+    
+    }

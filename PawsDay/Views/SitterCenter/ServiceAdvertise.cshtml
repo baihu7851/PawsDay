@@ -1,0 +1,113 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model List<ProductAdvertiseViewModel>
+@{
+    var products = Model;
+    ViewData["Title"] = "商品廣告專案";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-order.css">
+}
+
+
+   <article>
+            <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+                <section class="personal-information col-12 col-lg-9">
+                    <div class="container-service">
+                        <div class="container-service-header">
+                            <h2 class="currenttitle">保姆服務管理</h2>
+                            <ul>
+                                <a asp-route="ProductSetting/On">
+                                <li class="service-btn service-open ">上架中</li>
+                                </a>
+                                <a asp-route="ProductSetting/Off">
+                                <li class="service-btn service-close">已關閉</li>
+                                </a>
+                                <a asp-route="DiscountSetting">
+                                <li class="service-btn service-sale">促銷設定</li>
+                                </a>
+                                <a asp-route="PromoteSetting">
+                                <li class="service-btn service-project this-page">廣告投放</li>
+                                </a>
+                                <a asp-controller="SitterCenter" asp-action="CreateServiceWithDetail">
+                                <li class="service-btn service-add"><i class="fa-solid fa-plus"></i>新增服務</li>
+                                </a>
+                            </ul>
+                        </div>
+
+
+
+                       
+                        <!-- 廣告 -->
+                        <div class="container-service-body project-sheet">
+                            
+                    @if (products.Count == 0)
+                    {
+                        <div class="service-null">
+                            <a asp-controller="SitterCenter" asp-action="CreateServiceWithDetail">
+                                <p>沒有已上架的服務商品，手刀上架</p>
+                                <div class="null-img">
+                                    <img src="~/images/pug.jpg" alt="沒有上架中的服務">
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="project-box">
+                            <img src="~/images/adproject.png" alt="月費投放廣告方案">
+                        </div>
+                        @foreach (var product in products)
+                        {
+                            <div class="commodity-card row">
+                                <div class="commodity-item col-md-9 row">
+                                    <div class="commodity-img col-4 col-md-3"><img src="@product.ProductImage" alt="商品圖"></div>
+                                    <div class="commodity-content col-8">
+                                        <h2 class="commodity-title" id="commodity-title">@product.SitterName ｜ @product.ServiceType</h2>
+
+                                        <span class="commodity-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            @foreach (var area in product.ServiceArea)
+                                            {
+                                                <p id="commodity-place">@area.County-@area.District</p>
+                                            }
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    @if (product.EndDate > DateTime.Today)
+                                    {
+                                        <button class="pawsday-btn project-btn hasproject">@product.EndDate.ToString("yyyy-MM-dd") 到期</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="pawsday-btn project-btn ">購買推廣方案</button>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+
+                        
+
+                           
+                        </div>
+                    </div>
+
+
+                </section>
+            </section>
+        </article>
+
+
+
+    @section endJS
+    {
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+
+    }

@@ -1,0 +1,79 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model List<EvalutionViewModel>
+@{
+    var eva = Model;
+    ViewData["Title"] = "歷史評價";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-chatroom.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-historyevaluation.css">
+}
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+            <section class="personal-information col-12 col-lg-9">
+                <div class="container-service">
+                    <div class="container-service-header">
+                        <h2 class="currenttitle">歷史評論</h2>
+                    </div>
+                    <div class="containert-body">
+                        <div class="table-head">
+                            <div class="col-3 p-0">訂單編號</div>
+                            <div class="col-3 p-0">星數</div>
+                            <div class="col-6 p-0">評論內容</div>
+                        </div>
+
+
+                        @if (Model.Count() == 0)
+                        {
+                            <div class="table-body-null">
+                                <img src="~/images/no collect.png" alt="沒有任何人評論你">
+                                <p>還沒有任何人評論你</p>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <div class="table-body-group">
+                                    <div class="col-md-3 p-0 col-12">#@item.OrderNumber</div>
+                                    <div class="body-group-star col-md-3 p-0 col-12">
+                                        @for (int i = 0; i < item.EvaluationScore; i++)
+                                        {
+                                            <i class="fa-solid fa-star"></i>
+                                        }
+                                    </div>
+                                    <div class="col-md-6 p-0 table-body-text col-12">
+                                        <div class="col-md-1 p-0 col-1">
+                                            <img src="@item.UserImageUrl" alt="評論者頭像">
+                                        </div>
+                                        <div class="col-md-11 col-11">
+                                            <p class="body-text-p">@item.EvaluationMessage</p>
+                                            <p class="body-text-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </article>
+    @section endJS
+    {
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+}
+
+
+
+

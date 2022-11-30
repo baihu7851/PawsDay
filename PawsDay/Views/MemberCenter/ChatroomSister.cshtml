@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ChatroomSisterViewModel>
+
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-chatroom.css">
+}
+@{
+    ViewData["Title"] = "聊天室/保姆訊息";
+}
+
+<article>
+    <section class="container section">
+        <partial name="_MemberCenterSidebarPartial"></partial>
+
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-input">
+                <div class="container-input-header">
+                    <h2 class="currenttitle">聊天室</h2>
+                    <ul>
+                        <a asp-route="Member/MessageList-Official">
+                        <li class="basic-info ">
+                            PawsDay訊息
+                        </li>
+                        </a>
+                        <a asp-route="Member/MessageList-Sitter">
+                        <li class="pet-info this-page">
+                            保姆訊息
+                        </li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="containert-body">
+                    <div class="table-head">
+                        <div class="col-3 p-0">保姆名稱</div>
+                        <div class="col-9 p-0">訊息內容</div>
+                    </div>
+                    @if (Model.Count() == 0)
+                    { 
+                        <div class="table-body-null">
+                            <img src="~/images/no collect.png" alt="">
+                            <p>還沒有訊息</p>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <a class="table-body-group" asp-route="Member/MessageBox-Sitter/{id}" asp-route-id="@item.SitterId">
+                                <div class="col-md-3 p-0 col-12 table-body-title">@item.SittertName</div>
+                                <div class="col-md-9 p-0 table-body-text col-12">
+                                    <div class="col-md-1 p-0 col-1">
+                                        @if (item.UserImage==null)
+                                        { 
+                                            <img src="~/images/paw.png">
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.UserImage" alt="">
+                                        }                                        
+                                    </div>
+                                    <div class="col-md-11 col-11">
+                                        <p class="body-text-p">@item.Message</p>
+                                        <p class="body-text-date">@item.EditTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+                    
+                </div>
+            </div>
+        </section>
+    </section>
+</article>
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+}
+    @section endCSS{
+}

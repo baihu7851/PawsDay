@@ -1,0 +1,135 @@
+﻿@using ApplicationCore.Common
+@model PersonInformationViewModel
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+}
+@{
+    ViewData["Title"] = "基本資料";
+}
+
+<article>
+    <section class="container section">
+        
+        <partial name="_MemberCenterSidebarPartial"></partial>
+
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-input">
+                <div class="container-input-header">
+                    <h2 class="currenttitle">帳號設定</h2>
+                    <ul>
+                        <a disabled>
+                        <li class="basic-info this-page">
+                            基本資料
+                        </li>
+                        </a>
+                        <a asp-controller="MemberCenter" asp-action="PetInformation">
+                        <li class="pet-info">
+                            毛孩資料
+                        </li>
+                        </a>
+                        @if (Model.RegisterType == (int)RegisterTypes.Email)
+                        {
+                            <a asp-controller="MemberCenter" asp-action="AccountSafety">
+                            <li class="account-info">
+                                帳號安全
+                            </li>
+                            </a>
+                        }
+                        
+                    </ul>
+                </div>
+                <!-- 基本資料頁籤 -->
+                <form method="post">
+                    <div class="container-input-body row basic-info-sheet">
+                    <div class="inputs col-12 col-lg-6">
+                        <label for="name" class="pawsday-input-label">
+                            姓名
+                            <span class="text-danger">*</span>
+                        </label>
+                            <input type="text" placeholder="姓名" class="pawsday-input" id="name" required value="@Model.Name" asp-for="@Model.Name" >
+                            <div id="nameError" class="text-danger checkinput "></div>
+                    </div>
+                    <div class="inputs col-12 col-lg-6 ">
+                        <label for="nickname" class="pawsday-input-label">
+                            暱稱
+                        </label>
+                        <input type="text" placeholder="暱稱" class="pawsday-input" id="nickname"  value="@Model.NickName" asp-for="@Model.NickName">
+                    </div>
+                    <div class="inputs col-12 col-lg-6">
+                        <label for="sex" class="pawsday-input-label" >
+                            性別
+                            <span class="text-danger" asp-validation-for="@Model.Gender">*</span>
+                        </label>
+                            <select class="pawsday-input" id="sex"  asp-for="@Model.Gender" asp-items="@Model.GenderList">
+                        </select>
+                            <div id="sexError" class="text-danger checkinput "></div>
+                    </div>
+                    <div class="inputs col-12 col-lg-6">
+                        <label for="birth" class="pawsday-input-label">
+                            出生日期
+                        </label>
+                            <input type="date" class="pawsday-input" id="birth" value="@(Model.Birth==null?null:Model.Birth.Value.ToString("yyyy-MM-dd"))" asp-for="@Model.Birth" max="@DateTime.UtcNow.ToString("yyyy-MM-dd")" min="@DateTime.UtcNow.AddYears(-100).ToString("yyyy-MM-dd")">
+                    </div>
+                    <label for="address-city" class="pawsday-input-label col-12 col-lg-12">
+                        地址
+                        <span class="text-danger">*</span>
+                    </label>
+                        <div class="inputs col-12 col-lg-6 ">
+                            <label for="address-city" class="pawsday-input-label">
+                                縣市
+                            </label>
+                            <select class="pawsday-input" id="address-city" asp-for="@Model.MemberCounty" value="">
+
+                            </select>
+                        </div>
+                        <div class="inputs col-12 col-lg-6 ">
+                            <label for="address-area" class="pawsday-input-label">
+                                行政區
+                            </label>
+                            <select class="pawsday-input" id="address-area" asp-for="@Model.MemberDistrict">
+                                
+                            </select>
+                            <div id="areaError" class="text-danger checkinput "></div>
+                        </div>
+                    
+                    <div class="inputs col-12 col-lg-12">
+                            <input type="text" class="pawsday-input" id="address-text" placeholder="X路X段X號X樓" value="@Model.Address" asp-for="@Model.Address">
+                            <div id="addressError" class="text-danger checkinput "></div>
+                    </div>
+                    <div class="inputs col-12 col-lg-4">
+                        <label for="phone" class="pawsday-input-label">
+                            電話號碼
+                            <span class="text-danger">*</span>
+                        </label>
+                            <input type="phone" placeholder="電話號碼" class="pawsday-input" id="phone" required value="@Model.Phone" asp-for="@Model.Phone">
+                            <div id="phoneError" class="text-danger checkinput "></div>
+                    </div>
+                    <div class="inputs col-12 col-lg-8">
+                        <label for="email" class="pawsday-input-label">
+                            聯絡E-mail
+                            <span class="text-danger">*</span>
+                        </label>
+                            <input type="email" placeholder="聯絡E-mail" class="pawsday-input" id="email" required value="@Model.Email" asp-for="@Model.Email">
+                            <div id="emailError" class="text-danger checkinput "></div>
+                    </div>
+                    <div class="col-12 container-input-save ">
+                            <button class="pawsday-btn" id="submit-btn" type="submit" asp-action="PersonInformation" asp-controller="MemberCenter">儲存</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </section>
+    </section>
+</article>
+
+
+
+@section endJS{
+    <script src="~/vue/dist/vue.min.js"></script>
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+    <script src="~/js/MemberCenter/MemberPerson.js"></script>
+}
+    @section endCSS{
+}

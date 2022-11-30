@@ -1,0 +1,89 @@
+﻿@using PawsDay.ViewModels.SitterCenter
+@model CustomerContactViewModel
+@{
+    ViewData["Title"] = "聊天室";
+    Layout = "_LayoutSitterCenter";
+}
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-ordercontact.css">
+}
+
+
+    <article>
+        <section class="container section">
+            <partial name="_SitterSideBar"></partial>
+
+                <section class="container-feature col-12 col-lg-9">
+                    <section class="order-feature">
+                        <div class="order-feature-h4">
+                            <h2 class="currenttitle">聊天室</h2>
+                            <h3 class="customertitle"><p>與 @Model.CustomerNamer 顧客聊聊</p></h3>
+                        </div>
+                        <div class="container-input col-12 col-lg-12">
+                        <div class="inputs">
+                            <textarea placeholder="訊息內容必須少於20字" class="pawsday-input pawsday-textarea" id="contact-us"
+                                  required asp-for="@Model.Message"></textarea>
+                            <input class="d-none" asp-for="@Model.CustomerId" id="memberid">
+                        </div>
+                        <div class="container-input-footer">
+                            <div id="error-message" class="text-danger error-message"></div>
+                            <div class="container-input-save">
+                                <button class="pawsday-btn" id="submit-btn" type="submit">送出</button>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="order-message">
+                        @if (Model.Contact is null)
+                        {
+                            <div class="table-body-null">
+                                <img src="~/images/no collect.png" alt="還沒有訊息">
+                                <p>還沒有訊息</p>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model.Contact)
+                            {
+                                if (item.IsUserType == false)
+                                {
+                                    <div class="order-message-ask">
+                                        <img src="@item.UserImage" alt="保姆頭像">
+                                        <div class="message-ask-p">
+                                            <div class="message-ask-before"></div>
+                                            <p>@item.Message</p>
+                                            <p class="message-ask-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="order-message-reply">
+                                        <img src="@item.UserImage" alt="會員頭像">
+                                        <div class="message-reply-p">
+                                            <div class="message-reply-before"></div>
+                                            <p>@item.Message</p>
+                                            <p class="message-reply-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+
+                        </div>
+                    </section>
+                </section>
+        </section>
+    </article>
+
+    @section endJS
+    {
+    <script src="~/js/SitterCenter/SitterSiderbar.js" asp-append-version="true"></script>
+    <script src="~/js/SitterCenter/CustomerChat.js" asp-append-version="true"></script>
+}
+
+
+
+

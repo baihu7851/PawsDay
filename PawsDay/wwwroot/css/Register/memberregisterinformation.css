@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.title-container {
+
+    background-image: url('../../images/pawsdaybanner.png');
+    background-size: 100%;
+    text-align: center;
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+.title-container .slogan {
+  color: var(--clr-specfont);
+  font-size: 28px;
+  line-height: 41px;
+  letter-spacing: 3px;
+}
+
+.container-input-body .space-area {
+  padding: 0 15px;
+}
+.container-input-body .personal-member {
+  font-size: 14px;
+  font-family: serif;
+  font-weight: 700;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--clr-border);
+  margin-bottom: 15px;
+}
+.container-input-body .personal-member::before {
+  content: "🐾";
+  font-size: 18px;
+  color: var(--clr-border);
+  position: relative;
+  right: 5px;
+}
+/* input {
+
+  background-color: white !important;
+
+} */
+
+
+
+@media screen and (min-width: 992px) {
+    .title-container {
+    height: 120px;
+  }
+  .container-input-body .space-area {
+    padding: 0 60px;
+  }
+}

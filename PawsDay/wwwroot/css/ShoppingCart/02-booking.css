@@ -1,0 +1,772 @@
+main {
+    background-color: #f5f5f5;
+}
+
+.booking-page{
+    /* background-color: var(--clr-bg-g); */
+    /*background-color: #f5f5f5;*/
+    max-width: none;
+    width: 100% !important;
+    padding-bottom: 50px;
+}
+.paymentBlock{
+   padding-top: 20px;
+
+}
+.payTitle {
+    padding-left: 20px;
+}
+.payTitle h2 {
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+.sitterName {
+    font-weight: bold;
+    font-size: 16px;
+}
+.process {
+    padding-top: 26px !important;
+}
+.process .to-cart{
+    color: #AAAAAA;
+    transition: .5s;
+}
+.process .to-cart:hover{
+    color: var(--clr-font);
+    text-decoration:underline !important;
+}
+
+/*.hidden-invoice{
+    display:none;
+}*/
+
+
+/*前端驗證begins*/
+.border-danger{
+    border: red !important;
+}
+
+
+
+/*前端驗證ends*/
+
+.process span,
+.fa-angle-right {
+    color: #AAAAAA;
+    font-size: 14px;
+}
+
+.process span:nth-of-type(2) {
+    color: var(--clr-font);
+    font-weight: bold;
+}
+
+.booking {
+    background-color: #ffffff;
+    margin-top: -20px;
+    
+}
+
+
+.booking-title {
+    /* width: fit-content; */
+    padding: 20px 5px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.data-checked {
+    position: absolute;
+    top: 20px;
+    right: 18px;
+    background-color: var(--clr-border);
+    padding: 1px 4px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bolder;
+    color: white;
+    display: none;
+    
+}
+
+.inputareas-group {
+    /* margin: 0 20px; */
+    
+    border-top: 1px solid #ccc8;
+    padding: 20px 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inputarea {
+    /* padding-left: 20px; */
+    /* padding-bottom: 20px; */
+    font-size: 14px;
+    color: var(--clr-font);
+    padding: 0 20px;
+    /* margin-left: 15px; */
+    box-sizing: border-box;
+}
+.details-name a{
+    font-size: 16px;
+}
+.parent-info{
+    padding: 10px 10px 50px;
+}
+
+.form-control{
+    margin-bottom:5px;
+}
+
+.inputarea label {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.input-group span{
+    color: black;
+}
+
+.radio-tel span {
+    color: black;
+}
+
+#telinput {
+
+    padding: 22px 60px;
+    width: 100%;
+    border-radius: 6px;
+}
+#telinput:focus {
+    border: 1px solid var(--clr-border);
+
+}
+
+#select-city
+{
+    margin-bottom: 20px;
+}
+.item-details select{
+    width: 100px;
+}
+#select-city,
+.textarea-memo {
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+
+}
+#select-city:focus,
+.textarea-memo:focus {
+    outline: 1px solid var(--clr-border);
+}
+
+.intl-tel-input {
+    display: table-cell;
+}
+#select-city span{
+    font-size: 12px;
+}
+
+.input-group {
+    margin-top: 5px;
+}
+
+.intl-tel-input .selected-flag {
+    z-index: 4;
+}
+
+.intl-tel-input .country-list {
+    z-index: 5;
+}
+
+.input-group .intl-tel-input .form-control {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 0;
+
+}
+
+.accordion-item:first-of-type > h2{
+    margin-top: 0px;
+}
+.accordion-item:nth-of-type(2) .pet-info{
+    
+    margin-bottom: 0 !important;
+}
+
+
+.textarea-memo {
+    resize: vertical;
+}
+
+
+.cart-content {
+    padding: 0;
+    border-top: 1px solid var(--clr-bg-g);
+    border-bottom: 1px solid var(--clr-bg-g);
+}
+
+.cart-item {
+    position: relative;
+    padding: 20px 0;
+    
+}
+
+.cart-item:not(:first-of-type) {
+    border-top: 1px solid var(--clr-bg-g);
+}
+
+.payment-productdetail.cart-item{
+    margin-left: 25px;
+}
+
+.payment-productdetail .totalamount{
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: end;
+    color: var(--clr-border);
+    font-size: 18px;
+}
+
+.photo-area {
+    position: relative;
+    height: 80px;
+    margin: 20px;
+    /* right: 20px; */
+}
+/* .photo-area:nth-of-type(2){
+    margin: 0 30px;
+} */
+
+.photo-area .blocker {
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    /* margin-left: 20px; */
+    top: 0;
+    left: 0;
+    background-color: #fff8;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.cart-item .item-photo {
+    width: 120px;
+    height: 80px;
+    /* margin-left: 20px; */
+    /*background-image: url('../../images/dog2.webp');*/
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+}
+
+.details-name{
+    width: 150px;
+}
+
+.photo-area:hover .blocker {
+    opacity: 1;
+}
+
+.cart-item .item-details {
+    padding: 0 10px;
+    font-size: var(--font);
+    /* width: 0;
+    flex-grow: 1; */
+}
+
+.cart-item .item-details {
+    padding: 0 10px;
+    font-size: var(--font);
+    width: 0;
+    flex-grow: 1;
+}
+
+.item-details a {
+    text-decoration: none;
+    color: var(--clr-font);
+    font-weight: bold;
+}
+.item-details select{
+    width: 100px;
+}
+
+
+.item-details a:hover {
+    text-decoration: underline;
+}
+.same-user{
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+.same-user label {
+    /* position: relative;
+    top: 0px; */
+    font-size: 14px;
+}
+
+.sameuser-service-address{
+    margin-bottom: 0;
+}
+
+.order-quan span{
+    font-size: 12px !important;
+}
+
+.petinfo-area{
+    font-size: 20px;
+    font-weight: bolder;
+    color: var(--clr-bg-g);
+    margin: 40px 0px 0px;
+}
+
+.petinfo-area {
+    border-top: none;
+}
+
+/* 做記號底部留空 */
+.petinfo {
+    background-color: #ffffff;
+    border: none;
+    padding-bottom: 20px;
+}
+
+.pet-info {
+    border: none;
+}
+
+
+
+.pet-number {
+    margin-top: 0px;
+    color: var(--clr-font) !important;
+    margin-bottom: 15px;
+}
+
+.accordion-item:not(:first-of-type) .inputareas-group{
+    /* border: 1px solid #ccc; */
+    margin:  0 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 4px var(--clr-bg-g);
+    border-radius: 6px;
+}
+
+.inputareas-group:not(:last-of-type) {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.petinfo-inputs{
+    margin-top: 30px !important;
+}
+.contactlastname-input input{
+    position: relative;
+    /*top: 5px;*/
+}
+
+.radio-option label{
+    cursor:pointer;
+}
+
+.clear-info-btn {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: var(--clr-border);
+    font-weight: bolder;
+    font-size: 12px;
+}
+.city-input input, 
+.district-input input,
+.pettype-input input, 
+.petbody-input input{
+    cursor: default;
+}
+.city-input input:focus, 
+.district-input input:focus,
+.pettype-input input:focus,
+.petbody-input input:focus
+{
+    cursor: default;
+    border: 1px solid var(--clr-bg-g);
+}
+
+.same-user label{
+    cursor: pointer;
+}
+.selectpet-btn {
+    border: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    /* font-weight: bolder; */
+}
+.dropdown-menu{
+    padding: 10px 0 !important;
+}
+.dropdown-item{
+    /* color: var(--clr-font); */
+    /* font-weight: bold !important; */
+    display: block;
+    padding: 10px !important;
+}
+
+input[type="radio"] {
+    width: 20px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]{
+    cursor: pointer;
+}
+
+/* .radio-tel input{
+    cursor: pointer;
+} */
+.radio-tel label {
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+}
+
+#no-contact{
+    margin-left: 15px;
+}
+
+.title::before {
+    content: '.';
+    margin: 0 10px 0 20px;
+    width: 5px;
+    background-color: black;
+    border-radius: 6px;
+}
+
+.title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: var(--clr-font);
+    font-size: 18px;
+}
+.dropdown-menu label{
+    cursor: pointer;
+}
+.service-address h2{
+    margin: 20px 0 !important;
+}
+.continue-btn {
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20px;right: 40px;
+    margin-left: 20px;
+    /* background-color: var(--clr-primary); */
+    /* padding: 10px 15px; */
+    /* margin-left: 20px; */
+    /* margin-bottom: 10px; */
+}
+.petinfo-body .continue-btn{
+    right: 30px;
+}
+
+.coupon-btn {
+    background-color: transparent;
+    border: 1px solid var(--clr-primary);
+    border-radius: 6px;
+    padding: 10px 15px;
+    color: var(--clr-primary);
+    margin-left: 20px !important;
+    margin-top: 10px;
+    margin-bottom: 15px !important;
+}
+
+.coupon-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.accordion-item{
+    border-radius: 6px;
+    border-color: transparent;
+    outline: none !important;
+    margin-top: 20px;
+}
+
+.accordion-button{
+    border-radius: 6px;
+}
+.accordion-button::before {
+    flex-shrink: 0;
+    width: var(--bs-accordion-btn-icon-width);
+    height: var(--bs-accordion-btn-icon-width);
+    margin: 10px;
+    content: "";
+    background-image: var(--bs-accordion-btn-icon);
+    background-repeat: no-repeat;
+    background-size: 18px;
+    padding-left: 20px;
+    transition: var(--bs-accordion-btn-icon-transition);
+}
+.accordion-button:not(.collapsed)::before {
+    background-image: var(--bs-accordion-btn-icon);
+    transform: var(--bs-accordion-btn-icon-transform);
+}
+
+.accordion-button::after{
+    content: none;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--bs-accordion-color);
+    background-color: transparent !important;
+    box-shadow: inset 0 calc(var(--bs-accordion-border-width) * -1) 0 var(--bs-accordion-border-color);
+}
+
+.accordion-header span{
+    font-size: 20px;
+    font-weight: bold;
+}
+.pet-selection{
+    margin-top: 10px;
+}
+.time-select span,
+.pet-selection span
+{
+    font-size: 14px;
+    font-weight: normal;
+} 
+.time-select span{
+    margin-right: 20px;
+}
+
+.totalamount{
+    color: var(--clr-border) !important;
+}
+.payment-productdetail.cart-item{
+    margin-left: 0;
+}
+.order-quan span{
+    font-weight: normal;
+}
+.accordion-body{
+    position: relative;
+    padding-left: 0 !important;
+}
+
+.petinfo-body{
+    padding-bottom: 80px;
+}
+
+.payment-list{
+    
+    padding: 10px 0px 10px;
+    align-items: center;
+}
+.payment-list label{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 300px;
+    cursor: pointer;
+}
+.accordion-body > ul{
+    border-top: 1px solid #AAA5;
+    padding: 20px 20px;
+    margin-bottom: 0;
+}
+.payment-list:not(:last-of-type){
+    border-bottom: 1px solid #AAA5;
+}
+.payment-list{
+    cursor: pointer;
+}
+
+
+.payment-list input[type="radio"]{
+    width: 12px;
+    height: 12px;
+}
+.payment-photo{
+    
+    width: 70px;
+}
+.payment-warning .fa-circle-info
+{
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+    color: #666666;
+}
+
+.payment-warning{
+    color: #666666;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 0 20px;
+}
+
+.creditcard-photo{
+    width: 70px;
+}
+
+.invoice-input{
+    border-top: 1px solid #AAA5;
+    padding-top: 20px;
+}
+
+.invoice-checker-area{
+    margin-bottom: 10px;
+}
+
+.invoice-title {
+    font-weight: bolder;
+    font-size: 14px;
+    /*margin-bottom:20px;*/
+}
+.invoice-title:hover{
+    cursor: pointer;
+}
+
+.product-detail {
+    background-color: #3331;
+    padding: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+.product-detail p:nth-of-type(2){
+    color: #666;
+}
+
+.checkout-area{
+    background-color:white;
+    margin: 20px 0;
+    padding: 30px 20px;
+    border-radius: 6px;
+}
+
+.final-price span:first-child {
+    font-size: 12px;
+    color: #666;
+}
+
+.final-price span:last-child {
+    font-weight: bold;
+    color: var(--clr-border);
+    font-size: 20px;
+}
+
+.cal-total{
+    border-top: 1px solid #AAA5;
+    padding: 10px;
+}
+.cal-total span{
+    font-weight: bold;
+}
+
+.cal-total span:last-of-type{
+    font-size: 18px;
+    color: var(--clr-border);
+}
+.payment-productdetail.cart-item{
+    padding: 20px 0;
+}
+
+.payment-productdetail.cart-item:not(:first-of-type){
+    border-top: 1px solid #AAA5;
+}
+
+.pet-selection label {
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 6px;
+    background-color:var(--clr-bg-y);
+    font-weight: bold;
+}
+
+/* 寵物更多input begin */
+
+.pawsday-input-label {
+    margin-bottom: 10px;
+    font-size: var(--font);
+}
+.radio-option {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid var(--clr-bg-g);
+    border-radius: 8px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+.radio-option input {
+    margin-right: 5px;
+    margin-top: 0px;
+}
+
+.checkbox-option {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid var(--clr-bg-g);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.checkbox-option label {
+    margin-right: 10px;
+}
+
+.checkbox-option label:hover{
+    cursor: pointer;
+}
+
+
+/* 寵物更多input ends */
+
+@media screen and (min-width:788px) {
+    
+}
+
+
+/* RWD min992px */
+@media screen and (min-width:768px) {
+    .cart-item .item-details {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .pet-selection, .remark, .time-select{
+        margin: 0 30px;
+    }
+    .pet-selection label{
+        margin-top: 10px;
+    }
+
+    .select-others {
+        margin-top: 0px;
+    }
+
+    .time-select span{
+        text-align: center;
+        display: block;
+    }
+
+    .checkout-area span:first-of-type{
+        
+        
+    }
+}

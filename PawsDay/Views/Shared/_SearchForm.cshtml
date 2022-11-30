@@ -1,0 +1,25 @@
+﻿<div class="search-group">
+    <input type="search" class="pawsday-input search-input" placeholder="輸入地區、服務..."
+           aria-label="輸入搜尋字詞" aria-describedby="search-button" id="search-input" value="">
+    <button type="submit" class="pawsday-btn search-btn" id="search-button" >
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <div class="searches">
+        <div class="search-record container">
+            <p class="">歷史搜尋</p>
+            <span class="historical-record row">
+                <a class="col-4 historical-item"></a>
+                <a class="col-4 historical-item"></a>
+                <a class="col-4 historical-item"></a>
+            </span>
+        </div>
+        <div class="search-record container">
+            <p>推薦搜尋</p>
+            <span class="hot-record row">
+                <a asp-route="Search" asp-route-searchinput="到府照顧" class="col-4">到府照顧</a>
+                <a asp-route="Search" asp-route-searchinput="到府洗澡" class="col-4">到府洗澡</a>
+                <a asp-route="Search" asp-route-searchinput="陪伴散步" class="col-4">陪伴散步</a>
+            </span>
+        </div>
+    </div>
+</div>

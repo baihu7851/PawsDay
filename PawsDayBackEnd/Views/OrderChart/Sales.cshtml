@@ -1,0 +1,88 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+
+@section topJS{
+   
+
+}
+
+    @section topCSS{
+        <style>
+            h3{
+                text-align:center;
+            }
+            /*canvas{
+                width:100px;
+                height:50px;
+            }*/
+        .salesChart{
+            height:600px;
+            width: 600px;
+        }
+        </style>
+
+   @* <link href="~/css/ShoppingCart/02-booking.css" rel="stylesheet" type="text/css">*@
+}
+
+
+<div class="container d-flex justify-content-center">
+        <div class="chart salesChart">
+
+            <h3>銷售報表</h3>
+            <canvas id="myChart"></canvas>
+
+        </div>
+        <div class="chart servicePie">
+
+            <h3>服務類型占比</h3>
+            <canvas id="myPie"></canvas>
+
+        </div>
+
+        <p class="annualTotalCount"></p>
+
+        <p class="grossRevenue text-danger"></p>
+
+
+</div>
+    
+
+
+
+@section endJS{
+
+    <script src="~/js/SalesChart.js"></script>
+    <script src="~/js/ServicePie.js"></script>
+    <script>
+        var annualTotal = document.querySelector('.annualTotalCount');
+        var url = 'OrderChartApi/GetTotalSalesQuan'
+        
+
+        httpGet(url)
+        .then(res=>{
+            console.log(res.data)
+            annualTotal.innerText= res.data; 
+        })
+
+
+    </script>
+
+    <script>
+        var grossRevenu = document.querySelector('.grossRevenue');
+
+        var url = 'OrderChartApi/GetTotalRevenue'
+
+
+        httpGet(url)
+            .then(res => {
+                console.log(res.data)
+                grossRevenu.innerText = res.data;
+            })
+    </script>
+}
+
+
+
+

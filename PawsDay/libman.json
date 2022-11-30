@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "bootstrap@5.2.0",
+      "destination": "wwwroot/bootstrap/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "chart.js@3.9.1",
+      "destination": "wwwroot/chart.js/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "font-awesome@6.2.0",
+      "destination": "wwwroot/font-awesome/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "ckeditor5@35.1.0",
+      "destination": "wwwroot/ckeditor5/"
+    },
+    {
+      "library": "vue@2.7.10",
+      "destination": "wwwroot/vue/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "js-cookie@3.0.0",
+      "destination": "wwwroot/js-cookie/"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+.contact-title-container {
+    height: 180px;
+    display: flex;
+    background-color: var(--clr-bg-y);
+    background-image: url('../../images/pawsdaybanner.png');
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+    .contact-title-container .title-h2 {
+        display: inline-block;
+        font-size: var(--mainfont);
+        color: var(--clr-specfont);
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-align: center;
+        /* border-bottom: 3px solid var(--clr-border); */
+        padding-left: 3px;
+    }
+
+/*隱私條款*/
+.privacy-btn{
+    padding-top: 20px;
+}
+.privacy-list-container{
+    display: none;
+}
+.privacy-wrap{
+    font-size: var(--font);
+    padding: 20px 20px;
+}
+
+@media screen and (min-width:768px) {
+    /* 穩私條款 */
+    .privacy-btn{
+        display: none;
+    }
+    .privacy-list-container{
+        display: block;
+        padding: 20px 30px;
+        /* padding-left: 30px; */
+    }
+   
+    .privacy-list a{
+        text-decoration: none;
+        font-size: 16px;
+        color: var(--clr-border);
+    }
+    .privacy-list a:hover{
+        color: var(--clr-specfont);
+        font-weight:bold;
+    }
+    .link-a a{
+        color: var(--clr-specfont);
+        font-weight:bold;
+    }
+}

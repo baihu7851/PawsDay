@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "糟糕有東西出錯了";
+}
+@section topJS{
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/notfoundcss.css">
+}
+
+<section>
+        <div class="container errorbody">
+            <div class="errorimg">
+                <img src="~/images/error.png" alt="">
+            </div>
+            <p class="errortext">糟糕，出了些錯誤，請按我返回前一頁</p>
+        </div>
+
+</section>
+
+
+
+@section endJS
+{
+    <script>
+        let goback = document.querySelector('.errorbody')
+        goback.addEventListener('click', () => {
+            history.back()
+        })
+    </script>
+}

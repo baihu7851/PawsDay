@@ -1,0 +1,459 @@
+﻿@using ApplicationCore.Common
+@using PawsDay.ViewModels.SitterCenter
+@model ProductDetailViewModel
+@{
+    ViewData["Title"] = "商品規格設定";
+    Layout = "_LayoutSitterCenter";
+    var product = Model;
+}
+@section topJS{
+    <script src="~/ckeditor5/ckeditor.min.js"></script>
+}
+@section topCSS{
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-center.css">
+    <link rel="stylesheet" href="~/css/Product/commodity.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-order.css">
+    <link rel="stylesheet" href="~/css/SitterCenter/sitter-form.css">
+
+}
+
+    <article>
+        <section class="container service-form col-12">
+            
+            <div class="container-service">
+                <div class="container-service-header">
+                    <h2>新增保姆服務</h2>
+                    <div class="producton-control">
+                        <div class="producttext">上架中</div>
+                        <div class="product-btn fa-solid fa-paw"></div>
+                    </div>
+                </div>
+
+                <div class="loadingbox ">
+                    <img src="https://res.cloudinary.com/dnsu1sjml/image/upload/v1665245299/jack-russell-terrier-puppy-seven-weeks-old-standing-white-background-picture-id120709850_lsxxmb.jpg">
+                    <div class="cssload-container up">
+                        <div class="cssload-item cssload-moon"></div>
+                    </div>
+                    <span>載入中，請稍後</span>
+                </div>
+                <!-- 表單內容 -->
+                <div class="container-service-body">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    服務選項設定
+                                    <div class="fa-solid fa-paw headerpaw"></div>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="container-input-body step-1-sheet">
+
+                                        <div class="inputs">
+                                                <label  for="service-type" class="pawsday-input-label">
+                                                服務類別
+                                                <span  class="text-danger servicetypespan null">*</span>
+                                                <span class="note">不同類別的服務請分開上架唷</span>
+                                            </label>
+                                            @if (product.ProductID is null)
+                                            {
+                                            <select asp-items="@product.ServiceTypeList" class="pawsday-input" id="service-type"></select>
+                                            }
+                                            else{<select asp-for="@product.ServiceType" asp-items="@product.ServiceTypeList" class="pawsday-input" id="service-type"></select>}
+                                        
+                                        </div>
+
+                                        <div class="inputs">
+                                            <label class="pawsday-input-label">
+                                                服務縣市
+                                                <span class="text-danger countybox-span null">*</span>
+                                            </label>
+                                            <div class="checkbox-option county-box">
+                                                @foreach(var county in Model.CountyList)
+                                                {
+                                                    <div>
+                                                        <input type="checkbox" id="@county.CountyId-@county.County" class="countyinput" data-countyid="@county.CountyId">
+                                                        <label for="@county.CountyId-@county.County">@county.County</label>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="inputs">
+                                            <label class="pawsday-input-label">
+                                                服務地區
+                                                <span class="text-danger districtbox-span null">*</span>
+                                            </label>
+                                            <div class="checkbox-option district-box">
+                                                @foreach(var district in Model.DistrictList)
+                                                {
+                                                    <div style="display:none">
+                                                        <input type="checkbox"  class="districtinput" id="@district.DistrictId-@district.District" data-countyid="@district.CountyId" data-districtid="@district.DistrictId" style="display:none">
+                                                        <label for="@district.DistrictId-@district.District">@district.District</label>
+                                                    </div>
+                                                }
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="inputs">
+                                            <label class="pawsday-input-label">
+                                                服務寵物類別
+                                                <span class="text-danger petbox-span null">*</span>
+                                            </label>
+                                            <div class="checkbox-option petbox">
+                                                <div class="pettype">
+                                                    <input type="checkbox" class="pettypeinput" id="dog" data-pet="0">
+                                                    <label class="pettypelabel" for="dog">狗狗</label>
+                                                </div>
+                                                <div class="pettype">
+                                                    <input type="checkbox" class="pettypeinput" id="cat" data-pet="1">
+                                                    <label class="pettypelabel" for="cat">貓咪</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dogshapebox shapebox">
+                                            <label class="pawsday-input-label">
+                                                服務寵物體型-狗狗
+                                                <span class="text-danger dogbox-span">*</span>
+                                            </label>
+                                            <div class="checkbox-option dogbox">
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="dog-mini" data-pet="0" data-shape="0">
+                                                    <label for="dog-mini">迷你型(5kg以下)</label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="dog-small" data-pet="0" data-shape="1">
+                                                    <label for="dog-small">小型(5kg以上~10kg)</label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="dog-middle" data-pet="0" data-shape="2">
+                                                    <label for="dog-middle">中型(10kg以上~20kg)</label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="dog-large" data-pet="0" data-shape="3">
+                                                    <label for="dog-large">大型(20kg以上~40kg)</label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="dog-huge" data-pet="0" data-shape="4">
+                                                    <label for="dog-huge">超大型(40kg以上)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="catshapebox shapebox">
+                                            <label class="pawsday-input-label">
+                                                服務寵物體型-貓咪
+                                                <span class="text-danger catbox-span">*</span>
+                                            </label>
+                                            <div class="checkbox-option catbox">
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="cat-mini" data-pet="1" data-shape="0">
+                                                    <label for="cat-mini">迷你型(5kg以下)</label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="cat-small" data-pet="1" data-shape="1">
+                                                    <label for="cat-small">小型(5kg以上~10kg)</label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="cat-middle" data-pet="1" data-shape="2">
+                                                    <label for="cat-middle">中型(10kg以上~20kg)</label>
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="cat-large" data-pet="1" data-shape="3">
+                                                    <label for="cat-large">大型(20kg以上~40kg)</label> 
+                                                </div>
+                                                <div>
+                                                    <input type="checkbox" class="typeselection" id="cat-huge" data-pet="1" data-shape="4">
+                                                    <label for="cat-huge">超大型(40kg以上)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="weeksection">
+                                            <label class="pawsday-input-label">
+                                                服務時間
+                                                <span class="text-danger weekbox-span null">*</span>
+                                            </label>
+                                            <div class="week-box">
+                                            <button class="week" data-week="0" id="sunday">日</button>
+                                                <button class="week" data-week="1" id="monday">一</button>
+                                                <button class="week" data-week="2" id="tuesday">二</button>
+                                                <button class="week" data-week="3" id="wednesay">三</button>
+                                                <button class="week" data-week="4" id="thursday">四</button>
+                                                <button class="week" data-week="5" id="friday">五</button>
+                                                <button class="week" data-week="6" id="saturday">六</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo" data-first="1">
+                                <button class="accordion-button collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    服務價格設定
+                                    <div class="fa-solid fa-paw headerpaw"></div>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"  aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="container-input-body step-2-sheet">
+                                        <div class="inputs">
+                                            <label class="pawsday-input-label">
+                                                價格設定
+                                                <span class="text-danger pricebox-span">*</span>
+                                                <span class="note">夜間時段為00:00~05:59</span>
+                                            </label>
+                                            <div class="funcbtn-box">
+                                                <div class="pawsday-btn" id="clearprice">全部清除</div>
+                                            </div>
+
+                                            <div class="price-table">
+                                                <div class="row thead">
+                                                    <div class="col col-3">寵物類別</div>
+                                                    <div class="col col-3">體型類別</div>
+                                                    <div class="col col-3">一般時段價格</div>
+                                                    <div class="col col-3">夜間時段價格</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    服務介紹設定
+                                <div class="fa-solid fa-paw headerpaw"></div>
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="container-input-body step-3-sheet">
+                                        <div class="inputs">
+                                            <label class="pawsday-input-label">
+                                                服務照片
+                                                <span class="text-danger imgbox-span null">*</span>
+                                                <span class="note">最多可上傳3張</span>
+                                            </label>
+                                            <div class="image-preview-box ">
+                                                <div class="image-preview" draggable="true">
+                                                    <label class="person-img-camera">
+                                                        <i class="fa-solid fa-camera"></i>
+                                                        <input type="file" class="upload" accept=".png, .jpg, .jpeg">
+                                                    </label>
+                                                    <div class="cssload-square d-none">
+                                                        <div class="cssload-square-part cssload-square-green"></div>
+                                                        <div class="cssload-square-part cssload-square-pink"></div>
+                                                        <div class="cssload-square-blend"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="image-preview" draggable="true">
+                                                    <label class="person-img-camera">
+                                                        <i class="fa-solid fa-camera"></i>
+                                                        <input type="file" class="upload" accept=".png, .jpg, .jpeg">
+                                                    </label>
+                                                <div class="cssload-square d-none">
+                                                    <div class="cssload-square-part cssload-square-green"></div>
+                                                    <div class="cssload-square-part cssload-square-pink"></div>
+                                                    <div class="cssload-square-blend"></div>
+                                                </div>
+                                                </div>
+                                                <div class="image-preview" draggable="true">
+                                                    <label class="person-img-camera">
+                                                        <i class="fa-solid fa-camera"></i>
+                                                    <input type="file" class="upload" accept=".png, .jpg, .jpeg">
+                                                    </label>
+                                                    <div class="cssload-square d-none">
+                                                        <div class="cssload-square-part cssload-square-green"></div>
+                                                        <div class="cssload-square-part cssload-square-pink"></div>
+                                                        <div class="cssload-square-blend"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inputs editorbox">
+                                            <label for="editor" class="pawsday-input-label">
+                                                服務內容簡述
+                                                <span class="text-danger editorbox-span null">*</span>
+                                            </label>
+                                            <div class="textarea">
+                                                <textarea class="textarea" id="editor"  placeholder="請輸入30~300字服務介紹">@Html.Raw(product.Introduce)</textarea>
+                                            <div id="word-count"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="log">
+                    @if (product.UpdateTime is null)
+                    {
+                    }
+                    else if (product.UpdateTime != "")
+                    {
+                         <p asp-for="@product.UpdateTime">編輯時間：@product.UpdateTime</p>
+                    }
+                    <div class="d-none productid" id="@product.ProductID"></div>
+                    
+                    </div>
+                    <div class="service-btn">
+                        <a asp-route="ProductSetting/On" class="pawsday-btn goback">返回服務管理</a>
+                    <span class="text-danger save-span"></span>
+                        <div class="pawsday-btn save-disabled" id="preview-service" onclick="showpreview()">預覽並儲存</div>
+                      
+                    </div>
+                </div>
+                
+
+            </div>
+
+        </section>
+    </article>
+
+    <!-- 價格及時間模板 -->
+    <template id="pricetemp">
+        <div class="row tbody">
+            <div class="col col-3 typetext"></div>
+            <div class="col col-3 shapetext"></div>
+            <div  class="col col-3 price-box">
+                <input type="text" placeholder="輸入價格" class="pawsday-input input-price normalprice">
+            </div>
+            <div class="col col-3 price-box">
+                <input type="text" placeholder="輸入價格" class="pawsday-input input-price nightprice">
+            </div>
+        </div>
+    </template>
+    <template id="timetemp">
+        <div class="timeset">
+            <div class="day"></div>
+            <div class="timetype">
+                <input type="radio" class="radio allday" value="all" checked>
+                <label class="alllabel" for="all">整日皆可</label>
+            </div>
+            <div class="timetype">
+                <input type="radio"  class="radio part">
+                <label class="partlabel" for="part">部分時段</label>
+                <div class="parttime-box">
+
+                <div class="parttime"><input type="checkbox" class="checkbox parttimeinput morning" checked><label class="c-morning" for="morning">06:00~11:59</label></div>
+                <div class="parttime"><input type="checkbox" class="checkbox parttimeinput afternoon" checked><label class="c-afternoon" for="afternoon">12:00~17:59</label></div>
+                <div class="parttime"><input type="checkbox" class="checkbox parttimeinput night" checked><label class="c-night" for="night">18:00~23:59</label></div>
+                <div class="parttime"><input type="checkbox" class="checkbox parttimeinput midnight" checked><label class="c-midnight" for="midnight">00:00~05:59</label></div>
+                </div>
+            </div>
+            <div class="fa-solid fa-xmark day-delete"></div>
+        </div>
+    </template>
+
+
+    <!-- 預覽 -->
+    <div class="preview-box">
+        <div class="preview-header" onclick="hidepreview()">
+            <h2>上架預覽畫面</h2>
+            <div class="close"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="loadingbox preview-loadingbox">
+            <img src="https://res.cloudinary.com/dnsu1sjml/image/upload/v1665245299/jack-russell-terrier-puppy-seven-weeks-old-standing-white-background-picture-id120709850_lsxxmb.jpg">
+            <div class="cssload-container">
+                <div class="cssload-item cssload-moon"></div>
+            </div>
+            <span>快遞狗狗努力趕路中，請稍後</span>
+            <span>請暫時不要離開此頁面</span>
+        </div>
+        <div class="preview-body">
+            <div class="container commodity" id="commodity">
+
+                <div id="carouselExampleIndicators" class="commodity-photo carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        @*放照片*@
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div class="row commodity-container">
+                    <div class="commodity-content col-12">
+                        <div class="commodity-header">
+                            <h2 class="commodity-title" id="commodity-title">@product.SitterName | </h2>                            
+                            <h2 class="commodity-title previewtitle"> </h2>                            
+                            <h3 class="commodity-place place-span">
+                                @*放地區*@
+                            </h3>
+                        </div>
+
+                        <div class="commodity-item  row">
+                            <h3 class="commodity-item-title col-2">
+                                優惠方案
+                            </h3>
+                            <span class="commodity-item-content preview-discount col-9">
+                                @*折扣方案*@
+                            </span>
+                        </div>
+                        <div class="commodity-item commodity-service row">
+                            <h3 class="commodity-item-title col-2">服務內容</h3>
+                            <span class="commodity-item-content service-intro col-9">
+                                @*商品說明*@
+                            </span>
+                        </div>
+                       <div class="commodity-item commodity-service row">
+                            <h3 class="commodity-item-title col-2">保姆介紹</h3>
+                            <span class="commodity-item-content sitter-info col-9">
+                                @*保姆介紹*@
+                            </span>
+                        </div>
+                        <div class="commodity-item commodity-notice row">
+                            <h3 class="commodity-item-title col-2">購買須知</h3>
+                            <span class="commodity-item-content col-9">
+                                <h4 class="service-type">到府照顧</h4>
+                                <p class="service-type-content">
+                                    @*購物須知*@
+                                </p>
+                            </span>
+                        </div>
+                        <div class="commodity-item commodity-cancel row">
+                            <h3 class="commodity-item-title col-2">取消政策</h3>
+                            <span class="commodity-item-content col-9">
+                                會員於預定日前 5 天（含）之前取消，退還100%費用<br>
+                                會員於預定日 前1 ~ 5 天之間取消，退還50%費用<br>
+                                會員於預定日當日取消，退還0%費用
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="preview-bg"></div>
+
+    
+
+
+@section endJS
+{
+        <script src="~/js/Editor.js"></script>
+    <script src="~/js/SitterCenter/SitterAdd.js" asp-append-version="true"></script>
+}
+

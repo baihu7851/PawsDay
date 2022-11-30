@@ -1,0 +1,928 @@
+﻿
+@{
+    ViewData["Title"] = "Order";
+   
+}
+
+@section topCSS
+{
+    <style>
+        .petList {
+            margin: 20px;
+            box-sizing: border-box;
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #aaa;
+        }
+    </style>
+}
+
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="ordervue">
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800 font-weight-bold">訂單管理</h1>
+
+            <!-- Select Pages -->
+            <div class="d-flex mb-3">
+                <div class="col-4 mw-100 mb-2 input-group">
+                    <template>
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="pages">筆數</label>
+                                <b-form-select class="input-group-text" id="pages" v-model="selected" :options="options" @@change="changeSelect">
+                            </b-form-select>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+
+
+            <b-card no-body>
+                <b-tabs v-model="tabIndex" fill>
+                    <b-tab title="全部訂單" @@click="changeTabIndex(0)">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex align-items-center">
+                                <h6 class="m-0 font-weight-bold"> 搜尋結果:{{totalPage}}筆</h6>
+
+                                <div class="input-group mw-100 navbar-search col-9">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">搜尋：</span>
+                                    </div>
+
+                                    <input type="text" v-model="searchinput"
+                                           class="form-control bg-white border-1 border-secondary small w-25"
+                                           id="searchinput" placeholder="關鍵字" aria-label="Search"
+                                           aria-describedby="basic-addon2">
+
+                                    <b-form-select v-model="selectedSearch" :options="optionsSearch"
+                                                   class="border-secondary">
+                                    </b-form-select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                                @@click="searchContact"
+                                                :disabled="!searchBtn">
+                                            送出
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <b-table class="table table-bordered" striped hover :items="orderAllList"
+                                             :fields="fields">
+                                        <template #cell(status)="row">
+                                            <b-badge pill variant="success" v-if="row.item.status==0">訂單成立</b-badge>
+                                            <b-badge variant="secondary" v-if="row.item.status==1">訂單取消</b-badge>
+                                            <b-badge variant="primary" v-if="row.item.status==2">訂單完成</b-badge>
+                                            <b-badge variant="warning" v-if="row.item.status==3">處理中</b-badge>
+                                        </template>
+                                        <template #cell(actions)="row">
+                                            <button class="btn bg-primary text-white"
+                                                    @@click="orderAllListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#OrderModal">
+                                                訂單資料
+                                            </button>
+                                            <button class="btn bg-secondary text-white"
+                                                    @@click="orderPetListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#PetModal">
+                                                寵物資料
+                                            </button>
+                                        </template>
+                                    </b-table>
+                                </div>
+                                <b-pagination v-model="currentPage" :total-rows="totalPage" :per-page="perPage"
+                                              size="md" @@click.native="changeOrderAllPage()"
+                                              class="justify-content-center mt-2 sec">
+                                </b-pagination>
+                            </div>
+                        </div>
+                    </b-tab>
+                    <b-tab title="訂單成立" @@click="changeTabIndex(1)">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex align-items-center">
+                                <h6 class="m-0 font-weight-bold"> 搜尋結果:{{totalPage}}筆</h6>
+
+                            </div>
+                            <b-tabs fill v-model="statusIndex">
+                                <b-tab title="未服務" @@click="getOrderSuccess">
+                                    <div class="card-body">
+                                        <div class="input-group w-50 navbar-search mb-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">搜尋：</span>
+                                            </div>
+
+                                            <input type="text" v-model="searchOrderNumInput"
+                                                   class="form-control bg-white border-1 border-secondary small w-25"
+                                                   placeholder="訂單編號">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                        @@click="serachOrderNumStatus(1)"
+                                                        :disabled="!searchNumBtn">
+                                                    送出
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <b-table class="table table-bordered" striped hover
+                                                     :items="orderAllList" :fields="fieldsSuccess">
+                                                <template #cell(status)="row">
+                                                    <b-badge pill variant="success" v-if="row.item.status==0">
+                                                        訂單成立
+                                                    </b-badge>
+                                                    <b-badge variant="secondary" v-if="row.item.status==1">
+                                                        訂單取消
+                                                    </b-badge>
+                                                    <b-badge variant="primary" v-if="row.item.status==2">
+                                                        訂單完成
+                                                    </b-badge>
+                                                    <b-badge variant="warning" v-if="row.item.status==3">
+                                                        處理中
+                                                    </b-badge>
+                                                </template>
+                                                <template #cell(actions)="row">
+                                                    <button class="btn bg-primary text-white"
+                                                            @@click="orderAllListBtn(row.item.id)" data-toggle="modal"
+                                                            data-target="#OrderModal">
+                                                        訂單資料
+                                                    </button>
+                                                    <button class="btn bg-secondary text-white"
+                                                            @@click="orderPetListBtn(row.item.id)" data-toggle="modal"
+                                                            data-target="#PetModal">
+                                                        寵物資料
+                                                    </button>
+
+                                                </template>
+                                                <template #cell(changestatus)="row">
+                                                    <button class="btn bg-danger text-white"
+                                                            @@click="changeStatusidToId(row.item.id)" data-toggle="modal"
+                                                            data-target="#changeStatus">
+                                                        移置處理中
+                                                    </button>
+                                                </template>
+                                            </b-table>
+                                        </div>
+                                        <b-pagination v-model="currentPage" :total-rows="totalPage"
+                                                      :per-page="perPage" size="md" @@click.native="changeOrderSuccessPage()"
+                                                      class="justify-content-center mt-2 sec">
+                                        </b-pagination>
+                                    </div>
+                                </b-tab>
+                                <b-tab title="已服務" @@click="getAlreadyOrderList">
+                                    <div class="input-groups mt-3 d-flex align-items-center">
+                                        <!-- <template>
+                                            <div class="input-group-prepend d-flex ml-3 col-3">
+                                                <label class="input-group-text" for="pages">完成天數</label>
+                                                <b-form-select id="pages" v-model="selectedFinishDay"
+                                                    :options="optionsFinishDay" @@change="finishDaySelect"
+                                                    class="col-5">
+                                                </b-form-select>
+                                                </label>
+                                        </template> -->
+                                        <div class="input-group col-5 navbar-search">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">搜尋：</span>
+                                            </div>
+
+                                            <input type="text" v-model="searchOrderNumInput"
+                                                   class="form-control bg-white border-1 border-secondary small w-25"
+                                                   placeholder="訂單編號">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                        @@click="serachOrderNumStatus(-1)"
+                                                        :disabled="!searchNumBtn">
+                                                    送出
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="input-group col-4 navbar-search d-flex align-item-center">
+                                            <div class="input-group-prepend input-group-text">
+                                                <label class="mb-0">
+
+                                                    <input type="checkbox" v-model="checked"
+                                                           @@change="changeAllChecked()">
+                                                    全選
+                                                </label>
+
+                                            </div>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#changeStatusClear"
+                                                        :disabled="!checkBtn">
+                                                    移至完成
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <b-table class="table table-bordered" striped hover
+                                                     :items="orderAllList" :fields="fieldsAlready">
+                                                <template #cell(status)="row">
+                                                    <b-badge pill variant="success" v-if="row.item.status==0">
+                                                        訂單成立
+                                                    </b-badge>
+                                                    <b-badge variant="secondary" v-if="row.item.status==1">
+                                                        訂單取消
+                                                    </b-badge>
+                                                    <b-badge variant="primary" v-if="row.item.status==2">
+                                                        訂單完成
+                                                    </b-badge>
+                                                    <b-badge variant="warning" v-if="row.item.status==3">
+                                                        處理中
+                                                    </b-badge>
+                                                </template>
+                                                <template #cell(actions)="row">
+                                                    <button class="btn bg-primary text-white"
+                                                            @@click="orderAllListBtn(row.item.id)" data-toggle="modal"
+                                                            data-target="#OrderModal">
+                                                        訂單資料
+                                                    </button>
+                                                    <button class="btn bg-secondary text-white"
+                                                            @@click="orderPetListBtn(row.item.id)" data-toggle="modal"
+                                                            data-target="#PetModal">
+                                                        寵物資料
+                                                    </button>
+
+                                                </template>
+                                                <template #cell(changestatus)="row">
+                                                    <button class="btn bg-danger text-white"
+                                                            @@click="changeStatusidToId(row.item.id)" data-toggle="modal"
+                                                            data-target="#changeStatus">
+                                                        移至處理中
+                                                    </button>
+                                                </template>
+
+                                                <template #cell(checkbox)="row">
+                                                    <b-form-checkbox :value="row.item.id"
+                                                                     v-model="selectedCheckbox">
+                                                    </b-form-checkbox>
+                                                </template>
+                                            </b-table>
+                                        </div>
+                                        <b-pagination v-model="currentPage" :total-rows="totalPage"
+                                                      :per-page="perPage" size="md" @@click.native="changeOrderSuccessPage()"
+                                                      class="justify-content-center mt-2 sec">
+                                        </b-pagination>
+                                    </div>
+                                </b-tab>
+                            </b-tabs>
+
+                        </div>
+                    </b-tab>
+                    <b-tab title="訂單取消" @@click="changeTabIndex(2)">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex align-items-center">
+                                <h6 class="m-0 font-weight-bold"> 搜尋結果:{{totalPage}}筆</h6>
+
+                                <div class="input-group mw-100 navbar-search col-7">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">搜尋：</span>
+                                    </div>
+
+                                    <input type="text" v-model="searchOrderNumInput"
+                                           class="form-control bg-white border-1 border-secondary small w-25"
+                                           id="searchinput" placeholder="訂單編號" aria-label="Search"
+                                           aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                                @@click="serachOrderNum"
+                                                :disabled="!searchNumBtn">
+                                            送出
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <b-table class="table table-bordered" striped hover :items="orderAllList"
+                                             :fields="fields">
+                                        <template #cell(status)="row">
+                                            <b-badge pill variant="success" v-if="row.item.status==0">訂單成立</b-badge>
+                                            <b-badge variant="secondary" v-if="row.item.status==1">訂單取消</b-badge>
+                                            <b-badge variant="primary" v-if="row.item.status==2">訂單完成</b-badge>
+                                            <b-badge variant="warning" v-if="row.item.status==3">處理中</b-badge>
+                                        </template>
+                                        <template #cell(actions)="row">
+                                            <button class="btn bg-primary text-white"
+                                                    @@click="orderAllListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#OrderModal">
+                                                訂單資料
+                                            </button>
+                                            <button class="btn bg-secondary text-white"
+                                                    @@click="orderPetListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#PetModal">
+                                                寵物資料
+                                            </button>
+                                            <button class="btn bg-danger text-white"
+                                                    @@click="getOrderCancel(row.item.id)" data-toggle="modal"
+                                                    data-target="#cancelContent">
+                                                取消資料
+                                            </button>
+                                        </template>
+                                    </b-table>
+                                </div>
+                                <b-pagination v-model="currentPage" :total-rows="totalPage" :per-page="perPage"
+                                              size="md" @@click.native="changeOrderAllPage()"
+                                              class="justify-content-center mt-2 sec">
+                                </b-pagination>
+                            </div>
+                        </div>
+                    </b-tab>
+                    <b-tab title="訂單完成" @@click="changeTabIndex(3)">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex align-items-center">
+                                <h6 class="m-0 font-weight-bold"> 搜尋結果:{{totalPage}}筆</h6>
+
+                                <div class="input-group mw-100 navbar-search col-7">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">搜尋：</span>
+                                    </div>
+
+                                    <input type="text" v-model="searchOrderNumInput"
+                                           class="form-control bg-white border-1 border-secondary small w-25"
+                                           id="searchinput" placeholder="訂單編號" aria-label="Search"
+                                           aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                                @@click="serachOrderNum"
+                                                :disabled="!searchNumBtn">
+                                            送出
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <b-table class="table table-bordered" striped hover :items="orderAllList"
+                                             :fields="fields">
+                                        <template #cell(status)="row">
+                                            <b-badge pill variant="success" v-if="row.item.status==0">訂單成立</b-badge>
+                                            <b-badge variant="secondary" v-if="row.item.status==1">訂單取消</b-badge>
+                                            <b-badge variant="primary" v-if="row.item.status==2">訂單完成</b-badge>
+                                            <b-badge variant="warning" v-if="row.item.status==3">處理中</b-badge>
+                                        </template>
+                                        <template #cell(actions)="row">
+                                            <button class="btn bg-primary text-white"
+                                                    @@click="orderAllListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#OrderModal">
+                                                訂單資料
+                                            </button>
+                                            <button class="btn bg-secondary text-white"
+                                                    @@click="orderPetListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#PetModal">
+                                                寵物資料
+                                            </button>
+                                            <button class="btn bg-success text-white"
+                                                    @@click="getOrderEvaluation(row.item.id)" data-toggle="modal"
+                                                    data-target="#orderEvaluation">
+                                                評論資料
+                                            </button>
+                                        </template>
+                                    </b-table>
+                                </div>
+                                <b-pagination v-model="currentPage" :total-rows="totalPage" :per-page="perPage"
+                                              size="md" @@click.native="changeOrderAllPage()"
+                                              class="justify-content-center mt-2 sec">
+                                </b-pagination>
+                            </div>
+                        </div>
+                    </b-tab>
+                    <b-tab title="訂單處理中" @@click="changeTabIndex(4)">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex align-items-center">
+                                <h6 class="m-0 font-weight-bold"> 搜尋結果:{{totalPage}}筆</h6>
+
+                                <div class="input-group mw-100 navbar-search col-7">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">搜尋：</span>
+                                    </div>
+
+                                    <input type="text" v-model="searchOrderNumInput"
+                                           class="form-control bg-white border-1 border-secondary small w-25"
+                                           id="searchinput" placeholder="訂單編號" aria-label="Search"
+                                           aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                                @@click="serachOrderNum"
+                                                :disabled="!searchNumBtn">
+                                            送出
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <b-table class="table table-bordered" striped hover :items="orderAllList"
+                                             :fields="fields">
+                                        <template #cell(status)="row">
+                                            <b-badge pill variant="success" v-if="row.item.status==0">訂單成立</b-badge>
+                                            <b-badge variant="secondary" v-if="row.item.status==1">訂單取消</b-badge>
+                                            <b-badge variant="primary" v-if="row.item.status==2">訂單完成</b-badge>
+                                            <b-badge variant="warning" v-if="row.item.status==3">處理中</b-badge>
+                                        </template>
+                                        <template #cell(actions)="row">
+                                            <button class="btn bg-primary text-white"
+                                                    @@click="orderAllListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#OrderModal">
+                                                訂單資料
+                                            </button>
+                                            <button class="btn bg-secondary text-white"
+                                                    @@click="orderPetListBtn(row.item.id)" data-toggle="modal"
+                                                    data-target="#PetModal">
+                                                寵物資料
+                                            </button>
+                                            <button class="btn bg-danger text-white"
+                                                    @@click="changeStatusidToId(row.item.id)" data-toggle="modal"
+                                                    data-target="#orderHandle">
+                                                修改狀態
+                                            </button>
+                                        </template>
+                                    </b-table>
+                                </div>
+                                <b-pagination v-model="currentPage" :total-rows="totalPage" :per-page="perPage"
+                                              size="md" @@click.native="changeOrderAllPage()"
+                                              class="justify-content-center mt-2 sec">
+                                </b-pagination>
+                            </div>
+                        </div>
+                    </b-tab>
+                </b-tabs>
+            </b-card>
+        </div>
+        <!-- /.container-fluid -->
+        <!-- modal -->
+        <div class="modal fade pt-md-5 " tabindex="-1" id="OrderModal">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">詳細資料</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body  p-3 ">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    訂單ID
+                                </div>
+                                <div class="context h6">{{orderContent.orderId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    訂單編號
+                                </div>
+                                <div class="context  h6">{{orderContent.orderNumber}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    總價
+                                </div>
+                                <div class="context  h6">{{orderContent.amount}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    會員ID
+                                </div>
+                                <div class="context  h6">{{orderContent.customerId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    訂購人姓名
+                                </div>
+                                <div class="context  h6">{{orderContent.bookingName}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    訂購人電話
+                                </div>
+                                <div class="context  h6">{{orderContent.bookingPhone}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    商品ID
+                                </div>
+                                <div class="context  h6">{{orderContent.productId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    保姆ID
+                                </div>
+                                <div class="context  h6">{{orderContent.sitterId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    保姆名稱
+                                </div>
+                                <div class="context  h6">{{orderContent.sitterName}}</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    折扣
+                                </div>
+                                <div class="context  h6">{{orderContent.discount}}</div>
+                            </div>
+                            <div class="col-8 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    訂購人Email
+                                </div>
+                                <div class="context  h6">{{orderContent.bookingEmail}}</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    訂單狀態
+                                </div>
+                                <div class="context  h6">{{orderContent.orderStatus | orderStatus}}</div>
+                            </div>
+                            <div class="col-8 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    訂單成立時間
+                                </div>
+                                <div class="context  h6">{{orderContent.createTime | changeTime}}</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    發票型態
+                                </div>
+                                <div class="context  h6">{{orderContent.invoiceType| changeInvoice}}</div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    發票號碼
+                                </div>
+                                <div class="context  h6">{{orderContent.invoiceId}}</div>
+                            </div>
+
+                        </div>
+                        <div class="row d-flex justify-content-center"
+                             v-if="orderContent.unoformNumber != undefined">
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    統編
+                                </div>
+                                <div class="context  h6">{{orderContent.unoformNumber}}</div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    受買人
+                                </div>
+                                <div class="context  h6">{{orderContent.companyName}}</div>
+                            </div>
+
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    托保聯絡人
+                                </div>
+                                <div class="context  h6">{{orderContent.name}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    托保聯絡電話
+                                </div>
+                                <div class="context  h6">{{orderContent.phone}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    服務名稱
+                                </div>
+                                <div class="context  h6">{{orderContent.productName}}</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-12 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    服務地址
+                                </div>
+                                <div class="context  h6">{{orderContent.address}}</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    開始時間
+                                </div>
+                                <div class="context  h6">{{orderContent.beginTime|changeTime}}</div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    結束時間
+                                </div>
+                                <div class="context  h6">{{orderContent.endTime|changeTime}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade pt-md-5 " tabindex="-1" id="PetModal">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">詳細資料</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body  p-3 petList" v-for="item in petContect">
+                        <div class="row d-flex justify-content-center ">
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    訂單ID
+                                </div>
+                                <div class="context h6">{{item.orderId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    寵物ID
+                                </div>
+                                <div class="context  h6">{{item.petId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    寵物名稱
+                                </div>
+                                <div class="context  h6">{{item.petName}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    寵物種類
+                                </div>
+                                <div class="context  h6">{{item.petType}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    寵物體型
+                                </div>
+                                <div class="context  h6">{{item.shapeType}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    性別
+                                </div>
+                                <div class="context  h6">{{item.petSex}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    打疫苗
+                                </div>
+                                <div class="context  h6">{{item.vaccine}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    結紮
+                                </div>
+                                <div class="context  h6">{{item.ligation}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    出生年
+                                </div>
+                                <div class="context  h6">{{item.birthYear}}</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center ">
+                            <div class="col-12 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    寵物個性
+                                </div>
+                                <div class="context  h6">
+                                    {{item.petDiscription}}
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center " v-if="item.petIntro==''">
+                                <div class="col-12 text-center">
+                                    <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                        補充描述
+                                    </div>
+                                    <div class="context  h6">
+                                        {{item.petIntro}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade pt-md-5 " tabindex="-1" id="changeStatus">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">狀態修改</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body  p-3">
+                        是否確認修改訂單狀態為處理中
+                    </div>
+                    <button type="button" class="btn btn-info" @@click="orderChangeStatus">
+                        是
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade pt-md-5 " tabindex="-1" id="cancelContent">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">取消資料</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body  p-3">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    訂單ID
+                                </div>
+                                <div class="context h6">{{cancelContect.orderId}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    取消時間
+                                </div>
+                                <div class="context h6">{{cancelContect.cancelDate|changeTime}}</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    退款%數
+                                </div>
+                                <div class="context h6">{{cancelContect.refundPersent}}</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center ">
+                            <div class="col-12 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    取消原因
+                                </div>
+                                <div class="context h6">{{cancelContect.cancelReason}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade pt-md-5 " tabindex="-1" id="orderHandle">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">狀態修改</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body  p-3">
+                        <div class="row d-flex align-items-center mb-2">
+                            <div class="col-4 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    訂單ID
+                                </div>
+                                <div class="context h6">{{changeStatusId}}</div>
+                            </div>
+                            <div class="col-8 text-center w-100  input-group mb-2">
+                                <template>
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="status">狀態</label>
+                                        <b-form-select id="status" v-model="selectedStatus"
+                                                       :options="optionsStatus"
+                                                       class="input-group-text"
+                                                       @@change="changeOrderHandleToOther">
+                                        </b-form-select>
+                                    </div>
+                                </template>
+
+                            </div>
+
+                        </div>
+                        <div class="row d-flex justify-content-center mb-2" v-if="selectedStatus=='訂單取消'">
+                            <div class="col-12 text-center mb-4">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    取消原因
+                                </div>
+                                <textarea type="text"
+                                          class="form-control bg-white border-1 border-secondary small w-100"
+                                          v-model="cancelReason" placeholder="請輸入取消原因" rows="3">
+                                    </textarea>
+
+                            </div>
+                            <div class="col-12 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    取消退還%數
+                                </div>
+                                <input type="number"
+                                       class="form-control bg-white border-1 border-secondary small w-25"
+                                       v-model="refundPersent" placeholder="請輸入%數" max="1" min="0" step="0.1">
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-info" 
+                                    @@click="handleOrderChangeStatus"
+                                    :disabled="!orderStatusBtn">
+                                送出
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade pt-md-5 " tabindex="-1" id="changeStatusClear">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">狀態修改</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body  p-3">
+                        是否確認修改訂單狀態為完成
+                    </div>
+                    <button class="btn btn-info" @@click="orderChangeStatusClear">
+                        是
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade pt-md-5 " tabindex="-1" id="orderEvaluation">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">訂單評論</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div v-if="evaluationList.length==0" class="modal-body  p-3 ">
+                        無資料
+                    </div>
+                    <div class="modal-body  p-3 petList" v-for="item in evaluationList"
+                         v-if="evaluationList.length!=0">
+                        <div class="row d-flex justify-content-center ">
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    評論ID
+                                </div>
+                                <div class="context h6">{{item.evaluationId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    訂單ID
+                                </div>
+                                <div class="context h6">{{item.orderId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    評論時間
+                                </div>
+                                <div class="context h6">{{item.createTime|changeTime}}</div>
+
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    會員ID
+                                </div>
+                                <div class="context  h6">{{item.userId}}</div>
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center ">
+                                    評論者
+                                </div>
+                                <div class="context h6">{{item.userType|changeUserType}}</div>
+
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    評論星數
+                                </div>
+                                <div class="context  h6">
+                                    {{item.evaluationScore}}
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center ">
+                            <div class="col-12 text-center">
+                            </div>
+                            <div class="col-12 text-center">
+                                <div class="title font-weight-bold h6 text-white bg-dark w-100 text-center">
+                                    評論內容
+                                </div>
+                                <div class="context  h6">
+                                    {{item.message}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Main Content -->
+
+</div>
+
+@section endJS
+{
+    <script src="~/js/Order.js"></script>
+}

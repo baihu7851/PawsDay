@@ -1,0 +1,110 @@
+.container-full-width {
+  display: flex;
+  justify-content: center;
+}
+
+.container-switch {
+  position: relative;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+.container-switch .row {
+  padding: 30px 0;
+}
+
+/*.share-group {
+  display: flex;
+  font-size: 20px;
+  position: relative;
+  padding-top: 15px;
+  margin-bottom: 26px;
+}
+.share-group .share-item:first-child::before {
+  content: "";
+  height: 4px;
+  width: 55px;
+  background-color: var(--clr-border);
+  position: absolute;
+  top: 0;
+}
+.share-group .share-item + .share-item {
+  padding-left: 20px;
+}
+.share-group .share-link {
+  color: var(--clr-bg-g);
+}
+.share-group .share-link:hover {
+  color: var(--clr-border);
+}*/
+
+.latesnews-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.breadcrumb-lastestnews {
+  font-size: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--clr-bg-g);
+  margin-bottom: 40px;
+}
+.breadcrumb-lastestnews .breadcrumb-lastestnews-link {
+  color: var(--clr-bg-g);
+}
+.post-content {
+    background-image: url('../../images/form.png');
+    background-size: 100%;
+}
+
+.post-content .post-paragraph {
+  margin-bottom: 20px;
+}
+.post-content .title-h3 {
+  padding-top: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fda64a;
+}
+
+@media screen and (min-width: 1200px) {
+  .container-switch {
+    position: relative;
+    max-width: 1200px;
+    padding: 0 140px;
+  }
+ /* .share-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    left: 50px;
+    top: 136px;
+    position: absolute;
+    padding-top: 15px;
+    margin-bottom: 26px;
+  }
+  .share-group .share-item:first-child {
+    position: relative;
+    right: -4px;
+  }
+  .share-group .share-item:first-child::before {
+    content: "";
+    height: 4px;
+    width: 30px;
+    background-color: var(--clr-border);
+    position: absolute;
+    left: -9px;
+    top: -20px;
+  }
+  .share-group .share-item + .share-item {
+    padding-left: 0px;
+    padding-top: 5px;
+  }
+  .share-group .share-link {
+    color: var(--clr-bg-g);
+  }
+  .share-group .share-link:hover {
+    color: var(--clr-border);
+  }*/
+}

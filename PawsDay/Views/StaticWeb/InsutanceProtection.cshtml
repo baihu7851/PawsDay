@@ -1,0 +1,161 @@
+﻿@{
+    Layout = "_LayoutSearchNone";
+}
+
+@section topCSS{
+    <link rel="stylesheet" href="~/css/staticWeb/staticPrivacy.css">
+}
+
+@{
+    ViewData["Title"] = "隱私權保護政策";
+}
+
+<section class="contact-title-container">
+    <h2 class="title-h2">
+        PawsDay<br>保險與保障
+    </h2>
+</section>
+
+<div class="container privacy-container">
+    <section class="privacy-btn">
+        <select class="form-select pawsday-input" aria-label="Default select example" id="privacy-select">
+            <option value="隱私權保護政策"><a asp-controller="StaticWeb" asp-action="UserAgreement">使用條款</a></option>
+            <option value="隱私權保護政策"><a href="#">保險與保障</a></option>
+            <option value="隱私權保護政策"><a asp-controller="StaticWeb" asp-action="PrivacyPolicy">隱私權政策</a></option>
+        </select>
+    </section>
+
+    <div class="row">
+        <section class="privacy-list-container col-md-2">
+            <ul class="privacy-list">
+                <li class="user-agreement">
+                    <a asp-controller="StaticWeb" asp-action="UserAgreement">
+                        <p>使用條款</p>
+                    </a>
+                </li>
+                <li class="insutance-protection link-a">
+                    <a href="#">
+                        <p>保險與保障</p>
+                    </a>
+                </li>
+                <li class="privacy-policy">
+                    <a asp-controller="StaticWeb" asp-action="PrivacyPolicy">
+                        <p>隱私權政策</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="privacy-body col-md-10">
+            <div class="privacy-wrap">
+                <ul class="privacy-content">
+                    <!-- 日期 -->
+                    <li class="textarea-data" style="margin-bottom: 10px; text-align: right;">
+                        日期：西元2022年09月01日<br>版本：第1版
+                    </li>
+                    <hr>
+                    <li class="textarea-list" style=" margin-bottom: 10px; position: relative; ">
+                        我們不會向毛小孩家長收取另外的保險或保障費用，PawsDay將會提供您所指定之服務。請細讀以下保險與保障細節：
+                    </li>
+                    <!-- 1.怎麼樣才能取得保險與保障？ -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">
+                        1. 怎麼樣才能取得保險與保障？
+                    </li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        透過PawsDay平台預訂及付費的服務，在服務期間內都會有PawsDay所提供下列服務、保險與保障。<br>
+                        寵物保姆<br>
+                        散步陪伴<br>
+                        到府洗澡<br>
+                        但請詳看保險與保障細節及其例外規定
+                    </li>
+                    <hr>
+
+                    <!-- 2.我們與青杉保險合作，提供之保險與保障包括： -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">2. 我們與青杉保險合作，提供之保險與保障包括：</li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        意外–寵物意外傷害：此保障主要係受照顧的寵物若於寵物服務人員之服務過程中受到意外傷害，可歸責於寵物服務人員之責任，而受賠償請求時，寵物服務人員需先墊相關的獸醫醫療費用，自負額為NT$3,000，就超出自負額之部分，青杉保險額外提供NT$15,000以內之醫療費。若受照顧的寵物遺失，我們會立即於網路上刊登尋寵物廣告，寵物服務人員與寵物主人需自行達成賠償協議。<br>
+                        意外–寵物食物中毒：此保障主要係受照顧的寵物若食用寵物服務人員提供之食物所造成的食物中毒，可歸責於寵物服務人員之責任，而受賠償請求時，寵物服務人員需先墊相關的獸醫醫療費用，自負額為NT$3,000，就超出自負額之部分，青杉保險額外提供NT$15,000以內之醫療費。<br>
+                        公共責任–寵物服務人員對第三方的責任與索賠：此保障包含支付寵物服務人員在服務期間因受照顧的寵物造成的第三方人身傷害或第三方財產損失，可歸責於寵物服務人員之責任，而受賠償請求時，寵物服務人員須先墊相關的賠償費用，自負額為NT$3,000，就超出自負額之部分，青杉保險額外提供NT$2,000,000以內之補助賠償。
+                    </li>
+                    <hr>
+
+                    <!-- 3.保險與保障不包括下列事項： -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">3.保險與保障不包括下列事項：</li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        自負額NT$3,000元。
+                        在PawsDay網站或應用程序以外預訂之服務。<br>
+                        在「家庭訪問」期間的引起的事件、損害或醫療費用。<br>
+                        任何沒結紮、無定期打疫苗、無晶片證明寵物。<br>
+                        寵物服務人員和寵物服務人員之家人朋友的意外傷害或疾病、財產損失或損壞。<br>
+                        任何人因寵物服務人員寵物或寵物主人寵物得到的疾病或病毒。<br>
+                        任何寵物遺失的賠償。<br>
+                        寵物遭野生動物如蛇、鱷魚、老虎等襲擊造成的傷勢。<br>
+                        違反專業（例如在我們認為不適合的地區散步或是未牽繩散步）。<br>
+                        寵物交配、懷孕、強姦所引起的任何索賠，不論是寵物服務人員的寵物或是他人的寵物，PawsDay不對寵物的繁殖、交配、或懷孕負責。<br>
+                        治療現有的病情、寵物的老年問題或疾病（例如呼吸道感染、尿路/膀胱感染、血液疾病、嘔吐、腹瀉和其他胃腸道疾病）我們強調在您開始服務寵物之前盡可能獲取有關寵物的細節！<br>
+                        寵物主人或寵物服務人員的工資損失。<br>
+                        因飼主或是寵物服務人員取消PawsDay的服務而產生的取消假期或旅行重新安排費用。<br>
+                        因PawsDay的服務發生的寵物意外傷害導致取消的旅行費用。<br>
+                        因PawsDay的服務導致的工資損失。<br>
+                        因PawsDay的服務而產生的情緒困擾。<br>
+                        管區法院或相關行政單位之裁罰。<br>
+                        違規或違法行為造成的任何責任索賠（例如違反法律、規則、條例、公契或立法契據）。<br>
+                        任何寵物服務人員和寵物主人在PawsDay外的協議或合約。<br>
+                        非國內管轄法院的判決。<br>
+                        任何中途的服務，PawsDay不收取此服務服務費，因此也不提供保障。<br>
+                        在其他平台所寄養的寵物造成的傷害與賠償。
+                    </li>
+                    <hr>
+
+                    <!-- 4.保險與保障不包括以下寵物種類與人員： -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">4.保險與保障不包括以下寵物種類與人員：</li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        有涉嫌攻擊動物或人類之寵物或是需要持續治療的寵物——所以在預訂前一定要做好確認！<br>
+                        不包含寵物服務人員自己的寵物或服務人員照顧的其他寵物。<br>
+                        商業住宿寄養業者（例如寵物旅館）。<br>
+                        五年內有犯罪前科的寵物保姆和寵物服務人員 (不包含交通違規行為)。<br>
+                        預訂的寵物服務人員擁有不同類型的寵物，例如狗，貓，兔子等等。
+                    </li>
+                    <hr>
+
+                    <!-- 5.發生意外或事件時怎麼辦： -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">5.發生意外或事件時怎麼辦：</li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        我們建議寵物保姆們要求寵物主人填寫緊急聯絡方式。<br>
+                        如果客人的寵物受傷，寵物保姆在做任何醫療行為之前應聯絡寵物主人或是寵物的緊急聯絡人。<br>
+                        寵物保姆應該自行與寵物主人試著解決問題，大部分的問題應有辦法自行解決。
+                    </li>
+                    <hr>
+
+                    <!-- 6.申請賠償前請注意： -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">6.申請賠償前請注意：</li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative; ">
+                        雖然發生意外的機率很低，但如果客人的寵物受傷，寵物保姆在做任何醫療行為之前應聯絡寵物主人或是寵物的緊急聯絡人。<br>
+                        若寵物保姆在意外發生時聯絡不上寵物主人，寵物主人同意寵物保姆可以自行做合理的醫療處理，寵物主人會再補貼醫療費用給寵物保姆。<br>
+                        若寵物有保險，請寵物主人務必將保險資料提供給寵物保姆，若寵物無保險，寵物主人須先給付任何的醫療費用給寵物保姆，之後再向PawsDay申請賠償。<br>
+                        請詳細閱讀確認您的寵物是否在PawsDay保障包含範圍內。
+                    </li>
+                    <hr>
+
+                    <!-- 7.申請賠償流程： -->
+                    <li class="textarea-title" style="font-size:20px; font-weight: bold; margin-bottom: 10px;">7.申請賠償流程：</li>
+                    <li class="textarea-list" style="padding-left: 50px; margin-bottom: 10px; position: relative;">
+                        請寄以下細節到：pawsday@gmail.com<br>
+                        預訂編號<br>
+                        事件的日期和地點<br>
+                        寵物的名字<br>
+                        寵物保姆的名字和聯繫方式<br>
+                        詳細描述事故的情況<br>
+                        寵物受傷和獸醫賬單的照片<br>
+                        寵物主人的獸醫的詳細聯繫方式<br>
+                        寵物主人的寵物保險細節（若適用）<br>
+                        必須在預訂期限結束後一天內通知PawsDay
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+    </div>
+
+</div>
+

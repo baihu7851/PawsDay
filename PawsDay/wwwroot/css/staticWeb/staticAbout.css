@@ -1,0 +1,169 @@
+
+/* 關於我們 */
+.about-title-image{
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-height: 130px;
+}
+.about-title-image img{
+    max-width: 992px;
+    position: absolute;
+    z-index: 1;
+    bottom: -62px;
+}
+.about-title-h2 {
+    display: flex;
+    height: 180px;
+    font-size: var(--mainfont);
+    color: var(--clr-specfont);
+    font-weight: 700;
+    background-color: var(--clr-bg-y);
+}
+.about-title-h2 .title-h2{
+    margin: auto;
+    /* border-bottom: 3px solid var(--clr-border); */
+    letter-spacing: 3px;
+    padding-left: 3px;
+}
+
+.intro-content{
+    width: 100%;
+    padding: 45px 100px ;
+    font-size: var(--font);
+    box-sizing: border-box;
+    text-indent: 2em;
+    line-height:2;
+}
+.about-founder-container{
+    text-align: center;
+    background-color: #e9e8e8;
+}
+
+/*founder*/
+.founder{
+    position: relative;
+}
+.founder-pic{
+    width: 65%;
+    border-radius: var(--radius);
+}
+.founder-card{
+    width: 30%;
+    background-color: var(--clr-bg-y);
+    border-radius: 6px;
+    position: absolute;
+    top: 70%;
+    right: 9%;
+    z-index: 1;
+}
+.founder-image{
+    padding: 20px;
+}
+.card-title{
+    font-size: var(--font);
+}
+.card-h2{
+    font-size: 20px;
+}
+.founder-content{
+    font-size: var(--font);
+    padding-bottom: 20px;
+}
+.content-h2{
+    font-size: var(--mainfont);
+    margin-bottom: 10px;
+}
+.content-item p{
+    line-height: 2;
+}
+
+/*box*/
+.box-container{
+    background-color: var(--clr-bg-y);
+}
+.box-item{
+    text-align: center;
+    padding: 40px 20px;
+}
+.box-item .box-card img{
+    width: 25%;
+    transition: .3s;
+}
+.box-item .box-card img:hover{
+    transform: scale(1.02) translateY(-5px);
+}
+.box-title{
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+.card-text{
+    font-size: var(--font);
+}
+
+/*feedback*/
+.feedback-container{
+    /* background-color: var(--clr-bg-y); */
+    padding: 40px 0;
+    display:none;
+}
+.feedback-group{
+    text-align: center;
+}
+.feedback-title h3{
+    font-size: var(--mainfont);
+    padding-bottom: 40px;
+}
+.feedback-pic{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    height: 600px;
+
+    overflow: hidden;
+    position: relative;
+}
+.feedback-pic img{
+    /*bootstrap*/
+    width: 100%;
+    display: block;
+    /*bootstrap*/
+    position: absolute;
+}
+
+@media screen and (min-width:768px) {
+    .founder-content{
+        display:flex;
+        justify-content: center;
+        align-items:center;
+    }
+
+    .box-item .box-card img{
+        width: 50%;
+        transition: .3s;
+    }
+
+    .feedback-pic{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        width: calc(100% - 320px);
+        margin: 0 160px;
+        height: 500px;
+    
+        overflow: hidden;
+        position: relative;
+    }
+    .feedback-pic img{
+        /*bootstrap*/
+        width: 70%;
+        display: block;
+        /*bootstrap*/
+        position: absolute;
+    }
+}

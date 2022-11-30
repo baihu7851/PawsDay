@@ -1,0 +1,88 @@
+.container-h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+    .container-h4::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: -16px;
+        height: 20px;
+        width: 4px;
+        background-color: var(--clr-border);
+    }
+
+.container-email .container-h4 {
+    margin-left: 15px;
+}
+
+.container-email {
+    padding-top: 20px;
+}
+
+.container-email-verified {
+    display: flex;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+    .container-email-verified p {
+        margin-right: 5px;
+    }
+
+.not-verified {
+    display: inline-block;
+    border-radius: var(--radius);
+    padding: 3px 8px;
+    background-color: var(--clr-bg-g);
+    color: var(--clr-bg-y);
+    font-size: var(--font);
+}
+
+.email-verify {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--clr-border);
+    margin-bottom: 20px;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+    .email-verify:hover {
+        background-color: var(--clr-bg-g);
+    }
+
+    .email-verify:focus {
+        border: 1px solid var(--clr-border);
+    }
+
+.email-verifying {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 24px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    background-color: var(--clr-bg-g);
+    color: var(--clr-font-g);
+    font-size: 16px;
+}
+.account-fail, .account-success {
+    margin-left: 15px;
+}
+.account-success {
+    color: var(--clr-border);
+}
+.password-check {
+    font-size: var(--font);
+    margin-bottom: 10px;
+}
+
+.pawsday-btn:disabled {
+    cursor: not-allowed;
+}

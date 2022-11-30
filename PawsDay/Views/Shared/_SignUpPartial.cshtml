@@ -1,0 +1,83 @@
+﻿
+
+<div>
+    <!-- Modal register -->
+    <div class="modal fade login-register-modal" id="sign-up" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-body modal-container register">
+                    <div class="col-12 back-area">
+                        <button type="button" class="btn btn-link back-btn" data-bs-dismiss="modal"
+                                aria-label="back" data-bs-toggle="modal" data-bs-target="#login">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </button>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="title">免費註冊</div>
+
+                        <div class="subtitle">免費註冊 PawsDay 會員帳號</div>
+                    </div>
+
+                    <div id="signUpPartial">
+                        <form method="post" class="col-12 content">
+                            <div class="d-grid gap-2">
+                                <div class="input-group login-input-group">
+                                    <span class="input-group-text">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </span>
+                                    <input name="Email" type="email" v-model="inputEmailSignUp.email" :class="{'is-invalid':inputEmailSignUpCheck.emailError}" class="form-control external-input input-email"
+                                           id="register-email-input" placeholder="電子郵件" aria-label="email"
+                                           aria-describedby="basic-addon1">
+                                </div>
+                                <div class="text-danger small text-start">{{inputEmailSignUpCheck.emailErrorMsg}}</div>
+
+                                <div class="input-group login-input-group">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </span>
+                                    <input name="Password" type="password" v-model="inputEmailSignUp.password" :class="{'is-invalid':inputEmailSignUpCheck.passwordError}" class="form-control external-input input-password"
+                                           id="register-password-input" placeholder="密碼" aria-label="password"
+                                           aria-describedby="basic-addon1">
+                                </div>
+                                <div class="text-danger small text-start">{{inputEmailSignUpCheck.passwordErrorMsg}}</div>
+                  
+                                @if ((Nullable<bool>)TempData["isSignUpError"] ?? false)
+                                {
+                                    <div class="text-danger small text-start">@TempData["SignUpErrorMsg"]</div>
+                                }
+
+                            </div>
+
+
+                            <div class="notice terms-of-use">
+
+                                <input id="TermsOfUse" name="TermsOfUse" type="checkbox" value="true" v-model="inputEmailSignUp.agree" class="terms-of-use-checkd">
+                                <label for="TermsOfUse" class="notice-text">
+                                    我以詳閱並同意 <a asp-controller="StaticWeb" asp-action="UserAgreement" class="notice-url">使用者條款</a> <span class="text-danger">*</span>
+                                </label>
+                            </div>
+                            <div class="text-danger small text-start mb-2">{{inputEmailSignUpCheck.checkboxErrorMsg}}</div>
+
+
+                            <div class="list-group main-area">
+                                <button :disabled="!isInputEmailSignUpVerify" type="submit" asp-controller="Account" asp-action="SignUp" class="list-group-item main-btn register-btn " data-bs-toggle="modal"
+                                        data-bs-target="#verify">
+                                    送出
+                                </button>
+
+                            </div>
+                            <div class="login link-area">
+                                <a href="" class="other-btn login-btn" data-bs-toggle="modal"
+                                   data-bs-target="#login">已經成為會員，立即加入</a>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

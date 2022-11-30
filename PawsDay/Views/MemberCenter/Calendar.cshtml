@@ -1,0 +1,53 @@
+﻿@using PawsDay.ViewModels.MemberCenter
+@model CalendarViewModel
+@{
+    ViewData["Title"] = "行事曆";
+}
+@section topJS{
+
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/calendar.css">
+}
+
+    <main class="container">
+        <div class="header">
+            <div class="banner">
+                <h2 class="slogan slogan-main col-12">PawsDay行事曆</h2>
+                <a asp-controller="MemberCenter" asp-action="PersonInformation" class="goback">返回會員中心</a>
+                <button class="left-btn pawsday-btn" onclick="premonth()"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="right-btn pawsday-btn" onclick="nextmonth()"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="body row">
+            <div class="calendar col-8">
+                <div class="calendar-head row">
+                    <div class="head-col">Sun</div>
+                    <div class="head-col">Tue</div>
+                    <div class="head-col">Mon</div>
+                    <div class="head-col">Wed</div>
+                    <div class="head-col">Thu</div>
+                    <div class="head-col">Fri</div>
+                    <div class="head-col">Sat</div>
+                </div>
+                <div class="calendar-body">
+                </div>
+            </div>
+            <div class="daily-box col-4">
+                <div class="daily-date">每日行程</div>
+                <ul class="daily-content">
+                </ul>
+            </div>
+        </div>
+    </main>
+
+
+
+    @section endJS
+    {
+    <script src="~/js/MemberCenter/MemberCalendar.js"></script>
+}
+
+
+
+

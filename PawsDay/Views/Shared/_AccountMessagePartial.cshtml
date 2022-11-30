@@ -1,0 +1,34 @@
+﻿
+
+<div>
+    <!-- Modal account-message -->
+    <div class="modal fade login-register-modal" id="account-message" tabindex="-1"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog ">
+            <div id="account-message-partial">
+                <div class="modal-content">
+                    <div class="modal-body  modal-container account-message">
+                        <div class="col-12 text-end">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="col-12 content">
+                            <div class="d-grid gap-2">                       
+                                @if ((Nullable<bool>)TempData["isAccountError"] ?? false)
+                                {
+                                    <p class="text-dark fs-5 mb-2 text-center"> @TempData["isAccountMsg"]</p>
+                                }
+
+                                <div class="list-group">
+                                    <button type="button" class="btn list-group-item main-btn account-close-btn" data-bs-dismiss="modal">
+                                        關閉
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

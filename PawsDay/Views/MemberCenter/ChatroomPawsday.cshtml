@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ChatroomPawsdayViewModel>
+@section topJS{
+}
+    @section topCSS{
+    <link rel="stylesheet" href="~/css/member/member-center.css">
+    <link rel="stylesheet" href="~/css/member/member-chatroom.css">
+}
+@{
+    ViewData["Title"] = "聊天室/PawsDay訊息";
+}
+
+<article>
+    <section class="container section">
+        <partial name="_MemberCenterSidebarPartial"></partial>
+
+        <section class="personal-information col-12 col-lg-9">
+            <div class="container-input">
+                <div class="container-input-header">
+                    <h2 class="currenttitle">聊天室</h2>
+                    <ul>
+                        <a asp-route="Member/MessageList-Official">
+                        <li class="basic-info this-page">
+                            PawsDay訊息
+                        </li>
+                        </a>
+                        <a asp-route="Member/MessageList-Sitter">
+                        <li class="pet-info">
+                            保姆訊息
+                        </li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="containert-body">
+                    <div class="table-head">
+                        <div class="col-md-3 p-0">訂單編號</div>
+                        <div class="col-md-2 p-0 ">方案名稱</div>
+                        <div class="col-md-7 p-0">訊息內容</div>
+                    </div>
+                    @if (Model.Count() == 0)
+                    { 
+                        <div class="table-body-null">
+                            <img src="~/images/no collect.png" alt="還沒有訊息">
+                            <p>還沒有訊息</p>
+                        </div>
+                    }
+                    else
+                    {                        
+                        @foreach (var item in Model)
+                        {
+                            @if (item.OrderId == 0)
+                            {
+                                <div class="table-body-group">
+                                    <div class="col-md-5 p-0 col-12"></div>
+                                    <div class="col-md-7 p-0 table-body-text col-12">
+                                        <div class="col-md-1 p-0 col-1">
+                                            <img src="~/images/P.png" alt="官方頭像">
+                                        </div>                                       
+                                        <div class="col-md-11 col-11">
+                                            <p class="body-text-p">@item.Message</p>
+                                            <p class="body-text-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <a class="table-body-group" asp-route="Member/MessageBox-Official/{id}" asp-route-id="@item.OrderNumber">
+                                    <div class="col-md-3 p-0 col-12">@item.OrderNumber</div>
+                                    <div class="col-md-2 p-0 table-body-service col-12">@item.ServiceName</div>
+                                    <div class="col-md-7 p-0 table-body-text col-12">
+                                        @if (item.IsUserSpeak == true)
+                                        {
+                                            <div class="col-md-1 p-0 col-1">
+                                                @if (item.UserImage == null)
+                                                { 
+                                                    <img src="~/images/paw.png">
+                                                }
+                                                else
+                                                {
+                                                    <img src="@item.UserImage" alt="毛孩主人頭像">
+                                                }
+                                               
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-1 p-0 col-1">
+                                                <img src="~/images/P.png" alt="官方頭像">
+                                            </div>
+                                        }
+                                        <div class="col-md-11 col-11">
+                                            <p class="body-text-p">@item.Message</p>
+                                            <p class="body-text-date">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            }  
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+    </section>
+</article>
+
+@section endJS{
+    <script src="~/js/MemberCenter/MemberCenterSiderbar.js"></script>
+}
+    @section endCSS{
+}

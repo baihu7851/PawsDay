@@ -1,0 +1,29 @@
+﻿@using PawsDay.ViewModels.ShoppingCart.Booking
+@model SendNewebPayDTO
+@{
+    ViewData["Title"] = "FromBookingToNewebPay";
+}
+
+<h1>請稍後，正在跳轉藍新金流...</h1>
+
+<form id="form" method="post" action="https://ccore.newebpay.com/MPG/mpg_gateway">
+
+
+    <input class="d-none" asp-for="MerchantID" value="@Model.MerchantID">
+    <input class="d-none" asp-for="TradeInfo" value="@Model.TradeInfo">
+    <input class="d-none" asp-for="TradeSha" value="@Model.TradeSha">
+    <input class="d-none" asp-for="Version" value="@Model.Version">
+
+
+    
+</form>
+
+
+
+<script>
+    window.onload= ()=>{
+        var form = document.querySelector('#form');
+        form.submit();
+    }
+
+</script>

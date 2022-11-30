@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "_LayoutSearchNone";
+}
+@{
+    ViewData["Title"] = "LatestNews";
+}
+
+
+
+@section topCSS{
+    <link href="~/css/staticWeb/latestnews.css" rel="stylesheet" />
+    <link href="~/css/staticWeb/latestnewsindex.css" rel="stylesheet" />
+}
+    <div class="wrap">
+        <div class="problem-container title-container pawsday-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="slogan">最新消息</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-container article-container">
+            <div class="container article-area">
+                <div class="row">
+                    <div class="col-12">
+
+                        <ul class="list-group article-group">
+                            
+                            <li class="list-group-item list-group-item-action article-item row">
+
+                                <a asp-controller="StaticWeb" asp-action="Newsthree" class="article-item-link">
+                                    <div class="pic-area col-4">
+                                        <img src="~/images/news/sitter.webp" class="img">
+                                    </div>
+                                    <div class="content col-8">
+
+                                        <div class="date">
+                                            2022/09/20
+                                        </div>
+
+                                        <div class="article-content-link">
+                                            <h3 class="title">7個成為寵物保姆、貓保姆、遛狗師的理由！時間彈性、斜槓增加收入的職業推薦</h3>
+                                            <div class="describe">
+                                                為什麼要成為毛小愛的寵物保姆、貓保姆、遛狗師？7大理由！
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item list-group-item-action article-item row">
+
+                                <a asp-controller="StaticWeb" asp-action="Newstwo" class="article-item-link">
+                                    <div class="pic-area col-4">
+                                        <img src="~/images/news/puppy.webp" class="img">
+                                    </div>
+                                    <div class="content col-8">
+
+                                        <div class="date">
+                                            2022/08/18
+                                        </div>
+
+                                        <div class="article-content-link">
+                                            <h3 class="title">幼犬照顧指南！把握黃金成長期，0-1歲幼犬照顧重點懶人包</h3>
+                                            <div class="describe">
+                                                你家是否有一隻可愛爆棚的幼犬？還是正打算飼養？成犬與幼犬照顧方式大不相同，幼犬照顧，如同人類幼兒一般，在各階段都有需要留意的事項。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item list-group-item-action article-item row">
+
+                                <a asp-controller="StaticWeb" asp-action="Newsone" class="article-item-link">
+                                    <div class="pic-area col-4">
+                                        <img src="~/images/news/new.webp" class="img">
+                                    </div>
+                                    <div class="content col-8">
+
+                                        <div class="date">
+                                            2022/07/14
+                                        </div>
+
+                                        <div class="article-content-link">
+                                            <h3 class="title">狗狗可以獨自在家多久？</h3>
+                                            <div class="describe">
+                                                當你決定養狗孩子的那一刻，你就得要負起責任改變你的生活方式，也要特別安排一天行程，讓你有辦法準時回家，包含上班時間、跟朋友出去玩、辦事等等，有時候可能不能跟朋友出去，因為有種不能把毛孩一隻狗留在家的愧疚感。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
